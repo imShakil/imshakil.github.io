@@ -11,7 +11,7 @@ toc: true
 
 An application is maintained over and overtime to fix its bugs, adding new features, changing its user interface, etc. If we look at **apple** or **google** play store, we see Facebook, Instagram, Whatsapp, etc, these applications are updated once or twice every month where each update has a version name like v2.1, v2.2. Managing versions of software with ease and flexibility **Version Control** plays a major role in the software industry.
 
-### Version Control System
+# Version Control System
 
 **Version control** is a system that records changes to a file or set of files over time so that you can recall specific versions later. (Git)
 
@@ -19,13 +19,13 @@ Let’s say you are developing an android application to complete your final yea
 
 Version control systems allow you to make periodic, manual “commits” to your project’s “repository” to save code as you want. Every time you make a commit to the project, the version control system records these commits as a version of your project. If you ever want to go back to an exact version of your project at a specific time, you can simply get back by recalling the specific commit. **Git, Mercurial, Apache Subversion, CVS**, etc are a few examples of version control systems. Among these **Git** is the most popular version control system used by most software industries in the entire world. Facebook uses **Mercurial** as its version control system as a large software company in the world.
 
-### Git
+# Git
 
-#### What’s Git?
+## What’s Git?
 
 Git is a distributed version control system. Git installs locally on computers. It’s a free and open-source **command-line** tool.
 
-#### Git Installation
+## Git Installation
 
 According to your device and operating system, you can setup Git from their website.
 
@@ -38,9 +38,9 @@ If you are a Linux user then use this command to install it on your computer:
 sudo apt install git-all
 ```
 
-### GitHub
+# GitHub
 
-#### What is GitHub?
+## What is GitHub?
 
 GitHub is designed as a git repository hosting service. You can share your projects with others to work together as a team. It’s the largest online platform used by the 37 million users around the world.
 
@@ -53,11 +53,11 @@ GitHub also likes a GUI for the git command-line tool. It makes more easy to lea
 [**Build software better, together**  
 _GitHub brings together the world's largest community of developers to discover, share, and build better software. From…_github.com](https://github.com "https://github.com")[](https://github.com)
 
-### Major Concepts on Git and GitHub
+## Major Concepts on Git and GitHub
 
 Before getting started with Git and GitHub, let’s know the major concepts of Git and GitHub for better understand.
 
-#### Repository
+## Repository
 
 The repository is the most important component of the version control system. A repository can be viewed as a folder or project with a set of files and subfolders.
 
@@ -67,11 +67,11 @@ git init
 
 This command is used to create a folder as a git repository. After performing this command, a `.git` folder is created where each change of file is recorded. Thie metadata is everything of a git repository. This folder doesn’t show in your GitHub repository rather than it can be found on your local machine when you clone a git repository.
 
-#### Workspace
+## Workspace
 
 A workspace is something that you don’t want to share as open-source or somewhere like GitHub. These things only work when you want to share your project with an online platform like GitHub. You may find a file like `.gitignore` that ignores the information that you don’t want to share in Github or another online hosting platform.
 
-#### Tracked and Untracked
+## Tracked and Untracked
 
 Each file in your working directory can be in one of two states: **tracked** or **untracked**. Tracked files are files that were in the last snapshot; they can be unmodified, modified, or staged. In short, tracked files are files that Git knows about. To **track** files**:**
 
@@ -96,7 +96,7 @@ To check `git status` use below command line:
 git status
 ```
 
-#### Commits
+## Commits
 
 Commits are a major part of the version control system. Commits keep track of file changes. You can manually add commits from GitHub or using Git command. To commit from Git command line:
 
@@ -104,7 +104,7 @@ git commit -m "description of your commit"
 
 There are two types of commits: `stage` and `unstage` . When you add or edit a file in your repository git will track these changes as unstaged since they are yet to verify. When you commit these changes will be marked as staged.
 
-#### Branches
+## Branches
 
 Branching means you diverge from the main line of development and continue to do work without messing with that main line.
 
@@ -113,7 +113,7 @@ Branching means you diverge from the main line of development and continue to do
 
 The ‘master’ branch is the main branch of the project. This ‘master’ branch merge files that are pushed from other branches. It will be more clear when you are used to be with GitHub.
 
-#### Push, Pull and Pull Request
+## Push, Pull and Pull Request
 
 <img src="/assets/img/1__8SZ4AjUoMKsbrOn4xDx0mQ.png">
 
@@ -125,7 +125,7 @@ When changes have been made on GitHub, for example, but differ from that which e
 
 A pull request exists when permission must be granted in order for a pull of changes to be brought into a specific part of the version control system. Suppose, you have updated a file in a public repository and then you want to share with the master branch of that repository then you can send a pull request to the master branch.
 
-#### Remotes
+## Remotes
 
 Remote repositories are versions of your project that are hosted on the Internet or network somewhere. You can have several of them, each of which generally is either read-only or read/write for you. Collaborating with others involves managing these remote repositories and pushing and pulling data to and from them when you need to share work. Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote branches, and define them as being tracked or not, and more. (Git)
 
@@ -153,13 +153,13 @@ To remove remote:
 git remote remove "remote name"
 ```
 
-#### Merging
+## Merging
 
 Merging in git repository means combining branches with the master branch in the version control system.
 
 So now, we know some basic commands and functionality of git and Github. In the last part of this article, I’m going through an example to show you how to create a repo in Github, cloning it into our local machine using Git command, adding some changes into that repo, commit those changes, and pushing changes up to GitHub, then creating a pull request and finally merging it to master branch.
 
-### Getting Started with Git and GitHub
+# Getting Started with Git and GitHub
 
 Let’s start with a repository to understand Git and Github in a better way.
 
@@ -178,7 +178,9 @@ _If you want to skip the above steps then you can just start from step-4 to clon
 
 okay, git is fine. let’s clone the repository. choose a directory where you want to clone it. Then perform the following command:
 
+```
 git clone [https://github.com/imShakil/test.git](https://github.com/imShakil/test.git)
+```
 
 <img src="/assets/img/1____WgYZPwE0Msxdr__6IEkNQg.png">
 

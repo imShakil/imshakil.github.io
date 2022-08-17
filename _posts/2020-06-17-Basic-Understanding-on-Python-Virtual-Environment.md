@@ -94,3 +94,4 @@ Reference:
 \[1\]. [https://docs.python.org/3/tutorial/venv.html](https://docs.python.org/3/tutorial/venv.html)  
 \[2\]. [https://realpython.com/python-virtual-environments-a-primer/](https://realpython.com/python-virtual-environments-a-primer/)  
 \[3\]. [https://www.geeksforgeeks.org/python-virtual-environment/](https://www.geeksforgeeks.org/python-virtual-environment/)
+\[4\]. [https://www.scaler.com/topics/what-is-pip-in-python/](https://www.scaler.com/topics/what-is-pip-in-python/)

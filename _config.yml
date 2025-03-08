@@ -4,10 +4,10 @@ highlighter:      rouge
 
 # Setup
 title:            imShakil
-tagline:          'A Personal Blog'
-description:      Support Engineer
-organization: Gluu
-organization_url: https://gluu.org
+tagline:          'Just another problem solver'
+description:      'Just another problem solver'
+organization: FusionPulse
+organization_url: https://fusionpulse.tech
 location: Dhaka, Bangladesh
 author: Mobarak Hosen Shakil
 avatar: /favicon.jpeg
@@ -46,7 +46,6 @@ logo: favicon.jpeg
 social:
   name: Mobarak Hosen Shakil
   links:
-    - https://twitter.com/mhiceiuk
     - https://github.com/imshakil
     - https://medium.com/@imshakil
     - https://linkedin.com/in/imshakil

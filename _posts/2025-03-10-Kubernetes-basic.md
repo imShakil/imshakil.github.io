@@ -1,5 +1,5 @@
 ---
-title: 'Kubernetes Basics: A Beginner's Guide to Container Orchestration'
+title: "Kubernetes Basics: A Beginner's Guide to Container Orchestration"
 date: 2025-03-10
 categories: ['devops']
 tags: ['Kubernetes', 'Container Orchestration']
@@ -65,7 +65,8 @@ Secrets store sensitive data like API keys and passwords, ensuring security.
 ## Essential Kubernetes Commands
 
 Use these commands to interact with a Kubernetes cluster:
-```
+
+```bash
 # View cluster information
 kubectl cluster-info
 

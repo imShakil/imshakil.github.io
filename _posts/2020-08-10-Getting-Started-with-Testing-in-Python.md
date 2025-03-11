@@ -122,7 +122,6 @@ The **doctest **also a python built-in library. This module searches for pieces 
 
 A simple **doctest** in a function
 
-{% gist cc53f9be64e6279395d14362c4c5716b doctest.py %}
 
 While running this code, doctest will run and complain if the given description doesn't work as expected.
 
@@ -136,8 +135,7 @@ pip install pytest
 
 following code to understand how it works:
 
-{% gist e53d4b1e320bf00e01b318d6ed9b5d5f pytest.py %}
-
+<!--  {% gist e53d4b1e320bf00e01b318d6ed9b5d5f pytest.py %} -->
 Run the following command in your project terminal:
 
 ```

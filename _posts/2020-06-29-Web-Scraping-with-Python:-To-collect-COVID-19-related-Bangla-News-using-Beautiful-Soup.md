@@ -55,8 +55,9 @@ There are many packages for web scraping with python. I’m using Beautiful Soup
 
 Let’s first install the required package, from your virtual environment run the following command:
 
+```bash
     pip install bs4
-
+```
 ![](https://cdn-images-1.medium.com/max/2018/1*gzuLZjavTZ8gFGtHt_5P4A.png)
 
 let’s create a scraper who will take an URL as an argument and will return the HTML document.
@@ -89,23 +90,28 @@ in the following code, headers work as a browser agent. to get your browser agen
 
 copy it and pass it into the function as a variable. if you want you can skip browser agent. run the following command to get the document.
 
+```python
     soup = scrape_url("https://somoynews.tv", my_user_agent)
     print(type(soup))
-
+```
 In return, you will get an object of the bs4 class type.
 
 Since we want only corona related news posts, see we need to find only the links. to find all links:
 
+```python
     all_links = soup.find_all('a')
+```
 
 all_links also, bs4 object contains only ‘a’ link attribute. Now, we need to filter and remove all the non-corona related Bangla news.
 
 So, let’s make a statement that those link titles don’t contain any words of the corona that are not related to it.
 
+```python
     training_samples = ['করোনা', 'কোভিড-১৯', 'উহান-ভাইরাস']
-
+```
 If any news title contains any words of traning_samples that means that news are corona related. following code to match corona related news:
 
+```python
     soup = scrape_url("https://somoynews.tv")
     all_links = soup.find_all('a')
     
@@ -114,7 +120,7 @@ If any news title contains any words of traning_samples that means that news are
         title_words = link.get_text().strip().split()
         if set(training_samples).intersection(set(title_words)):
             print("Title: {}, Link: {}".format(link.get_text().strip(), link.get('href')))
-
+```
 following result:
 
 ![](https://cdn-images-1.medium.com/max/2272/1*Vu3aoxwuWEf6aF5LlqMpwg.png)

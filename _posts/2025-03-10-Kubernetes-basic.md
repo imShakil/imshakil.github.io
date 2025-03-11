@@ -95,7 +95,7 @@ kubectl delete deployment my-app
 
 Instead of using CLI commands, you can define a deployment using a YAML manifest:
 
-```YAML
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:

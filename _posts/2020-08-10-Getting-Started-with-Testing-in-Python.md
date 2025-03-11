@@ -7,7 +7,7 @@ comments: true
 ---
 
 
-<img src="https://miro.medium.com/max/4000/0*Ok0tm88hZLU5Prim">
+![img](https://miro.medium.com/max/4000/0*Ok0tm88hZLU5Prim)
 
 Testing code is always wanted as a good habit. when you are working on a project, It’s really a good idea to check that every single unit/program is working perfectly. There is a lot of modules to test code in python. In this article, I’m going to share some basic with coding examples to getting started with python unit testing.
 

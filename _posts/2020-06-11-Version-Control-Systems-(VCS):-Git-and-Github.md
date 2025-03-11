@@ -176,7 +176,7 @@ Let’s start with a repository to understand Git and Github in a better way.
 _If you want to skip the above steps then you can just start from step-4 to clone my repository and contributing as a team member._
 
 4. Let’s clone the created repository into our local machine(computer). before cloning it, let’s check that git is working or not on our computer. to check enter following command: `git --version` you will see an output with a version:
-![img](/static/img/1_us0yh41eJ4kEfJ19Z7GuxQ.png)
+![img](/static/img/1us0yh41eJ4kEfJ19Z7GuxQ.png)
 
 okay, git is fine. let’s clone the repository. choose a directory where you want to clone it. Then perform the following command:
 

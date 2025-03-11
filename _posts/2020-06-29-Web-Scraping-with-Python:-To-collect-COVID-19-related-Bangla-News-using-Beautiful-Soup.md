@@ -61,6 +61,7 @@ Let’s first install the required package, from your virtual environment run th
 
 let’s create a scraper who will take an URL as an argument and will return the HTML document.
 
+```python
     import requests
     from requests.exceptions import HTTPError
     from bs4 import BeautifulSoup
@@ -79,6 +80,7 @@ let’s create a scraper who will take an URL as an argument and will return the
             return soup
     
         return BeautifulSoup("", 'html.parser')
+```
 
 if the URL is not valid or can’t respond then it will return an empty document.
 in the following code, headers work as a browser agent. to get your browser agent: type in google search “my user agent”

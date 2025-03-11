@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Basics: A Beginner's Guide to Container Orchestration
+title: 'Kubernetes Basics: A Beginner's Guide to Container Orchestration'
 date: 2025-03-10
 categories: ['devops']
 tags: ['Kubernetes', 'Container Orchestration']

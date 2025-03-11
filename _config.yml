@@ -9,40 +9,39 @@ theme: jekyll-theme-chirpy
 lang: en
 
 # Change to your timezone › https://kevinnovak.github.io/Time-Zone-Picker
-timezone:
+timezone: Asia/Dhaka
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy # the main title
+title: imShakil # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the subtitle
+tagline: Just A Problem Solver
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  Experienced System Administrator with expertise in IT automation, Linux, and operating systems. Proven track record in implementing and managing self-hosted GitLab instances, optimizing CI/CD pipelines, and providing WordPress development services. Skilled in securing web infrastructure through SSL/TLS configuration and managing web servers like Nginx and Apache.
+  Previously, as a Technical Support Engineer at Gluu, Inc., successfully troubleshooted and resolved technical issues for clients implementing Gluu Server for IAM and SSO solutions. Achieved over 90% customer satisfaction by diagnosing and resolving authentication, authorization, and directory integration challenges while adhering to SLAs. Additionally, tested APIs, authentication modules, and documented third-party SSO integrations to ensure seamless system operations. Passionate about learning and applying new technologies to solve real-world problems.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: ""
+url: "https://imshakil.github.io"
 
 github:
-  username: github_username # change to your GitHub username
+  username: imShakil # change to your GitHub username
 
 twitter:
-  username: twitter_username # change to your Twitter username
+  username: mhiceiuk # change to your Twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@domain.com # change to your email address
+  name: Mobarak Hosen Shakil
+  email: mh.ice.iu@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your Twitter homepage
-    - https://github.com/username # change to your GitHub homepage
-    # Uncomment below to add more social links
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://github.com/imshakil # change to your GitHub homepage
+    - https://medium.com/@imshakil
+    - https://www.linkedin.com/in/imshakil
 
 # Site Verification Settings
 webmaster_verifications:

@@ -1,10 +1,11 @@
 ---
-title: "A Beginner Guide to Slack"
-excerpt: "In this article, I’m going to introduce a great workplace messaging platform called “slack” which is used for team collaboration."
-date: '2020-06-02T20:13:59.047Z'
-categories: ['software']
-tags: ['workspace', 'platform']
+title: A Beginner Guide to Slack
+excerpt: In this article, I’m going to introduce a great workplace messaging platform called “slack” which is used for team collaboration.
+date: 2020-06-02
+categories: [software]
+tags: [workspace, platform]
 toc: true
+comments: true
 ---
 
 In this article, I’m going to introduce a great workspace messaging platform called “slack” which is used for team collaboration. Slack is a very popular platform in the software industry worth more than 20$ billion value.

@@ -3,6 +3,7 @@ title: Getting Started with Testing in Python
 categories: ['programming']
 tags: ['python', 'programming', 'unit-testing']
 toc: true
+comments: true
 ---
 
 

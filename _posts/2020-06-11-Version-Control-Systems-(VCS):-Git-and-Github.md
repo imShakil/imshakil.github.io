@@ -5,6 +5,7 @@ date: '2020-06-11T10:28:07.500Z'
 categories: ['software']
 tags: ['git', 'github', 'vcs', 'version control']
 toc: true
+comments: true
 ---
 
 <img src="/assets/img/1__aZwkyRkEL4PPs92c8WoVJA.png">

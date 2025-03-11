@@ -5,6 +5,7 @@ date: '2020-06-17T13:27:43.030Z'
 categories: ['programming']
 tags: ['python', 'virtual environment']
 toc: true
+comments: true
 ---
 
 <img src="/assets/img/1__wIljxFj3__RVS__TTpTjWigw.jpeg">

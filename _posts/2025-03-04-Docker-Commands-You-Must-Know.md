@@ -1,12 +1,9 @@
 ---
-categories:
-  - programming
-tags:
-  - docker
-  - programming
-  - devops
+categories: [programming]
+tags: [docker, programming, devops]
 title: Essential Docker Commands You Must Know [Cheatsheet]
 toc: true
+comments: true
 ---
 
 ## Basic Commands

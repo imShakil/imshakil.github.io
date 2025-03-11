@@ -1,7 +1,10 @@
 ---
 title: Web Scraping in python using Beautiful Soup
 categories: ['programming']
+date: 2020-08-31
 tags: ['bs4', 'python', 'programming']
+toc: true
+comments: true
 ---
 
 We visit a lot of websites every day. Sometimes we need to collect some pieces of information. How can we do this? The only solution is to copy-paste or saving the page as a PDF? Let's take an example; Rocomari is a Bangladeshi online marketplace for ordering books. They sell books with discounts in different categories. So you want to buy a book with a 40% discount. You want notifications when that book will sell at a 40% discount. Here, web scraper may help you in a better way instead of looking through the website each day manually.

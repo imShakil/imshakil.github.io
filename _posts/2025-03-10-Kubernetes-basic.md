@@ -1,12 +1,9 @@
 ---
-title: Kubernetes Basics: A Beginner's Guide to Container Orchestration
-date: 2025-03-10
-categories: ['devops']
-tags: ['Kubernetes', 'Container Orchestration']
+title: A Beginners Guide to Container Orchestration [Kubernetes Basics]
+categories: [devops]
+tags: [Kubernetes, Container Orchestration]
 toc: true
 ---
-
-
 
 ## Introduction
 
@@ -21,7 +18,6 @@ This guide will cover the fundamental concepts of Kubernetes and provide basic c
 Kubernetes operates on a cluster of machines known as nodes. There are two types:
 
 - Master Node: The brain of the cluster, responsible for scheduling workloads, maintaining the cluster state, and handling API requests.
-
 - Worker Nodes: Execute the workloads and run containerized applications.
 
 ### Pods
@@ -37,11 +33,8 @@ A Deployment manages a set of pods and ensures that the desired number of replic
 Services provide networking and load balancing to pods. Types of services include:
 
 - ClusterIP (default): Internal access within the cluster.
-
 - NodePort: Exposes the service on a static port on each node.
-
 - LoadBalancer: Uses a cloud provider’s load balancer to expose the service externally.
-
 - Ingress: Manages external access using domain names and routes traffic to services.
 
 ### ConfigMaps & Secrets
@@ -53,19 +46,16 @@ Secrets store sensitive data like API keys and passwords, ensuring security.
 ## Key Features of Kubernetes
 
 - Self-Healing: Automatically restarts failed containers.
-
 - Auto-Scaling: Adjusts replicas based on CPU/memory usage.
-
 - Rolling Updates & Rollbacks: Enables seamless deployments without downtime.
-
 - Service Discovery & Load Balancing: Built-in DNS ensures smooth networking.
-
 - Resource Management: Controls CPU and memory usage per container.
 
 ## Essential Kubernetes Commands
 
 Use these commands to interact with a Kubernetes cluster:
-```
+
+```sh
 # View cluster information
 kubectl cluster-info
 

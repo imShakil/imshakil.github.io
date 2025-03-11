@@ -27,9 +27,9 @@ Slack is a single workplace for messaging, file sharing between team members. It
 3.  A number of peoples
 4.  Messaging window
 
-![img](/static/img/1_z8-ujeY5jW2B_AiQa5no-g.png)
+![img](/static/img/1z8ujeY5jW2BAiQa5nog.png)
 
-To use slack, we have to choose a unique workspace name, this name generates a unique URL to visit the workspace. In the following picture, EduHubICT as the workspace name, and its URL is: [eduhubict.slack.com](http://eduhubict.slack.com)
+To use slack, we have to choose a unique workspace name, this name generates a unique URL to visit the workspace. In the following picture, EduHubICT as the workspace name, and its URL is: [eduhubict.slack.com](https://eduhubict.slack.com)
 
 In slack, teamwork, and communications happen in channels. A channel is a single place for a team to share messages, files, and tools. A channel can be public or private. Private channels can be seen only for invited/ joined members.
 
@@ -41,7 +41,7 @@ Slack is an instant messaging system. Besides messaging, slack supports audio-vi
 
 Slack supports a lot of apps to connect with the workspace. Those connected apps make it easier to collaborate with teams.
 
-![img](/static/img/1_W8_FXGYLX916AzyHJl5DrA.png)
+![img](/static/img/1W8FXGYLX916AzyHJl5DrA.png)
 
 ### Is it for free?
 

@@ -6,6 +6,9 @@ categories: ['software']
 tags: ['git', 'github', 'vcs', 'version control']
 toc: true
 comments: true
+image:
+    path: /static/img/1aZwkyRkEL4PPs92c8WoVJA.png
+    alt: 'Version Control Systems (VCS): Git and Github'
 ---
 
 ![img](/static/img/1aZwkyRkEL4PPs92c8WoVJA.png)

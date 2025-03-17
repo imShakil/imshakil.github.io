@@ -26,6 +26,6 @@ Currently, I’m focused on refining my professional communication skills to eng
 
 ## My Resume
 
-{% pdf "../static/files/Mobarak_Hosen_Resume.pdf" %}
+{% pdf "../static/files/Mobarak_Hosen_Resume.pdf" height=900px %}
 
 Let’s connect and talk tech! 🚀

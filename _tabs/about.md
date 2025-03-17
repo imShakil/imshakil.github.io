@@ -24,4 +24,8 @@ I thrive in fast-paced environments where I can automate, secure, and scale syst
 
 Currently, I’m focused on refining my professional communication skills to engage effectively with global teams and customers. Always eager to learn, experiment, and share knowledge!
 
+## My Resume
+
+{% pdf "../static/files/Mobarak_Hosen_Resume.pdf" %}
+
 Let’s connect and talk tech! 🚀

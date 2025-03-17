@@ -226,3 +226,6 @@ jekyll-archives:
 
 plugins:
   - jekyll-gist
+  - jekyll-pdf-embed
+  - jekyll_quote
+  

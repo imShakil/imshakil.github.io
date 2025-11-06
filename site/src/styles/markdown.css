@@ -1,0 +1,154 @@
+/* Markdown Styles */
+
+.prose {
+  @apply text-slate-300;
+}
+
+.prose h1 {
+  @apply text-4xl md:text-5xl font-bold text-sky-400 mb-6 mt-8 first:mt-0;
+}
+
+.prose h2 {
+  @apply text-3xl md:text-4xl font-bold text-sky-400 mb-4 mt-8;
+}
+
+.prose h3 {
+  @apply text-2xl font-bold text-sky-300 mb-3 mt-6;
+}
+
+.prose h4 {
+  @apply text-xl font-semibold text-sky-300 mb-2 mt-4;
+}
+
+.prose p {
+  @apply text-slate-300 leading-relaxed mb-4;
+}
+
+.prose a {
+  @apply text-sky-400 hover:text-sky-300 transition-colors underline;
+}
+
+.prose strong {
+  @apply text-slate-100 font-semibold;
+}
+
+.prose em {
+  @apply text-slate-200 italic;
+}
+
+.prose code {
+  @apply bg-slate-800/50 text-sky-300 px-2 py-1 rounded text-sm font-mono border border-slate-700/50;
+}
+
+.prose pre {
+  @apply bg-slate-800/50 border border-slate-700/50 rounded-lg p-4 overflow-x-auto mb-4;
+}
+
+.prose pre code {
+  @apply bg-transparent border-0 p-0 text-slate-300;
+}
+
+.prose ul,
+.prose ol {
+  @apply mb-4 ml-6;
+}
+
+.prose li {
+  @apply mb-2 text-slate-300;
+}
+
+.prose ul li {
+  @apply list-disc;
+}
+
+.prose ol li {
+  @apply list-decimal;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-sky-500 pl-4 py-2 my-4 text-slate-400 italic bg-slate-800/30 rounded-r;
+}
+
+.prose table {
+  @apply w-full border-collapse mb-4;
+}
+
+.prose th {
+  @apply bg-slate-800/50 text-sky-400 font-semibold p-3 text-left border border-slate-700/50;
+}
+
+.prose td {
+  @apply p-3 border border-slate-700/50 text-slate-300;
+}
+
+.prose tr:hover {
+  @apply bg-slate-800/30;
+}
+
+.prose hr {
+  @apply border-slate-700/50 my-8;
+}
+
+.prose img {
+  @apply rounded-lg max-w-full h-auto my-6 border border-slate-700/50;
+}
+
+/* Inline code styling */
+.prose :not(pre) > code {
+  @apply bg-slate-800/50 text-sky-300 px-2 py-1 rounded text-sm font-mono border border-slate-700/50;
+}
+
+/* Links in headings */
+.prose h1 a,
+.prose h2 a,
+.prose h3 a {
+  @apply text-inherit hover:text-sky-300;
+}
+
+/* Nested lists */
+.prose ul ul,
+.prose ol ol,
+.prose ul ol,
+.prose ol ul {
+  @apply ml-4 mb-2;
+}
+
+/* Definition lists */
+.prose dt {
+  @apply font-semibold text-sky-400 mt-4;
+}
+
+.prose dd {
+  @apply ml-6 text-slate-300 mb-2;
+}
+
+/* Horizontal rule */
+.prose hr {
+  @apply my-8 border-t border-slate-700/50;
+}
+
+/* Abbreviation */
+.prose abbr {
+  @apply cursor-help border-b border-dotted border-slate-500;
+}
+
+/* Mark/highlight */
+.prose mark {
+  @apply bg-yellow-500/20 text-yellow-300 px-1 rounded;
+}
+
+/* Keyboard input */
+.prose kbd {
+  @apply bg-slate-800 text-slate-300 px-2 py-1 rounded text-sm font-mono border border-slate-700;
+}
+
+/* Small text */
+.prose small {
+  @apply text-slate-400;
+}
+
+/* Subscript and superscript */
+.prose sub,
+.prose sup {
+  @apply text-xs;
+}

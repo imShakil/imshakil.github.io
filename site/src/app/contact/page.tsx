@@ -55,7 +55,7 @@ export default function Contact() {
       title: 'Email',
       value: 'shakilops.dev@gmail.com',
       link: 'mailto:shakilops.dev@gmail.com',
-      description: 'Send me an email and I\'ll respond as soon as possible',
+      description: 'Send me an email and I&apos;ll respond as soon as possible',
     },
     {
       icon: (
@@ -88,7 +88,7 @@ export default function Contact() {
         <div className="max-w-4xl mx-auto space-y-4 slide-in-up">
           <h1 className="text-5xl md:text-6xl font-bold gradient-text">Get In Touch</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            Have a question or want to collaborate? I'd love to hear from you. Reach out using any of the methods below.
+            Have a question or want to collaborate? I&apos;d love to hear from you. Reach out using any of the methods below.
           </p>
         </div>
       </section>
@@ -128,7 +128,7 @@ export default function Contact() {
               {submitted && (
                 <div className="p-4 rounded-lg bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/30">
                   <p className="text-green-800 dark:text-green-300 font-semibold">
-                    ✓ Thank you! Your message has been sent successfully. I'll get back to you soon!
+                    ✓ Thank you! Your message has been sent successfully. I&apos;ll get back to you soon!
                   </p>
                 </div>
               )}

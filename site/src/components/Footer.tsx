@@ -1,16 +1,5 @@
-import Link from 'next/link';
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
-  const footerLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Resume', href: '/resume' },
-    { label: 'Activities', href: '/activities' },
-    { label: 'Blog', href: '/blog' },
-  ];
 
   const socialLinks = [
     { label: 'GitHub', href: 'https://github.com/imShakil', icon: 'github' },

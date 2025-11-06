@@ -43,7 +43,7 @@ export default function Home() {
           <div className="text-center space-y-6 slide-in-up">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">About Me</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-              I'm a DevOps Engineer and Technical Support Specialist with hands-on experience in Docker, Kubernetes, Terraform, Ansible, and CI/CD automation. I enjoy designing infrastructure-as-code workflows, managing self-hosted GitLab environments, and helping teams deploy faster with confidence.
+              I&apos;m a DevOps Engineer and Technical Support Specialist with hands-on experience in Docker, Kubernetes, Terraform, Ansible, and CI/CD automation. I enjoy designing infrastructure-as-code workflows, managing self-hosted GitLab environments, and helping teams deploy faster with confidence.
             </p>
             <div className="flex flex-wrap justify-center gap-3 pt-4">
               <span className="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm border border-blue-200 dark:border-blue-500/30">DevOps</span>
@@ -126,9 +126,9 @@ export default function Home() {
       <section className="py-20 px-6 md:px-20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">Let's Work Together</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">Let&apos;s Work Together</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
-              Interested in collaborating or have a project in mind? Let's connect and discuss how I can help.
+              Interested in collaborating or have a project in mind? Let&apos;s connect and discuss how I can help.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

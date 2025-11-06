@@ -83,7 +83,7 @@ export default function ResumePage() {
           {/* Alternative Download Link */}
           <div className="mt-8 p-6 bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/30 rounded-lg text-center">
             <p className="text-gray-700 dark:text-gray-300 mb-4">
-              If the PDF viewer doesn't work, you can download the resume directly:
+              If the PDF viewer doesn&apos;t work, you can download the resume directly:
             </p>
             <a
               href={pdfUrl}

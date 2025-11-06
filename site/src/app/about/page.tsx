@@ -1,7 +1,6 @@
 'use client';
 
 import Footer from '@/components/Footer';
-import Link from 'next/link';
 
 export default function About() {
   return (
@@ -23,7 +22,7 @@ export default function About() {
           <div className="space-y-4">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Who I Am</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-              I'm a Technical Support Engineer and aspiring DevOps professional with strong expertise in system administration, cloud operations, and automation. I specialize in deployments, CI/CD pipelines, monitoring, and authentication protocols (SAML, OAuth2, OpenID Connect) while ensuring security and scalability across cloud and on-prem environments.
+              I&apos;m a Technical Support Engineer and aspiring DevOps professional with strong expertise in system administration, cloud operations, and automation. I specialize in deployments, CI/CD pipelines, monitoring, and authentication protocols (SAML, OAuth2, OpenID Connect) while ensuring security and scalability across cloud and on-prem environments.
             </p>
             <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
               I advocate for Infrastructure as Code (IaC) and focus on building reliable, automated, and fault-tolerant systems. My experience spans Linux servers, containerized applications (Docker, Kubernetes), mail servers, Nginx, SSL/TLS, DNS management, and workflow automation to enhance performance and streamline operations.
@@ -139,9 +138,9 @@ export default function About() {
           {/* Connect */}
           <div className="space-y-6 p-8 rounded-lg bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200 dark:border-blue-500/30">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Let's Connect</h2>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Let&apos;s Connect</h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                I'm always interested in discussing DevOps, cloud infrastructure, and automation. Feel free to reach out!
+                I&apos;m always interested in discussing DevOps, cloud infrastructure, and automation. Feel free to reach out!
               </p>
             </div>
             

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import Footer from '@/components/Footer';
 
 export default function Contact() {
@@ -12,6 +13,12 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '');
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,15 +31,22 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
 
     try {
-      // You can integrate with an email service here (e.g., EmailJS, SendGrid, etc.)
-      // For now, we'll just simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const result = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'shakilops.dev@gmail.com',
+        }
+      );
 
-      // Log the form data (in production, send to your backend)
-      console.log('Form submitted:', formData);
-
+      console.log('Email sent successfully:', result);
       setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
 
@@ -40,6 +54,7 @@ export default function Contact() {
       setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
+      setError('Failed to send message. Please try again or contact me directly via email.');
     } finally {
       setLoading(false);
     }
@@ -129,6 +144,15 @@ export default function Contact() {
                 <div className="p-4 rounded-lg bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/30">
                   <p className="text-green-800 dark:text-green-300 font-semibold">
                     ✓ Thank you! Your message has been sent successfully. I&apos;ll get back to you soon!
+                  </p>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {error && (
+                <div className="p-4 rounded-lg bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30">
+                  <p className="text-red-800 dark:text-red-300 font-semibold">
+                    ✗ {error}
                   </p>
                 </div>
               )}

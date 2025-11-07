@@ -34,6 +34,14 @@ export default function Contact() {
     setError('');
 
     try {
+      const now = new Date();
+      const hours = String(now.getUTCHours()).padStart(2, '0');
+      const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+      const day = now.getUTCDate();
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const month = monthNames[now.getUTCMonth()];
+      const year = now.getUTCFullYear();
+      const time = `${hours}:${minutes} (UTC+00), ${day} ${month}, ${year}`;
       const result = await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
@@ -42,7 +50,9 @@ export default function Contact() {
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
+          time: time,
           to_email: 'shakilops.dev@gmail.com',
+          reply_to: formData.email,
         }
       );
 

@@ -1,1 +1,33 @@
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="url(#gradient)" stroke-width="2"/>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="fillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Inner circle fill -->
+  <circle cx="100" cy="100" r="90" fill="url(#fillGradient)"/>
+  
+  <!-- Letter M -->
+  <text x="30" y="130" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="url(#gradient)">M</text>
+  
+  <!-- Letter H -->
+  <text x="130" y="130" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="url(#gradient)">H</text>
+  
+  <!-- Center circle with geometric pattern -->
+  <circle cx="100" cy="100" r="35" fill="none" stroke="url(#gradient)" stroke-width="2"/>
+  <circle cx="100" cy="100" r="25" fill="url(#fillGradient)" stroke="url(#gradient)" stroke-width="1.5"/>
+  
+  <!-- Inner geometric elements -->
+  <path d="M 85 100 L 100 85 L 115 100 L 100 115 Z" fill="none" stroke="url(#gradient)" stroke-width="1.5"/>
+  <circle cx="100" cy="100" r="8" fill="url(#gradient)"/>
+</svg>

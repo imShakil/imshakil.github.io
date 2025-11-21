@@ -1,5 +1,5 @@
 import Footer from '@/components/Footer';
-import { fetchAndParseRSS, parseMediumRSS, parseYouTubeRSS, RSSItem } from '@/lib/rss-parser';
+import { fetchAndParseRSS, parseYouTubeRSS, RSSItem } from '@/lib/rss-parser';
 
 async function getMediumPosts(): Promise<RSSItem[]> {
   try {
@@ -13,7 +13,7 @@ async function getMediumPosts(): Promise<RSSItem[]> {
     
     const data = await response.json();
     
-    return data.items.slice(0, 6).map((item: any) => {
+    return data.items.slice(0, 6).map((item: { title: string; link: string; pubDate: string; description: string; content?: string; thumbnail?: string }) => {
       // Extract image from content or use thumbnail
       let image = item.thumbnail || '';
       if (!image && item.content) {

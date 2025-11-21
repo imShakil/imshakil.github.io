@@ -3,11 +3,40 @@ import { fetchAndParseRSS, parseMediumRSS, parseYouTubeRSS, RSSItem } from '@/li
 
 async function getMediumPosts(): Promise<RSSItem[]> {
   try {
-    const posts = await fetchAndParseRSS(
-      'https://medium.com/feed/@imshakil',
-      parseMediumRSS
+    const response = await fetch(
+      `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://medium.com/feed/@imshakil')}`
     );
-    return posts.slice(0, 6);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    
+    return data.items.slice(0, 6).map((item: any) => {
+      // Extract image from content or use thumbnail
+      let image = item.thumbnail || '';
+      if (!image && item.content) {
+        const imgMatch = item.content.match(/<img[^>]+src="([^"]+)"/i);
+        if (imgMatch) {
+          image = imgMatch[1];
+        }
+      }
+      if (!image && item.description) {
+        const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/i);
+        if (imgMatch) {
+          image = imgMatch[1];
+        }
+      }
+      
+      return {
+        title: item.title,
+        link: item.link,
+        pubDate: item.pubDate,
+        description: item.description.replace(/<[^>]*>/g, '').substring(0, 200),
+        image
+      };
+    });
   } catch (error) {
     console.error('Failed to fetch Medium posts:', error);
     return [];

@@ -13,7 +13,7 @@ export default function AboutMe({ showLink = true }: AboutMeProps) {
     <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center md:items-center">
         {/* Profile Image */}
-        <div className="flex justify-center order-2 md:order-1">
+        <div className="flex justify-center order-1 md:order-2">
             <div className="relative">
             <img
                 src="/me.jpeg"
@@ -25,7 +25,7 @@ export default function AboutMe({ showLink = true }: AboutMeProps) {
         </div>
         
         {/* About Content */}
-        <div className="space-y-6 slide-in-up order-1 md:order-2">
+        <div className="space-y-6 slide-in-up order-2 md:order-1">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white text-center md:text-left">About Me</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-center md:text-justify">
             I&apos;m a DevOps Engineer and Technical Support Specialist with hands-on experience in Docker, Kubernetes, Terraform, Ansible, and CI/CD automation. I enjoy designing infrastructure-as-code workflows, managing self-hosted GitLab environments, and helping teams deploy faster with confidence.

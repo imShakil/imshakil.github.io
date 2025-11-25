@@ -1,5 +1,27 @@
 export const projects = [
   {
+    name: 'cloudsinclick - Multi-Cloud VM Provisioning',
+    desc: 'One-click cloud infrastructure provisioning with automated Azure DevOps self-hosted agents, DNS integration, and cost-controlled resource management.',
+    tags: ['Cloud', 'DevOps', 'Terraform'],
+    link: 'https://github.com/imshakil/cloudsinclick',
+    video: '/',
+    status: 'private',
+    year: '2025',
+    featured: true,
+    category: 'Cloud'
+  },
+  {
+    name: '100 Days of DevOps Challenge [KodeKloud]',
+    desc: 'This repository contains comprehensive solutions and detailed explanations for the 100 Days of DevOps Challenge by KodeKloud. Perfect for beginners and professionals looking to master DevOps tools and practices.',
+    tags: ['DevOps', 'Documentation', 'Challenge', 'KodeKloud'],
+    link: 'https://github.com/imShakil/100-Days-Of-DevOps-Challenge-KodeKloud',
+    video: 'https://www.youtube.com/watch?v=Fx1D-kxmN40&list=PLfmzDkAxw5KmGshBmSGm2HMvxFsSxuJsJ&index=5',
+    status: 'open-source',
+    year: '2025',
+    featured: true,
+    category: 'Community'
+  },
+  {
     name: 'pacli - Secrets Management CLI',
     desc: 'Designed and developed a local-first secure CLI tool for managing secrets with master password protection. Implemented support for multiple secret types with URL shortening feature and SSH key-based authentication.',
     tags: ['CLI', 'Security', 'Encryption'],
@@ -17,7 +39,7 @@ export const projects = [
     status: 'open-source',
     link: 'https://github.com/imshakil/logpulse',
     year: '2024',
-    featured: true,
+    featured: false,
     category: 'DevOps'
   },
   {
@@ -27,7 +49,7 @@ export const projects = [
     link: 'https://github.com/GluuFederation/agama-hello',
     status: 'completed',
     year: '2023',
-    featured: true,
+    featured: false,
     category: 'Backend'
   },
   {

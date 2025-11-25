@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { projects, featuredProjects, categories, getAllTags } from '@/data/projects';
 import Footer from '@/components/Footer';
 import ProjectModal from '@/components/ProjectModal';
+import FeaturedCarousel from '@/components/FeaturedCarousel';
 
 interface Project {
   name: string;
@@ -76,113 +77,16 @@ export default function ProjectsPage() {
       <section className="flex-1 py-20 px-6 md:px-20">
         <div className="max-w-6xl mx-auto">
          
-          {/* Featured Projects */}
+          {/* Featured Projects Carousel */}
           <div className="mb-20">
             <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Featured Highlights</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredProjects.map((project) => (
-                <button
-                  key={project.name}
-                  onClick={() => {
-                    setSelectedProject(project);
-                    setIsModalOpen(true);
-                  }}
-                  className="group rounded-xl bg-gradient-to-br from-gray-100 to-gray-50 dark:from-slate-800/50 dark:to-slate-900/50 border border-gray-200 dark:border-slate-700/50 hover:border-purple-500 dark:hover:border-purple-500/50 transition-all duration-300 card-hover overflow-hidden flex flex-col text-left cursor-pointer"
-                >
-                  {/* Project Image/Video */}
-                  {(project.link) && (
-                    <div className="relative h-48 bg-gray-300 dark:bg-slate-700 overflow-hidden">
-                      <img
-                        src={`https://opengraph.githubassets.com/1/${project.link?.replace('https://github.com/', '')}`}
-                        alt={project.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                      />
-                      {project.video && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition">
-                          <div className="bg-white/90 rounded-full p-3">
-                            <svg className="w-8 h-8 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8 5v14l11-7z"/>
-                            </svg>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  
-                  <div className="p-6 flex flex-col flex-1">
-                    {/* Header with status */}
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-lg font-semibold text-purple-600 dark:text-purple-400 flex-1">
-                        {project.name}
-                      </h3>
-                     
-                    </div>
-                    
-                    {/* Category Badge */}
-                    <div className="mb-3 flex flex-wrap gap-2">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20">
-                        {project.category}
-                      </span>
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-gray-200 dark:bg-gray-500/10 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-500/20">
-                        {project.year}
-                      </span>
-                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${
-                          project.status === 'open-source'
-                            ? 'bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-300 border-green-200 dark:border-green-500/20'
-                            : project.status === 'private'
-                            ? 'bg-orange-100 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-500/20'
-                            : 'bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-500/20'
-                        }`}>
-                        {project.status}
-                      </span>
-                    </div>
-                    
-                    <p className="text-gray-700 dark:text-gray-400 mb-4 text-sm leading-relaxed line-clamp-3">
-                      {project.desc}
-                    </p>
-                    
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 rounded text-xs bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/20"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    {/* Action Links */}
-                    <div className="flex gap-2 mt-auto">
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-3 py-1 text-xs bg-gray-800 hover:bg-gray-900 text-white rounded transition"
-                        >
-                          Source Code
-                        </a>
-                      )}
-                      {project.video && (
-                        <a
-                          href={project.video}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-3 py-1 text-xs bg-red-600 hover:bg-red-700 text-white rounded transition flex items-center gap-1"
-                        >
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                          Watch Video
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </div>
+            <FeaturedCarousel
+              projects={featuredProjects}
+              onProjectClick={(project) => {
+                setSelectedProject(project);
+                setIsModalOpen(true);
+              }}
+            />
           </div>
 
           {/* Separator */}
@@ -192,16 +96,16 @@ export default function ProjectsPage() {
           <div className="mb-12 space-y-6">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">All Projects</h2>
              {/* Statistics */}
-              <div className="mb-16 grid md:grid-cols-4 gap-4">
-                <div className="p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-500/10 dark:to-blue-600/10 border border-blue-200 dark:border-blue-500/20">
+              <div className="mb-16 flex flex-wrap gap-4">
+                <div className="flex-1 min-w-[200px] p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-500/10 dark:to-blue-600/10 border border-blue-200 dark:border-blue-500/20 text-center">
                   <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">{stats.total}</div>
                   <div className="text-sm text-blue-700 dark:text-blue-300 mt-1">Total Projects</div>
                 </div>
-                <div className="p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-500/10 dark:to-green-600/10 border border-green-200 dark:border-green-500/20">
+                <div className="flex-1 min-w-[200px] p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-500/10 dark:to-green-600/10 border border-green-200 dark:border-green-500/20 text-center">
                   <div className="text-3xl font-bold text-green-600 dark:text-green-400">{stats.openSource}</div>
                   <div className="text-sm text-green-700 dark:text-green-300 mt-1">Open Source</div>
                 </div>
-                <div className="p-6 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-500/10 dark:to-orange-600/10 border border-orange-200 dark:border-orange-500/20">
+                <div className="flex-1 min-w-[200px] p-6 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-500/10 dark:to-orange-600/10 border border-orange-200 dark:border-orange-500/20 text-center">
                   <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.private}</div>
                   <div className="text-sm text-orange-700 dark:text-orange-300 mt-1">Private</div>
                 </div>

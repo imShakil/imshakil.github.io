@@ -39,7 +39,7 @@ export async function loadProjectReadmeSync(projectPath: string): Promise<string
       return null;
     }
     return await response.text();
-  } catch (error) {
+  } catch {
     return null;
   }
 }

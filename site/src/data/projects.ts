@@ -61,8 +61,10 @@ export const projects = [
     desc: "dockerized epicbook application and access it with traefik routing.",
     tags: ["Docker", "Traefik", "AWS", "Docker-compose"],
     link: "https://github.com/imShakil/epicbook-docker",
+    video: 'https://www.youtube.com/watch?v=HdY3b-iJ7KI&t=2514s',
     status: "open-source",
     year: "2025",
+    featured: true,
     category: "DevOps",
   },
   {

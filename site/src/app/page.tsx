@@ -1,12 +1,7 @@
 import Hero from '@/components/Hero';
 import Link from 'next/link';
-import { projects, featuredProjects } from '@/data/projects';
+import { featuredProjects } from '@/data/projects';
 import Footer from '@/components/Footer';
-
-interface SkillCategory {
-  category: string;
-  items: string[];
-}
 
 export default function Home() {
   const skills = [

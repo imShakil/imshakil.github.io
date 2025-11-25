@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -42,11 +43,11 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
             <ul className="flex flex-wrap gap-x-4 gap-y-2 sm:flex-col sm:space-y-2">
-              <li><a href="/" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Home</a></li>
-              <li><a href="/about" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">About</a></li>
-              <li><a href="/projects" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Projects</a></li>
-              <li><a href="/activities" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Activities</a></li>
-              <li><a href="/contact" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Contact</a></li>
+              <li><Link href="/" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Home</Link></li>
+              <li><Link href="/about" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">About</Link></li>
+              <li><Link href="/projects" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Projects</Link></li>
+              <li><Link href="/activities" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Activities</Link></li>
+              <li><Link href="/contact" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Contact</Link></li>
             </ul>
           </div>
 

@@ -52,10 +52,10 @@ export default function Hero() {
             View My Work
           </Link>
           <Link
-            href="/about"
+            href="/resume"
             className="px-8 py-3 rounded-lg border border-blue-500/50 text-blue-600 dark:text-blue-400 font-semibold hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-400"
           >
-            Learn More
+            Get My Resume
           </Link>
         </div>
 

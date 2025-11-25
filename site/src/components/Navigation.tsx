@@ -41,8 +41,8 @@ export default function Navigation() {
   return (
     <nav className={`sticky top-0 z-50 border-b transition-all duration-300 ${
       isMounted && isScrolled
-        ? 'bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-700 shadow-md'
-        : 'glass-effect border-gray-200 dark:border-slate-800'
+        ? 'bg-slate-900 border-slate-700 shadow-md'
+        : 'bg-slate-900/95 backdrop-blur-sm border-slate-700'
     }`}>
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -52,13 +52,13 @@ export default function Navigation() {
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <Image
-              src="/logo.svg"
+              src="/logo.png"
               alt="Mobarak Hosen Logo"
               width={40}
               height={40}
               className="w-10 h-10"
             />
-            <span className="text-xl font-bold gradient-text hidden sm:inline">Mobarak</span>
+            <span className="text-xl font-bold text-white hidden sm:inline">Mobarak Hosen</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -70,7 +70,7 @@ export default function Navigation() {
                   className={`px-4 py-2 rounded-lg transition-all duration-300 font-medium ${
                     isActive(item.href)
                       ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/20'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-slate-800/50'
+                      : 'text-gray-300 hover:text-blue-400 hover:bg-slate-800'
                   }`}
                 >
                   {item.label}
@@ -82,7 +82,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2 hover:bg-gray-100 dark:hover:bg-slate-800/50 rounded-lg transition"
+            className="md:hidden flex flex-col gap-1.5 p-2 hover:bg-slate-800 rounded-lg transition"
           >
             <span className={`w-6 h-0.5 bg-blue-500 transition-all ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
             <span className={`w-6 h-0.5 bg-blue-500 transition-all ${isOpen ? 'opacity-0' : ''}`}></span>
@@ -101,7 +101,7 @@ export default function Navigation() {
                   className={`block px-4 py-2 rounded-lg transition-all duration-300 font-medium ${
                     isActive(item.href)
                       ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-slate-800/50'
+                      : 'text-gray-300 hover:text-blue-400 hover:bg-slate-800'
                   }`}
                 >
                   {item.label}

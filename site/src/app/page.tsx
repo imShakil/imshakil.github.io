@@ -1,5 +1,12 @@
 import Hero from '@/components/Hero';
 import Link from 'next/link';
+import { projects, featuredProjects } from '@/data/projects';
+import Footer from '@/components/Footer';
+
+interface SkillCategory {
+  category: string;
+  items: string[];
+}
 
 export default function Home() {
   const skills = [
@@ -11,27 +18,6 @@ export default function Home() {
     { category: 'Other', items: ['Linux', 'Nginx', 'Python', 'Bash'] },
   ];
 
-  const projects = [
-    {
-      name: 'Infrastructure Automation with Terraform + Ansible',
-      desc: 'Provisioned Azure infrastructure using Terraform and automated configuration using Ansible.',
-      tags: ['Terraform', 'Ansible', 'Azure'],
-      link: 'https://github.com/imshakil/automation-with-ansible'
-    },
-    {
-      name: 'Dockerized E-commerce App',
-      desc: 'Built and deployed a multi-container e-commerce stack using Docker and Nginx.',
-      tags: ['Docker', 'Nginx', 'Docker Compose'],
-      link: 'https://github.com/imShakil/ecom-apps'
-    },
-    {
-      name: 'CI/CD Pipeline for GitLab Projects',
-      desc: 'Automated deployments and testing using GitLab CI/CD with environment-based branching.',
-      tags: ['GitLab CI', 'DevOps', 'Automation'],
-      link: '#'
-    }
-  ];
-
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950">
       {/* Hero Section */}
@@ -39,16 +25,39 @@ export default function Home() {
 
       {/* About Section */}
       <section className="py-20 px-6 md:px-20 bg-gray-50 dark:bg-slate-900/50 border-y border-gray-200 dark:border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center space-y-6 slide-in-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">About Me</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-              I&apos;m a DevOps Engineer and Technical Support Specialist with hands-on experience in Docker, Kubernetes, Terraform, Ansible, and CI/CD automation. I enjoy designing infrastructure-as-code workflows, managing self-hosted GitLab environments, and helping teams deploy faster with confidence.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3 pt-4">
-              <span className="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm border border-blue-200 dark:border-blue-500/30">DevOps</span>
-              <span className="px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 text-sm border border-purple-200 dark:border-purple-500/30">Cloud Infrastructure</span>
-              <span className="px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 text-sm border border-pink-200 dark:border-pink-500/30">Automation</span>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Profile Image */}
+            <div className="flex justify-center md:justify-end">
+              <div className="relative">
+                <img
+                  src="/me.jpeg"
+                  alt="Mobarak Hosen"
+                  className="w-80 h-80 rounded-2xl object-cover shadow-2xl"
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/20 to-purple-500/20"></div>
+              </div>
+            </div>
+            
+            {/* About Content */}
+            <div className="space-y-6 slide-in-up">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">About Me</h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+                I&apos;m a DevOps Engineer and Technical Support Specialist with hands-on experience in Docker, Kubernetes, Terraform, Ansible, and CI/CD automation. I enjoy designing infrastructure-as-code workflows, managing self-hosted GitLab environments, and helping teams deploy faster with confidence.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-4">
+                <span className="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm border border-blue-200 dark:border-blue-500/30">DevOps</span>
+                <span className="px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 text-sm border border-purple-200 dark:border-purple-500/30">Cloud Infrastructure</span>
+                <span className="px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 text-sm border border-pink-200 dark:border-pink-500/30">Automation</span>
+              </div>
+              <div className="pt-4">
+                <Link
+                  href="/about"
+                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors flex items-center gap-2"
+                >
+                  Learn More About Me →
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -90,15 +99,14 @@ export default function Home() {
               href="/projects"
               className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors flex items-center gap-2"
             >
-              View All →
+              Checkout Projects →
             </Link>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
+            {featuredProjects.map((project) => (
               <a
                 key={project.name}
-                href={project.link}
-                target="_blank"
+                href="/projects"
                 rel="noopener noreferrer"
                 className="group p-6 rounded-xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 card-hover flex flex-col"
               >
@@ -149,9 +157,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 md:px-20 border-t border-gray-200 dark:border-slate-800 text-center text-gray-600 dark:text-gray-400">
-        <p>© {new Date().getFullYear()} Mobarak Hosen · Built with Next.js & Tailwind CSS</p>
-      </footer>
+      <Footer />
     </main>
   );
 }

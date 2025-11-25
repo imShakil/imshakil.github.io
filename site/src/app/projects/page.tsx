@@ -3,11 +3,28 @@
 import { useState, useMemo } from 'react';
 import { projects, featuredProjects, categories, getAllTags } from '@/data/projects';
 import Footer from '@/components/Footer';
+import ProjectModal from '@/components/ProjectModal';
+
+interface Project {
+  name: string;
+  desc: string;
+  link: string;
+  video?: string;
+  tags?: string[];
+  status: string;
+  year: string;
+  featured?: boolean;
+  category: string;
+  readmeFile?: string;
+  longDesc?: string;
+}
 
 export default function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const allTags = getAllTags();
 
   // Filter projects based on search and filters
@@ -37,12 +54,11 @@ export default function ProjectsPage() {
   };
 
   // Calculate statistics
-  // const stats = {
-  //   total: projects.length,
-  //   openSource: projects.filter(p => p.status === 'open-source').length,
-  //   completed: projects.filter(p => p.status === 'completed').length,
-  //   languages: new Set(projects.flatMap(p => p.tags)).size,
-  // };
+  const stats = {
+    total: projects.length,
+    openSource: projects.filter(p => p.status === 'open-source').length,
+    private: projects.filter(p => p.status === 'private').length,
+  };
 
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950 flex flex-col">
@@ -59,34 +75,19 @@ export default function ProjectsPage() {
       {/* Content */}
       <section className="flex-1 py-20 px-6 md:px-20">
         <div className="max-w-6xl mx-auto">
-          {/* Statistics */}
-          {/* <div className="mb-16 grid md:grid-cols-4 gap-4">
-            <div className="p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-500/10 dark:to-blue-600/10 border border-blue-200 dark:border-blue-500/20">
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">{stats.total}</div>
-              <div className="text-sm text-blue-700 dark:text-blue-300 mt-1">Total Projects</div>
-            </div>
-            <div className="p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-500/10 dark:to-green-600/10 border border-green-200 dark:border-green-500/20">
-              <div className="text-3xl font-bold text-green-600 dark:text-green-400">{stats.openSource}</div>
-              <div className="text-sm text-green-700 dark:text-green-300 mt-1">Open Source</div>
-            </div>
-            <div className="p-6 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-500/10 dark:to-purple-600/10 border border-purple-200 dark:border-purple-500/20">
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">{stats.languages}</div>
-              <div className="text-sm text-purple-700 dark:text-purple-300 mt-1">Technologies</div>
-            </div>
-            <div className="p-6 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-500/10 dark:to-orange-600/10 border border-orange-200 dark:border-orange-500/20">
-              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.completed}</div>
-              <div className="text-sm text-orange-700 dark:text-orange-300 mt-1">Completed</div>
-            </div>
-          </div> */}
-
+         
           {/* Featured Projects */}
           <div className="mb-20">
             <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Featured Highlights</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredProjects.map((project) => (
-                <div
+                <button
                   key={project.name}
-                  className="group rounded-xl bg-gradient-to-br from-gray-100 to-gray-50 dark:from-slate-800/50 dark:to-slate-900/50 border border-gray-200 dark:border-slate-700/50 hover:border-purple-500 dark:hover:border-purple-500/50 transition-all duration-300 card-hover overflow-hidden flex flex-col"
+                  onClick={() => {
+                    setSelectedProject(project);
+                    setIsModalOpen(true);
+                  }}
+                  className="group rounded-xl bg-gradient-to-br from-gray-100 to-gray-50 dark:from-slate-800/50 dark:to-slate-900/50 border border-gray-200 dark:border-slate-700/50 hover:border-purple-500 dark:hover:border-purple-500/50 transition-all duration-300 card-hover overflow-hidden flex flex-col text-left cursor-pointer"
                 >
                   {/* Project Image/Video */}
                   {(project.link) && (
@@ -114,22 +115,25 @@ export default function ProjectsPage() {
                       <h3 className="text-lg font-semibold text-purple-600 dark:text-purple-400 flex-1">
                         {project.name}
                       </h3>
-                      <div className="flex items-center gap-2 ml-2">
-                        <span className="text-xs text-gray-500 dark:text-gray-400">{project.year}</span>
-                        <span className={`px-2 py-1 rounded-full text-xs ${
-                          project.status === 'open-source' ? 'bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-300' :
-                          project.status === 'private' ? 'bg-orange-100 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300' :
-                          'bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300'
-                        }`}>
-                          {project.status}
-                        </span>
-                      </div>
+                     
                     </div>
                     
                     {/* Category Badge */}
-                    <div className="mb-2">
-                      <span className="inline-block px-2 py-1 rounded text-xs bg-indigo-100 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20">
+                    <div className="mb-3 flex flex-wrap gap-2">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20">
                         {project.category}
+                      </span>
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-gray-200 dark:bg-gray-500/10 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-500/20">
+                        {project.year}
+                      </span>
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${
+                          project.status === 'open-source'
+                            ? 'bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-300 border-green-200 dark:border-green-500/20'
+                            : project.status === 'private'
+                            ? 'bg-orange-100 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-500/20'
+                            : 'bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-500/20'
+                        }`}>
+                        {project.status}
                       </span>
                     </div>
                     
@@ -176,7 +180,7 @@ export default function ProjectsPage() {
                       )}
                     </div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -187,7 +191,22 @@ export default function ProjectsPage() {
           {/* Search and Filters */}
           <div className="mb-12 space-y-6">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">All Projects</h2>
-            
+             {/* Statistics */}
+              <div className="mb-16 grid md:grid-cols-4 gap-4">
+                <div className="p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-500/10 dark:to-blue-600/10 border border-blue-200 dark:border-blue-500/20">
+                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">{stats.total}</div>
+                  <div className="text-sm text-blue-700 dark:text-blue-300 mt-1">Total Projects</div>
+                </div>
+                <div className="p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-500/10 dark:to-green-600/10 border border-green-200 dark:border-green-500/20">
+                  <div className="text-3xl font-bold text-green-600 dark:text-green-400">{stats.openSource}</div>
+                  <div className="text-sm text-green-700 dark:text-green-300 mt-1">Open Source</div>
+                </div>
+                <div className="p-6 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-500/10 dark:to-orange-600/10 border border-orange-200 dark:border-orange-500/20">
+                  <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.private}</div>
+                  <div className="text-sm text-orange-700 dark:text-orange-300 mt-1">Private</div>
+                </div>
+              </div>
+
             {/* Search Bar */}
             <div className="relative">
               <input
@@ -337,6 +356,13 @@ export default function ProjectsPage() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </main>
   );
 }

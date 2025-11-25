@@ -54,22 +54,22 @@ export default function ActivitiesTabs({ mediumPosts, youtubeVideos }: Activitie
   return (
     <div className="space-y-8">
       {/* Tab Navigation */}
-      <div className="flex flex-wrap gap-2 border-b border-gray-200 dark:border-slate-700">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id as 'blog' | 'youtube' | 'github' | 'linkedin')}
-            className={`px-6 py-3 font-semibold transition-all duration-300 flex items-center gap-2 border-b-2 ${
-              activeTab === tab.id
-                ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-                : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
-            }`}
-          >
-            {tab.icon}
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <div className="flex flex-wrap gap-1 md:gap-2 border-b border-gray-200 dark:border-slate-700 overflow-x-auto">
+         {tabs.map((tab) => (
+           <button
+             key={tab.id}
+             onClick={() => setActiveTab(tab.id as 'blog' | 'youtube' | 'github' | 'linkedin')}
+             className={`px-2 md:px-6 py-2 md:py-3 text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-1 md:gap-2 border-b-2 whitespace-nowrap ${
+               activeTab === tab.id
+                 ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                 : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
+             }`}
+           >
+             <span className="hidden md:inline w-5 h-5 flex-shrink-0">{tab.icon}</span>
+             {tab.label}
+           </button>
+         ))}
+       </div>
 
       {/* Tab Content */}
       <div className="min-h-96">
@@ -255,28 +255,28 @@ export default function ActivitiesTabs({ mediumPosts, youtubeVideos }: Activitie
             </div>
 
             {/* LinkedIn Sub-tabs */}
-            <div className="flex gap-2 border-b border-gray-200 dark:border-slate-700 mb-6">
-              <button
-                onClick={() => setLinkedInSubTab('profile')}
-                className={`px-4 py-2 font-semibold transition-all duration-300 border-b-2 ${
-                  linkedInSubTab === 'profile'
-                    ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-                    : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
-                }`}
-              >
-                Profile Posts
-              </button>
-              <button
-                onClick={() => setLinkedInSubTab('newsletter')}
-                className={`px-4 py-2 font-semibold transition-all duration-300 border-b-2 ${
-                  linkedInSubTab === 'newsletter'
-                    ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-                    : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
-                }`}
-              >
-                Newsletter
-              </button>
-            </div>
+             <div className="flex gap-1 md:gap-2 border-b border-gray-200 dark:border-slate-700 mb-6 overflow-x-auto">
+               <button
+                 onClick={() => setLinkedInSubTab('profile')}
+                 className={`px-2 md:px-4 py-2 text-sm md:text-base font-semibold transition-all duration-300 border-b-2 whitespace-nowrap ${
+                   linkedInSubTab === 'profile'
+                     ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                     : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
+                 }`}
+               >
+                 Profile Posts
+               </button>
+               <button
+                 onClick={() => setLinkedInSubTab('newsletter')}
+                 className={`px-2 md:px-4 py-2 text-sm md:text-base font-semibold transition-all duration-300 border-b-2 whitespace-nowrap ${
+                   linkedInSubTab === 'newsletter'
+                     ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                     : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
+                 }`}
+               >
+                 Newsletter
+               </button>
+             </div>
 
             {/* LinkedIn Profile Posts */}
             {linkedInSubTab === 'profile' && (

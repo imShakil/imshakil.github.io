@@ -15,22 +15,22 @@ export default function AboutTabs() {
   return (
     <div className="space-y-8">
       {/* Tab Navigation */}
-      <div className="flex flex-wrap gap-2 border-b border-gray-200 dark:border-slate-700">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id as 'skills' | 'experience' | 'education' | 'certifications')}
-            className={`px-6 py-3 font-semibold transition-all duration-300 flex items-center gap-2 border-b-2 ${
-              activeTab === tab.id
-                ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-                : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
-            }`}
-          >
-            <span>{tab.icon}</span>
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <div className="flex flex-wrap gap-1 md:gap-2 border-b border-gray-200 dark:border-slate-700 overflow-x-auto">
+         {tabs.map((tab) => (
+           <button
+             key={tab.id}
+             onClick={() => setActiveTab(tab.id as 'skills' | 'experience' | 'education' | 'certifications')}
+             className={`px-2 md:px-6 py-2 md:py-3 text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-1 md:gap-2 border-b-2 whitespace-nowrap ${
+               activeTab === tab.id
+                 ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                 : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
+             }`}
+           >
+             <span className="hidden md:inline">{tab.icon}</span>
+             {tab.label}
+           </button>
+         ))}
+       </div>
 
       {/* Tab Content */}
       <div className="min-h-96">

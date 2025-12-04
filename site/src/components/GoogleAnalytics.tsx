@@ -15,7 +15,7 @@ export default function GoogleAnalytics() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-BKDBJQYREJ);
+            gtag('config', 'G-BKDBJQYREJ');
           `,
         }}
       />

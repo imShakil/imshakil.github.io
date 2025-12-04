@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 export default function RouteLoader() {
   const pathname = usePathname();
@@ -42,10 +43,13 @@ export default function RouteLoader() {
           <circle cx="50" cy="50" r="12" opacity="0.6" />
         </svg>
         
-        <img
+        <Image
           src="/logo.png"
           alt="Logo"
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10"
+          width={40}
+          height={40}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          unoptimized
         />
         
         <p className="text-gray-600 dark:text-gray-400 mt-4 font-semibold">Loading...</p>

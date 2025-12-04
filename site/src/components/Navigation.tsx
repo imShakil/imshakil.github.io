@@ -57,6 +57,7 @@ export default function Navigation() {
               width={40}
               height={40}
               className="w-10 h-10"
+              unoptimized
             />
             <span className="text-xl font-bold text-white hidden sm:inline">Mobarak Hosen</span>
           </Link>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface Project {
   name: string;
@@ -21,27 +22,45 @@ interface FeaturedCarouselProps {
   onProjectClick: (project: Project) => void;
 }
 
-const getProjectThumbnail = (project: Project): string => {
-  // Priority 1: YouTube video thumbnail
-  if (project.video) {
-    const youtubeMatch = project.video.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
-    if (youtubeMatch) {
-      return `https://img.youtube.com/vi/${youtubeMatch[1]}/maxresdefault.jpg`;
-    }
-  }
-
-  // Priority 2: GitHub graph (for public repos)
-  if (project.link) {
-    return `https://opengraph.githubassets.com/1/${project.link.replace('https://github.com/', '')}`;
-  }
-
-  return '';
+const getYoutubeId = (videoUrl: string): string | null => {
+  const match = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+  return match ? match[1] : null;
 };
 
+const getProjectThumbnail = (project: Project): string => {
+  if (project.video) {
+    const id = getYoutubeId(project.video);
+    if (id) return `https://img.youtube.com/vi/${id}/sddefault.jpg`;
+  }
+
+  if (project.link?.includes('github.com')) {
+    return `https://opengraph.githubassets.com/1/${project.link.replace("https://github.com/", "")}`;
+  }
+
+  return "";
+};
+
+const getYoutubeFallbacks = (videoUrl: string): string[] => {
+  const id = getYoutubeId(videoUrl);
+  return id ? [
+    `https://img.youtube.com/vi/${id}/maxresdefault.jpg`,
+    `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+    `https://img.youtube.com/vi/${id}/mqdefault.jpg`,
+    `https://img.youtube.com/vi/${id}/default.jpg`
+  ] : [];
+};
+
+const getProjectSlug = (name: string): string => {
+  return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+};
+
+
 export default function FeaturedCarousel({ projects, onProjectClick }: FeaturedCarouselProps) {
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [fallbackIndex, setFallbackIndex] = useState<Record<string, number>>({});
 
   useEffect(() => {
     const handleResize = () => {
@@ -107,18 +126,35 @@ export default function FeaturedCarousel({ projects, onProjectClick }: FeaturedC
               key={`${project.name}-${idx}`}
               className={`${idx === 0 ? 'block' : 'hidden md:block'} ${idx === 2 ? 'hidden lg:block' : ''} h-full`}
             >
-              <button
-                onClick={() => {
-                  onProjectClick(project);
-                }}
+              <div
+                onClick={() => router.push(`/projects/${getProjectSlug(project.name)}`)}
                 className="group w-full h-full rounded-xl bg-gradient-to-br from-gray-100 to-gray-50 dark:from-slate-800/50 dark:to-slate-900/50 border border-gray-200 dark:border-slate-700/50 hover:border-purple-500 dark:hover:border-purple-500/50 transition-all duration-300 card-hover overflow-hidden flex flex-col text-left cursor-pointer"
               >
                 {/* Project Image/Video */}
                 <div className="relative h-40 md:h-48 bg-gray-300 dark:bg-slate-700 overflow-hidden">
                   <img
-                    src={getProjectThumbnail(project)}
+                    src={(() => {
+                      if (project.video) {
+                        const fallbacks = getYoutubeFallbacks(project.video);
+                        const idx = fallbackIndex[project.name] || 0;
+                        return fallbacks[idx] || getProjectThumbnail(project);
+                      }
+                      return getProjectThumbnail(project);
+                    })()}
                     alt={project.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    onError={() => {
+                      if (project.video) {
+                        const fallbacks = getYoutubeFallbacks(project.video);
+                        const currentIdx = fallbackIndex[project.name] || 0;
+                        if (currentIdx < fallbacks.length - 1) {
+                          setFallbackIndex(prev => ({
+                            ...prev,
+                            [project.name]: currentIdx + 1
+                          }));
+                        }
+                      }
+                    }}
                   />
                   {project.video && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition">
@@ -179,6 +215,7 @@ export default function FeaturedCarousel({ projects, onProjectClick }: FeaturedC
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="px-3 py-1 text-xs bg-gray-800 hover:bg-gray-900 text-white rounded transition"
                       >
                         Source Code
@@ -189,6 +226,7 @@ export default function FeaturedCarousel({ projects, onProjectClick }: FeaturedC
                         href={project.video}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="px-3 py-1 text-xs bg-red-600 hover:bg-red-700 text-white rounded transition flex items-center gap-1"
                       >
                         <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
@@ -199,7 +237,7 @@ export default function FeaturedCarousel({ projects, onProjectClick }: FeaturedC
                     )}
                   </div>
                 </div>
-              </button>
+              </div>
             </div>
           ))}
         </div>

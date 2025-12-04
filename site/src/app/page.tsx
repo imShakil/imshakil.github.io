@@ -4,6 +4,10 @@ import { featuredProjects } from '@/data/projects';
 import Footer from '@/components/Footer';
 import AboutMe from '@/components/About';
 
+const getProjectSlug = (name: string) => {
+  return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+};
+
 export default function Home() {
   const skills = [
     { category: 'Cloud Platforms', items: ['Azure', 'AWS', 'Google Cloud'] },
@@ -57,14 +61,14 @@ export default function Home() {
               href="/projects"
               className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors flex items-center gap-2"
             >
-              Checkout Projects →
+              See All Projects →
             </Link>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredProjects.map((project) => (
+            {featuredProjects.slice(0, 3).map((project) => (
               <Link
                 key={project.name}
-                href="/projects"
+                href={`/projects/${getProjectSlug(project.name)}`}
                 className="group p-6 rounded-xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 card-hover flex flex-col"
               >
                 <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 mb-3 transition-colors">

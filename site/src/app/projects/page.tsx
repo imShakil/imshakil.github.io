@@ -47,6 +47,14 @@ export default function ProjectsPage() {
     private: projects.filter(p => p.status === 'private').length,
   };
 
+  const getProjectLink = (project: any) => {
+    const isPrivateOrFeatured = project.status === 'private' || project.featured;
+    if (isPrivateOrFeatured) {
+      return `/projects/${getProjectSlug(project.name)}`;
+    }
+    return project.link;
+  };
+
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950 flex flex-col">
       <section className="py-20 px-6 md:px-20 border-b border-gray-200 dark:border-slate-800">
@@ -167,45 +175,90 @@ export default function ProjectsPage() {
           <div className="space-y-4">
             {filteredProjects.length > 0 ? (
               <div className="grid md:grid-cols-2 gap-6">
-                {filteredProjects.map((project) => (
-                  <Link
-                    key={project.name}
-                    href={`/projects/${getProjectSlug(project.name)}`}
-                    className="group p-6 rounded-xl bg-gray-100 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 card-hover flex flex-col"
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors flex-1">
-                        {project.name}
-                      </h3>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">{project.year}</span>
-                    </div>
-                    
-                    <div className="mb-2">
-                      <span className="inline-block px-2 py-1 rounded text-xs bg-indigo-100 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20">
-                        {project.category}
-                      </span>
-                    </div>
-                    
-                    <p className="text-gray-700 dark:text-gray-400 mb-4 flex-1 leading-relaxed">
-                      {project.desc}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 rounded text-xs bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-500/20"
-                        >
-                          {tag}
+                {filteredProjects.map((project) => {
+                  const isPrivateOrFeatured = project.status === 'private' || project.featured;
+                  const href = getProjectLink(project);
+                  
+                  return isPrivateOrFeatured ? (
+                    <Link
+                      key={project.name}
+                      href={href}
+                      className="group p-6 rounded-xl bg-gray-100 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 card-hover flex flex-col"
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors flex-1">
+                          {project.name}
+                        </h3>
+                        <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">{project.year}</span>
+                      </div>
+                      
+                      <div className="mb-2">
+                        <span className="inline-block px-2 py-1 rounded text-xs bg-indigo-100 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20">
+                          {project.category}
                         </span>
-                      ))}
-                    </div>
-                    
-                    <div className="flex items-center text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors font-semibold">
-                      View Project →
-                    </div>
-                  </Link>
-                ))}
+                      </div>
+                      
+                      <p className="text-gray-700 dark:text-gray-400 mb-4 flex-1 leading-relaxed">
+                        {project.desc}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-1 rounded text-xs bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-500/20"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      <div className="flex items-center text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors font-semibold">
+                        View Project →
+                      </div>
+                    </Link>
+                  ) : (
+                    <a
+                      key={project.name}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group p-6 rounded-xl bg-gray-100 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 card-hover flex flex-col"
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors flex-1">
+                          {project.name}
+                        </h3>
+                        <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">{project.year}</span>
+                      </div>
+                      
+                      <div className="mb-2">
+                        <span className="inline-block px-2 py-1 rounded text-xs bg-indigo-100 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20">
+                          {project.category}
+                        </span>
+                      </div>
+                      
+                      <p className="text-gray-700 dark:text-gray-400 mb-4 flex-1 leading-relaxed">
+                        {project.desc}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-1 rounded text-xs bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-500/20"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      <div className="flex items-center text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors font-semibold">
+                        View on GitHub →
+                      </div>
+                    </a>
+                  );
+                })}
               </div>
             ) : (
               <div className="text-center py-12">

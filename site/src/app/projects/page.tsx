@@ -1,24 +1,23 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import Link from 'next/link';
 import { projects, featuredProjects, categories, getAllTags } from '@/data/projects';
 import Footer from '@/components/Footer';
 import FeaturedCarousel from '@/components/FeaturedCarousel';
 
-interface Project {
-  name: string;
-  desc: string;
-  link: string;
-  video?: string;
-  tags?: string[];
-  status: string;
-  year: string;
-  featured?: boolean;
-  category: string;
-  readmeFile?: string;
-  longDesc?: string;
-}
+// interface Project {
+//   name: string;
+//   desc: string;
+//   link: string;
+//   video?: string;
+//   tags?: string[];
+//   status: string;
+//   year: string;
+//   featured?: boolean;
+//   category: string;
+//   readmeFile?: string;
+//   longDesc?: string;
+// }
 
 const getProjectSlug = (name: string) => {
   return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');

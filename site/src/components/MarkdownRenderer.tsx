@@ -9,6 +9,13 @@ interface MarkdownRendererProps {
   projectReadmeFile?: string;
 }
 
+interface ChildElement {
+  props?: {
+    src?: string;
+    children?: ChildElement[];
+  };
+}
+
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, projectReadmeFile }) => {
   const getImagePath = (src: string | Blob | undefined) => {
     if (!src || src instanceof Blob) return '';
@@ -42,7 +49,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, projectRea
           ),
           p: (props) => {
             const hasBadges = props.children && Array.isArray(props.children) && 
-              props.children.some((child: any) => {
+              props.children.some((child: ChildElement) => {
                 const src = child?.props?.src || child?.props?.children?.[0]?.props?.src;
                 return src && isBadge(src);
               });

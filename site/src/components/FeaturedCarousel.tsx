@@ -28,6 +28,10 @@ const getYoutubeId = (videoUrl: string): string | null => {
 };
 
 const getProjectThumbnail = (project: Project): string => {
+  if (project.link?.includes('github.com') && project.status !== 'private') {
+    return `https://opengraph.githubassets.com/1/${project.link.replace("https://github.com/", "")}`;
+  }
+
   if (project.video) {
     const id = getYoutubeId(project.video);
     if (id) return `https://img.youtube.com/vi/${id}/sddefault.jpg`;
@@ -134,7 +138,7 @@ export default function FeaturedCarousel({ projects, onProjectClick }: FeaturedC
                 <div className="relative h-40 md:h-48 bg-gray-300 dark:bg-slate-700 overflow-hidden">
                   <img
                     src={(() => {
-                      if (project.video) {
+                      if (project.status === 'private' && project.video) {
                         const fallbacks = getYoutubeFallbacks(project.video);
                         const idx = fallbackIndex[project.name] || 0;
                         return fallbacks[idx] || getProjectThumbnail(project);
@@ -144,7 +148,7 @@ export default function FeaturedCarousel({ projects, onProjectClick }: FeaturedC
                     alt={project.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                     onError={() => {
-                      if (project.video) {
+                      if (project.status === 'private' && project.video) {
                         const fallbacks = getYoutubeFallbacks(project.video);
                         const currentIdx = fallbackIndex[project.name] || 0;
                         if (currentIdx < fallbacks.length - 1) {

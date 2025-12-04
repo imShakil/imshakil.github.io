@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { projects, featuredProjects, categories, getAllTags } from '@/data/projects';
 import Footer from '@/components/Footer';
-import ProjectModal from '@/components/ProjectModal';
 import FeaturedCarousel from '@/components/FeaturedCarousel';
 
 interface Project {
@@ -20,12 +20,14 @@ interface Project {
   longDesc?: string;
 }
 
+const getProjectSlug = (name: string) => {
+  return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+};
+
 export default function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const allTags = getAllTags();
 
   // Filter projects based on search and filters
@@ -83,8 +85,7 @@ export default function ProjectsPage() {
             <FeaturedCarousel
               projects={featuredProjects}
               onProjectClick={(project) => {
-                setSelectedProject(project);
-                setIsModalOpen(true);
+                window.location.href = `/projects/${getProjectSlug(project.name)}`;
               }}
             />
           </div>
@@ -260,13 +261,6 @@ export default function ProjectsPage() {
 
       {/* Footer */}
       <Footer />
-
-      {/* Project Modal */}
-      <ProjectModal
-        project={selectedProject}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
     </main>
   );
 }

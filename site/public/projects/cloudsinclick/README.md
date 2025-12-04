@@ -1,76 +1,84 @@
-# Clouds In Click - Multi-Cloud VM Provisioning
+# Multi-Cloud VM Provisioning with Azure DevOps Agents
 
-## Overview
+> **One-click cloud infrastructure provisioning** with automated Azure DevOps self-hosted agents, DNS integration, and cost-controlled resource management.
 
-Clouds In Click is a revolutionary infrastructure provisioning platform that enables one-click deployment of cloud resources across multiple cloud providers. This project demonstrates advanced DevOps practices, infrastructure as code, and automation at scale.
+Terraform configurations for provisioning VMs across AWS and GCP with pre-configured Azure DevOps self-hosted agents and automatic Cloudflare DNS integration.
 
-## Key Features
+## 🏗️ Architecture
 
-### 🚀 One-Click Provisioning
-- Automated VM deployment across Azure, AWS, and other cloud providers
-- Pre-configured infrastructure templates
-- Instant resource availability with minimal configuration
+![Architecture Diagram](./vm-provisioning-workflow.png)
 
-### 🔧 Azure DevOps Integration
-- Automated self-hosted agent provisioning
-- CI/CD pipeline integration
-- Seamless deployment workflows
+- **VM**: Cloud instance with encrypted storage
+- **Agent**: Azure DevOps self-hosted agent with pre-installed tools
+- **DNS**: Cloudflare A record pointing to VM public IP
+- **State**: Remote Terraform state stored in S3
 
-### 🌐 DNS Integration
-- Automatic DNS configuration
-- Domain management
-- Load balancing support
+## ✨ Features
 
-### 💰 Cost Control
-- Resource cost tracking and optimization
-- Budget alerts and limits
-- Cost-aware provisioning recommendations
+- 🌐 **Multi-cloud support**: AWS EC2 and GCP Compute Engine
+- 🤖 **Automated agent setup**: Azure DevOps self-hosted agents with pre-installed tools
+- 🔗 **DNS integration**: Automatic Cloudflare DNS record creation
+- 🔒 **Security**: Encrypted storage, SSH key management, IAM controls
+- 🛠️ **Tool installation**: Python, Ansible, Terraform, AWS CLI, and more
+- ⏰ **Auto-expiry**: Cost control with automatic resource cleanup
+- 📊 **PR tracking**: Visibility into active resources
 
-## Technology Stack
+## 📋 Prerequisites
 
-- **Infrastructure as Code**: Terraform
-- **Cloud Providers**: Azure, AWS, Multi-Cloud
-- **DevOps Tools**: Azure DevOps, GitHub Actions
-- **Automation**: Python, Bash scripting
-- **Monitoring**: Azure Monitor, CloudWatch
+- Terraform >= 1.5.0
+- AWS CLI configured (for AWS deployment)
+- GCP credentials configured (for GCP deployment)
+- Cloudflare API token with DNS permissions
+- SSH key pair
+- Azure DevOps organization and Personal Access Token (PAT)
 
-## Architecture
+## 🚀 Action Usage
 
-The platform follows a modular architecture:
+1. Go to **Actions** → **"Create Virtual Machine"**
+2. Configure your options:
+   - Cloud provider (AWS/GCP)
+   - Instance size (micro to xlarge)
+   - Duration (1-72 hours)
+   - Region (Singapore, US-East, Europe)
+3. Click **"Run workflow"**
+4. Monitor progress via automatically created PR
 
+## ⚙️ Configuration
+
+### Required Variables
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `orgURL` | Azure DevOps organization URL | `https://dev.azure.com/myorg` |
+| `personal_access_token` | Azure DevOps PAT with Agent Pool permissions | `your_pat_token` |
+| `agent_pool_name` | Target agent pool name | `default` |
+| `key_name` | SSH key identifier | `my-key` |
+
+### Optional Variables
+
+| Variable | AWS Default | GCP Default | Description |
+|----------|-------------|-------------|-------------|
+| `region` | `ap-southeast-1` | `us-central1` | Cloud region |
+| `instance_type` | `t2.small` | `e2-small` | Instance size |
+| `disk_size` | `10` | `10` | Root disk size (GB) |
+| `ssh_public_key_path` | `~/.ssh/id_rsa.pub` | `~/.ssh/id_rsa.pub` | SSH public key path |
+
+## 📤 Outputs
+
+After successful deployment:
+
+```json
+{
+  "region": "ap-southeast-1",
+  "instance_type": "t2.small",
+  "public_ip": "54.169.xxx.xxx",
+  "private_ip": "172.31.xxx.xxx",
+  "command_to_connect": "ssh ubuntu@54.169.xxx.xxx",
+  "agent_name": "self-hosted-agent-happy-dog",
+  "domain_name": "happy-dog.mhosen.com"
+}
 ```
-┌─────────────────────────────────────┐
-│   User Interface / CLI              │
-├─────────────────────────────────────┤
-│   Provisioning Engine               │
-├─────────────────────────────────────┤
-│   Infrastructure as Code (Terraform)│
-├─────────────────────────────────────┤
-│   Cloud Provider APIs               │
-└─────────────────────────────────────┘
-```
-
-## Use Cases
-
-1. **Rapid Development Environment Setup** - Quickly provision development VMs
-2. **CI/CD Agent Deployment** - Automated self-hosted runner provisioning
-3. **Multi-Cloud Strategy** - Distribute workloads across cloud providers
-4. **Cost Optimization** - Intelligent resource allocation and management
-
-## Getting Started
-
-The project is currently in private development. For access and more information, please visit the GitHub repository.
-
-## Future Enhancements
-
-- Kubernetes cluster provisioning
-- Advanced cost optimization algorithms
-- Multi-region deployment support
-- Enhanced monitoring and alerting
-- Disaster recovery automation
 
 ---
 
-**Status**: Private Development  
-**Year**: 2025  
-**Category**: Cloud Infrastructure
+> **Made with ❤️ for efficient cloud operations**

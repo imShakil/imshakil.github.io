@@ -1,208 +1,175 @@
-# pacli - Secrets Management CLI
+# 🔐 pacli - Secrets Management CLI
 
-## Overview
+[![Build Status](https://github.com/imshakil/pacli/actions/workflows/release.yml/badge.svg)](https://github.com/imshakil/pacli/actions)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/imShakil/pacli/main.svg)](https://results.pre-commit.ci/latest/github/imShakil/pacli/main)
+[![PyPI version](https://img.shields.io/pypi/v/pacli-tool.svg)](https://pypi.org/project/pacli-tool/)
+[![PyPI Downloads](https://img.shields.io/pepy/dt/pacli-tool?style=flat)](https://pepy.tech/projects/pacli-tool)
+[![Python Versions](https://img.shields.io/pypi/pyversions/pacli-tool.svg)](https://pypi.org/project/pacli-tool/)
+[![License](https://img.shields.io/github/license/imshakil/pacli)](LICENSE)
+[![security:bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/imShakil/pacli)
 
-pacli is a modern, local-first command-line tool for secure secrets management. Designed with security and usability in mind, it provides a lightweight alternative to cloud-based secret managers while maintaining enterprise-grade encryption standards.
+___
+![pacli-logo](https://github.com/user-attachments/assets/742d776d-107a-495e-8bcf-5f68f25a087f)
 
-## Key Features
+pacli is a secure, local-first secrets manager that stores your passwords, API keys, and SSH credentials with encryption and master password protection - no cloud dependencies required.
 
-### 🔐 Master Password Protection
-- Single master password for all secrets
-- Secure password derivation using industry-standard algorithms
-- Optional biometric authentication support
+## Features
 
-### 🔑 Multiple Secret Types
-- **Passwords**: Standard password storage
-- **API Keys**: Secure API credential management
-- **SSH Keys**: Private key storage and management
-- **Tokens**: OAuth and authentication tokens
-- **Custom Secrets**: Flexible key-value storage
-
-### 🔗 URL Shortening
-- Built-in URL shortening for long credentials
-- QR code generation for easy sharing
-- Expiring links for temporary access
-
-### 🔓 SSH Key Authentication
-- SSH key-based authentication
-- Passwordless access to secrets
-- Key rotation support
-
-### 💾 Local-First Architecture
-- All data stored locally on your machine
-- No cloud dependencies
-- Full control over your secrets
-- Offline access capability
-
-## Security Features
-
-### Encryption
-- AES-256 encryption for all stored secrets
-- PBKDF2 key derivation
-- Secure random salt generation
-- Encrypted database storage
-
-### Access Control
+- Securely store and manage secrets locally
 - Master password protection
-- Session timeout
-- Secure memory handling
-- Audit logging
-
-### Best Practices
-- No plaintext storage
-- Secure deletion of sensitive data
-- Regular security updates
-- Vulnerability scanning
+- Support separate options for token, password, and SSH connections
+- Add, retrieve, update, and delete secrets
+- Copy secrets directly to your clipboard
+- SSH connection management with key file support
+- URL shortening with [LinklyHQ](https://linklyhq.com/?via=ShakilOps) integration
+- Export list of secrets into JSON or CSV file
+- Easy-to-use command-line interface
 
 ## Installation
 
-```bash
-# Using npm
-npm install -g pacli
-
-# Using yarn
-yarn global add pacli
-
-# From source
-git clone https://github.com/imshakil/pacli.git
-cd pacli
-npm install
-npm run build
+```sh
+pip install pacli-tool
 ```
 
-## Quick Start
+## Usage
 
-```bash
-# Initialize pacli
+To see all available commands and options:
+
+```sh
+pacli --help
+```
+
+### Common Commands
+
+| Command                | Description                                      |
+|------------------------|--------------------------------------------------|
+| `init`                 | Initialize pacli and set a master password       |
+| `add`                  | Add a secret with a label                        |
+| `get`                  | Retrieve secrets by label                        |
+| `get-by-id`            | Retrieve a secret by its ID                      |
+| `update`               | Update old secret by label                       |
+| `update-by-id`         | Update old secret by its ID                      |
+| `list`                 | List all saved secrets                           |
+| `delete`               | Delete a secret by label                         |
+| `delete-by-id`         | Delete a secret by its ID                        |
+| `ssh`                  | Connect to SSH server using saved credentials    |
+| `short`                | Shorten URLs using LinklyHQ service              |
+| `cc`                   | Copy stdin content to clipboard                  |
+| `change-master-key`    | Change the master password without losing data   |
+| `export`               | Export secrets to JSON or CSV format             |
+| `version`              | Show the current version of pacli                |
+
+### Examples
+
+#### Adding and Retrieving Secrets
+
+```sh
+# Initialize pacli (run once)
 pacli init
 
-# Add a new password
-pacli add password github-token
+# Add a password
+pacli add --pass github
 
-# Add an API key
-pacli add api-key stripe-key
+# Add a token
+pacli add --token api-key
 
-# Add an SSH key
-pacli add ssh-key production-server
+# Add SSH connection
+pacli add --ssh ec2-vm user:192.168.1.100
 
-# List all secrets
-pacli list
+# Add SSH connection with key file
+pacli add --ssh ec2-vm user:192.168.1.100 --key ~/.ssh/id_rsa
 
 # Retrieve a secret
-pacli get github-token
+pacli get github
 
-# Delete a secret
-pacli delete github-token
+# Connect via SSH
+pacli ssh ec2-vm
 
-# Generate a strong password
-pacli generate --length 32
+# Export secrets to JSON
+pacli export --format json --output my_secrets.json
+
+# Export secrets to CSV
+pacli export --format csv --output my_secrets.csv
+
+# Shorten a URL
+pacli short https://example.com/very/long/url
+
+# Shorten with custom name and copy to clipboard
+pacli short https://example.com -n "My Link" --clip
+
+# Copy file content to clipboard
+cat file.txt | pacli cc
+
+# Copy command output to clipboard
+echo "Hello World" | pacli cc
+
+# Copy API response to clipboard
+curl -s https://api.example.com/data | pacli cc
 ```
 
-## Use Cases
+## Display Format
 
-### Development
-- Store API keys and tokens
-- Manage database credentials
-- SSH key management
+- Credentials are shown as: `username:password`
+- SSH connections are shown as: `user:ip` or `user:ip (Key: /path/to/key)`
 
-### DevOps
-- Secure credential storage for automation
-- CI/CD pipeline secret management
-- Infrastructure access credentials
+## Copy to Clipboard
 
-### Security
-- Personal password management
-- Sensitive data protection
-- Compliance with security standards
+To copy a secret directly to your clipboard, use the `--clip` option:
 
-## Architecture
-
-```
-┌─────────────────────────────────┐
-│   CLI Interface                 │
-├─────────────────────────────────┤
-│   Command Parser & Handler      │
-├─────────────────────────────────┤
-│   Encryption Engine             │
-├─────────────────────────────────┤
-│   Local Database (SQLite)       │
-└─────────────────────────────────┘
+```sh
+pacli get google --clip
 ```
 
-## Technology Stack
+### Pipeline Usage
 
-- **Language**: TypeScript/JavaScript
-- **CLI Framework**: Commander.js
-- **Encryption**: crypto-js, libsodium
-- **Database**: SQLite
-- **Authentication**: bcrypt, argon2
+Use `pacli cc` to copy any command output or file content to clipboard:
 
-## Configuration
+```sh
+# Copy file contents
+cat ~/.ssh/id_rsa.pub | pacli cc
 
-pacli stores configuration in `~/.pacli/config.json`:
+# Copy command output
+ls -la | pacli cc
 
-```json
-{
-  "encryptionAlgorithm": "aes-256-gcm",
-  "sessionTimeout": 3600,
-  "autoLock": true,
-  "backupEnabled": true,
-  "backupPath": "~/.pacli/backups"
-}
+# Copy JSON response
+curl -s https://api.github.com/user | pacli cc
 ```
 
-## Advanced Features
+For more information, use `pacli --help` or see the documentation.
 
-### Backup & Recovery
-- Automatic encrypted backups
-- Manual backup creation
-- Secure recovery process
+## Tips
 
-### Import/Export
-- Import from other password managers
-- Export in encrypted format
-- Batch operations
+### Avoid Master Password Prompts
 
-### Sync (Optional)
-- Optional cloud sync with end-to-end encryption
-- Multi-device support
-- Conflict resolution
+To avoid entering your master password repeatedly, you can set it as an environment variable:
 
-## Security Considerations
+```sh
+# For current session only
+export PACLI_MASTER_PASSWORD="your-master-password"
 
-⚠️ **Important**: 
-- Never share your master password
-- Keep your system updated
-- Use strong master passwords
-- Enable automatic backups
-- Regularly audit your secrets
+# Or add to your shell profile for permanent use
+echo 'export PACLI_MASTER_PASSWORD="your-master-password"' >> ~/.bashrc  # For bash
+echo 'export PACLI_MASTER_PASSWORD="your-master-password"' >> ~/.zshrc   # For zsh
+```
 
-## Contributing
+**Security Note:** Adding the password to your shell profile makes it persistent but less secure. Use the session-only approach for better security.
 
-Contributions are welcome! Please follow these guidelines:
+### URL Shortening Setup
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+To use the URL shortening feature, set up your [LinklyHQ](https://linklyhq.com/?via=ShakilOps) credentials as environment variables:
 
-## Roadmap
+```sh
+# Set LinklyHQ credentials
+export PACLI_LINKLYHQ_KEY="your_api_key"
+export PACLI_LINKLYHQ_WID="your_workspace_id"
 
-- [ ] Web UI dashboard
-- [ ] Mobile app support
-- [ ] Hardware security key integration
-- [ ] Advanced audit logging
-- [ ] Team collaboration features
-- [ ] Kubernetes integration
+# Add to your shell profile for permanent use
+echo 'export PACLI_LINKLYHQ_KEY="your_api_key"' >> ~/.bashrc
+echo 'export PACLI_LINKLYHQ_WID="your_workspace_id"' >> ~/.bashrc
+```
 
-## License
+> [Visits here](https://linklyhq.com/?via=ShakilOps) to get your credentials.
 
-MIT License - See LICENSE file for details
+## Demo
 
----
-
-**Status**: Open Source  
-**Year**: 2025  
-**Category**: Security & Tools  
-**Language**: TypeScript
+![demo](https://github.com/user-attachments/assets/be7ea309-9f5c-4f5a-a4f3-fdf065577d8b)

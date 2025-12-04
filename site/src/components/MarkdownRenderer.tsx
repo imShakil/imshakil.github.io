@@ -6,9 +6,23 @@ import remarkGfm from 'remark-gfm';
 
 interface MarkdownRendererProps {
   content: string;
+  projectReadmeFile?: string;
 }
 
-const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
+const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, projectReadmeFile }) => {
+  const getImagePath = (src: string | Blob | undefined) => {
+    if (!src || src instanceof Blob) return '';
+    if (src.startsWith('http') || src.startsWith('/')) return src;
+    if (projectReadmeFile) {
+      return `/projects/${projectReadmeFile}/${src}`;
+    }
+    return src;
+  };
+
+  const isBadge = (src: string) => {
+    return src.includes('badge') || src.includes('shields.io') || src.includes('img.shields.io');
+  };
+
   return (
     <div className="prose max-w-4xl mx-auto px-4 py-8 dark:prose-invert">
       <ReactMarkdown
@@ -26,9 +40,17 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
           h4: (props) => (
             <h4 className="text-xl font-semibold mt-4 mb-2 text-gray-700 dark:text-gray-300" {...props} />
           ),
-          p: (props) => (
-            <p className="text-gray-900 dark:text-gray-300 leading-relaxed mb-4" {...props} />
-          ),
+          p: (props) => {
+            const hasBadges = props.children && Array.isArray(props.children) && 
+              props.children.some((child: any) => {
+                const src = child?.props?.src || child?.props?.children?.[0]?.props?.src;
+                return src && isBadge(src);
+              });
+            
+            return (
+              <p className={`text-gray-900 dark:text-gray-300 leading-relaxed mb-4 ${hasBadges ? 'flex flex-wrap gap-2 items-center' : ''}`} {...props} />
+            );
+          },
           ul: (props) => (
             <ul className="list-disc list-inside text-gray-900 dark:text-gray-300 mb-4 space-y-2" {...props} />
           ),
@@ -61,13 +83,20 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
               {...props}
             />
           ),
-          img: (props) => (
-            <img
-              className="max-w-full h-auto rounded-lg my-4"
-              alt="markdown-image"
-              {...(props as React.ImgHTMLAttributes<HTMLImageElement>)}
-            />
-          ),
+          img: ({ src, alt, ...props }) => {
+            const imageSrc = getImagePath(src);
+            const badge = isBadge(imageSrc);
+            
+            return (
+              <img
+                src={imageSrc}
+                alt={alt || 'markdown-image'}
+                className={badge ? 'h-auto rounded-lg my-0 inline-block' : 'max-w-full h-auto rounded-lg my-4'}
+                style={badge ? { maxHeight: '40px' } : {}}
+                {...(props as React.ImgHTMLAttributes<HTMLImageElement>)}
+              />
+            );
+          },
           table: (props) => (
             <table className="w-full border-collapse border border-gray-300 dark:border-gray-700 my-4" {...props} />
           ),

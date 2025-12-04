@@ -62,10 +62,9 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredProjects.map((project) => (
-              <a
+              <Link
                 key={project.name}
                 href="/projects"
-                rel="noopener noreferrer"
                 className="group p-6 rounded-xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 card-hover flex flex-col"
               >
                 <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 mb-3 transition-colors">
@@ -82,7 +81,7 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

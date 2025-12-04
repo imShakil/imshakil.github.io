@@ -1,23 +1,10 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { projects, featuredProjects, categories, getAllTags } from '@/data/projects';
 import Footer from '@/components/Footer';
 import FeaturedCarousel from '@/components/FeaturedCarousel';
-
-// interface Project {
-//   name: string;
-//   desc: string;
-//   link: string;
-//   video?: string;
-//   tags?: string[];
-//   status: string;
-//   year: string;
-//   featured?: boolean;
-//   category: string;
-//   readmeFile?: string;
-//   longDesc?: string;
-// }
 
 const getProjectSlug = (name: string) => {
   return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
@@ -29,7 +16,6 @@ export default function ProjectsPage() {
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
   const allTags = getAllTags();
 
-  // Filter projects based on search and filters
   const filteredProjects = useMemo(() => {
     return projects.filter(project => {
       const matchesSearch = 
@@ -55,7 +41,6 @@ export default function ProjectsPage() {
     setSelectedTags(newTags);
   };
 
-  // Calculate statistics
   const stats = {
     total: projects.length,
     openSource: projects.filter(p => p.status === 'open-source').length,
@@ -64,7 +49,6 @@ export default function ProjectsPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950 flex flex-col">
-      {/* Header */}
       <section className="py-20 px-6 md:px-20 border-b border-gray-200 dark:border-slate-800">
         <div className="max-w-6xl mx-auto space-y-4 slide-in-up">
           <h1 className="text-5xl md:text-6xl font-bold gradient-text">Projects</h1>
@@ -74,11 +58,8 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Content */}
       <section className="flex-1 py-20 px-6 md:px-20">
         <div className="max-w-6xl mx-auto">
-         
-          {/* Featured Projects Carousel */}
           <div className="mb-20">
             <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Featured Highlights</h2>
             <FeaturedCarousel
@@ -89,29 +70,25 @@ export default function ProjectsPage() {
             />
           </div>
 
-          {/* Separator */}
           <div className="border-t border-gray-200 dark:border-slate-700 my-16"></div>
           
-          {/* Search and Filters */}
           <div className="mb-12 space-y-6">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">All Projects</h2>
-             {/* Statistics */}
-              <div className="mb-16 flex flex-wrap gap-4">
-                <div className="flex-1 min-w-[200px] p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-500/10 dark:to-blue-600/10 border border-blue-200 dark:border-blue-500/20 text-center">
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">{stats.total}</div>
-                  <div className="text-sm text-blue-700 dark:text-blue-300 mt-1">Total Projects</div>
-                </div>
-                <div className="flex-1 min-w-[200px] p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-500/10 dark:to-green-600/10 border border-green-200 dark:border-green-500/20 text-center">
-                  <div className="text-3xl font-bold text-green-600 dark:text-green-400">{stats.openSource}</div>
-                  <div className="text-sm text-green-700 dark:text-green-300 mt-1">Open Source</div>
-                </div>
-                <div className="flex-1 min-w-[200px] p-6 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-500/10 dark:to-orange-600/10 border border-orange-200 dark:border-orange-500/20 text-center">
-                  <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.private}</div>
-                  <div className="text-sm text-orange-700 dark:text-orange-300 mt-1">Private</div>
-                </div>
+            <div className="mb-16 flex flex-wrap gap-4">
+              <div className="flex-1 min-w-[200px] p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-500/10 dark:to-blue-600/10 border border-blue-200 dark:border-blue-500/20 text-center">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">{stats.total}</div>
+                <div className="text-sm text-blue-700 dark:text-blue-300 mt-1">Total Projects</div>
               </div>
+              <div className="flex-1 min-w-[200px] p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-500/10 dark:to-green-600/10 border border-green-200 dark:border-green-500/20 text-center">
+                <div className="text-3xl font-bold text-green-600 dark:text-green-400">{stats.openSource}</div>
+                <div className="text-sm text-green-700 dark:text-green-300 mt-1">Open Source</div>
+              </div>
+              <div className="flex-1 min-w-[200px] p-6 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-500/10 dark:to-orange-600/10 border border-orange-200 dark:border-orange-500/20 text-center">
+                <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.private}</div>
+                <div className="text-sm text-orange-700 dark:text-orange-300 mt-1">Private</div>
+              </div>
+            </div>
 
-            {/* Search Bar */}
             <div className="relative">
               <input
                 type="text"
@@ -125,7 +102,6 @@ export default function ProjectsPage() {
               </svg>
             </div>
 
-            {/* Category Filter */}
             <div>
               <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Categories</h3>
               <div className="flex flex-wrap gap-2">
@@ -155,7 +131,6 @@ export default function ProjectsPage() {
               </div>
             </div>
 
-            {/* Tag Filter */}
             <div>
               <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Technologies</h3>
               <div className="flex flex-wrap gap-2">
@@ -175,7 +150,6 @@ export default function ProjectsPage() {
               </div>
             </div>
 
-            {/* Clear Filters */}
             {(searchQuery || selectedCategory || selectedTags.size > 0) && (
               <button
                 onClick={() => {
@@ -190,16 +164,13 @@ export default function ProjectsPage() {
             )}
           </div>
 
-          {/* Projects Grid */}
           <div className="space-y-4">
             {filteredProjects.length > 0 ? (
               <div className="grid md:grid-cols-2 gap-6">
                 {filteredProjects.map((project) => (
-                  <a
+                  <Link
                     key={project.name}
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={`/projects/${getProjectSlug(project.name)}`}
                     className="group p-6 rounded-xl bg-gray-100 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 card-hover flex flex-col"
                   >
                     <div className="flex items-start justify-between mb-3">
@@ -209,7 +180,6 @@ export default function ProjectsPage() {
                       <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">{project.year}</span>
                     </div>
                     
-                    {/* Category Badge */}
                     <div className="mb-2">
                       <span className="inline-block px-2 py-1 rounded text-xs bg-indigo-100 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20">
                         {project.category}
@@ -220,7 +190,6 @@ export default function ProjectsPage() {
                       {project.desc}
                     </p>
                     
-                    {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tags.map((tag) => (
                         <span
@@ -235,7 +204,7 @@ export default function ProjectsPage() {
                     <div className="flex items-center text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors font-semibold">
                       View Project →
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             ) : (
@@ -255,10 +224,8 @@ export default function ProjectsPage() {
             )}
           </div>
         </div>
-
       </section>
 
-      {/* Footer */}
       <Footer />
     </main>
   );

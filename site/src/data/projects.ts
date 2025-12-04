@@ -62,7 +62,7 @@ export const projects = [
     readmeFile: "epicbook-app",
     tags: ["Docker", "Traefik", "AWS", "Docker-compose"],
     link: "https://github.com/imShakil/epicbook-docker",
-    video: 'https://www.youtube.com/watch?v=HdY3b-iJ7KI&t=2514s',
+    video: 'https://www.youtube.com/watch?v=HdY3b-iJ7KI',
     status: "open-source",
     year: "2025",
     featured: true,

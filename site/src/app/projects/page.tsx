@@ -47,7 +47,7 @@ export default function ProjectsPage() {
     private: projects.filter(p => p.status === 'private').length,
   };
 
-  const getProjectLink = (project: any) => {
+  const getProjectLink = (project: typeof projects[0]) => {
     const isPrivateOrFeatured = project.status === 'private' || project.featured;
     if (isPrivateOrFeatured) {
       return `/projects/${getProjectSlug(project.name)}`;
@@ -72,9 +72,6 @@ export default function ProjectsPage() {
             <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Featured Highlights</h2>
             <FeaturedCarousel
               projects={featuredProjects}
-              onProjectClick={(project) => {
-                window.location.href = `/projects/${getProjectSlug(project.name)}`;
-              }}
             />
           </div>
 

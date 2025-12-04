@@ -4,8 +4,40 @@ import { featuredProjects } from '@/data/projects';
 import Footer from '@/components/Footer';
 import AboutMe from '@/components/About';
 
+interface Project {
+  name: string;
+  desc: string;
+  link: string;
+  video?: string;
+  tags: string[];
+  status: string;
+  year: string;
+  featured?: boolean;
+  category: string;
+  readmeFile?: string;
+  longDesc?: string;
+}
+
 const getProjectSlug = (name: string) => {
   return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+};
+
+const getYoutubeId = (videoUrl: string): string | null => {
+  const match = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+  return match ? match[1] : null;
+};
+
+const getProjectThumbnail = (project: Project): string => {
+  if (project.link?.includes('github.com')) {
+    return `https://opengraph.githubassets.com/1/${project.link.replace("https://github.com/", "")}`;
+  }
+
+  if (project.video) {
+    const id = getYoutubeId(project.video);
+    if (id) return `https://img.youtube.com/vi/${id}/sddefault.jpg`;
+  }
+
+  return "";
 };
 
 export default function Home() {
@@ -69,21 +101,30 @@ export default function Home() {
               <Link
                 key={project.name}
                 href={`/projects/${getProjectSlug(project.name)}`}
-                className="group p-6 rounded-xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 card-hover flex flex-col"
+                className="group rounded-xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 card-hover overflow-hidden flex flex-col"
               >
-                <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 mb-3 transition-colors">
-                  {project.name}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 flex-1">{project.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 rounded text-xs bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-500/20"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                <div className="relative h-40 bg-gray-300 dark:bg-slate-700 overflow-hidden">
+                  <img
+                    src={getProjectThumbnail(project)}
+                    alt={project.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  />
+                </div>
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 mb-3 transition-colors">
+                    {project.name}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 mb-4 flex-1 text-sm">{project.desc}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.slice(0, 2).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 rounded text-xs bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-500/20"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </Link>
             ))}

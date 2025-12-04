@@ -19,7 +19,6 @@ interface Project {
 
 interface FeaturedCarouselProps {
   projects: Project[];
-  onProjectClick: (project: Project) => void;
 }
 
 const getYoutubeId = (videoUrl: string): string | null => {
@@ -59,7 +58,7 @@ const getProjectSlug = (name: string): string => {
 };
 
 
-export default function FeaturedCarousel({ projects, onProjectClick }: FeaturedCarouselProps) {
+export default function FeaturedCarousel({ projects }: FeaturedCarouselProps) {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);

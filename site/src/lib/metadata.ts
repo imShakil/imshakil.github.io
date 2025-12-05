@@ -25,7 +25,6 @@ export function createMetadata(
   return {
     title,
     description,
-    canonical: url,
     openGraph: {
       title,
       description,

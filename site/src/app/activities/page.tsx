@@ -1,6 +1,10 @@
+import { Metadata } from 'next';
+import { metadataConfig } from '@/lib/metadata-config';
 import Footer from '@/components/Footer';
 import ActivitiesTabs from '@/components/ActivitiesTabs';
 import { fetchAndParseRSS, parseYouTubeRSS, RSSItem } from '@/lib/rss-parser';
+
+export const metadata: Metadata = metadataConfig.activities();
 
 async function getMediumPosts(): Promise<RSSItem[]> {
   try {
@@ -15,7 +19,6 @@ async function getMediumPosts(): Promise<RSSItem[]> {
     const data = await response.json();
     
     return data.items.slice(0, 6).map((item: { title: string; link: string; pubDate: string; description: string; content?: string; thumbnail?: string }) => {
-      // Extract image from content or use thumbnail
       let image = item.thumbnail || '';
       if (!image && item.content) {
         const imgMatch = item.content.match(/<img[^>]+src="([^"]+)"/i);

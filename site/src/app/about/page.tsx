@@ -1,8 +1,10 @@
-'use client';
-
+import { Metadata } from 'next';
+import { metadataConfig } from '@/lib/metadata-config';
 import Footer from '@/components/Footer';
 import AboutMe from '@/components/About';
 import AboutTabs from '@/components/AboutTabs';
+
+export const metadata: Metadata = metadataConfig.about();
 
 export default function About() {
   return (

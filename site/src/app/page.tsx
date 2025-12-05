@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+import { metadataConfig } from '@/lib/metadata-config';
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import { featuredProjects } from '@/data/projects';
@@ -17,6 +19,8 @@ interface Project {
   readmeFile?: string;
   longDesc?: string;
 }
+
+export const metadata: Metadata = metadataConfig.home();
 
 const getProjectSlug = (name: string) => {
   return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');

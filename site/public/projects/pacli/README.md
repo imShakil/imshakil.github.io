@@ -173,3 +173,7 @@ echo 'export PACLI_LINKLYHQ_WID="your_workspace_id"' >> ~/.bashrc
 ## Demo
 
 ![demo](https://github.com/user-attachments/assets/be7ea309-9f5c-4f5a-a4f3-fdf065577d8b)
+
+## Web UI
+
+![web-ui](./pacli-web-ui.png)

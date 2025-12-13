@@ -110,11 +110,27 @@ export default function ContactContent() {
     <main className="min-h-screen bg-white dark:bg-slate-950 flex flex-col">
       {/* Header */}
       <section className="py-20 px-6 md:px-20 border-b border-gray-200 dark:border-slate-800">
-        <div className="max-w-4xl mx-auto space-y-4 slide-in-up">
+        <div className="max-w-4xl mx-auto space-y-6 slide-in-up">
           <h1 className="text-5xl md:text-6xl font-bold gradient-text">Get In Touch</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            Have a question or want to collaborate? I&apos;d love to hear from you. Reach out using any of the methods below.
+            I help teams automate infrastructure, optimize deployments, and scale systems reliably.
           </p>
+          
+          {/* Quick Stats */}
+          <div className="grid grid-cols-3 gap-4 pt-4">
+            <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/30">
+              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">15+</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Projects</div>
+            </div>
+            <div className="p-4 rounded-lg bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/30">
+              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">5+</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Years Exp</div>
+            </div>
+            <div className="p-4 rounded-lg bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/30">
+              <div className="text-2xl font-bold text-green-600 dark:text-green-400">24h</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Response</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -153,7 +169,7 @@ export default function ContactContent() {
               {submitted && (
                 <div className="p-4 rounded-lg bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/30">
                   <p className="text-green-800 dark:text-green-300 font-semibold">
-                    ✓ Thank you! Your message has been sent successfully. I&apos;ll get back to you soon!
+                    ✓ Thank you! Your message has been sent successfully. I'll get back to you soon!
                   </p>
                 </div>
               )}
@@ -258,12 +274,63 @@ export default function ContactContent() {
             </form>
           </div>
 
-          {/* Additional Info */}
+          {/* Why Hire Me */}
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Why Work With Me</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-6 rounded-lg border border-gray-200 dark:border-slate-700">
+                <div className="text-blue-600 dark:text-blue-400 mb-3">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Fast & Efficient</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Automate repetitive tasks and reduce deployment time significantly</p>
+              </div>
+              <div className="p-6 rounded-lg border border-gray-200 dark:border-slate-700">
+                <div className="text-purple-600 dark:text-purple-400 mb-3">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Reliable & Scalable</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Build infrastructure that grows with your business</p>
+              </div>
+              <div className="p-6 rounded-lg border border-gray-200 dark:border-slate-700">
+                <div className="text-green-600 dark:text-green-400 mb-3">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Cost Effective</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Optimize cloud spending and reduce infrastructure costs</p>
+              </div>
+              <div className="p-6 rounded-lg border border-gray-200 dark:border-slate-700">
+                <div className="text-orange-600 dark:text-orange-400 mb-3">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Expert Support</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Get guidance from someone with hands-on DevOps experience</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Schedule Call */}
           <div className="p-8 rounded-lg bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200 dark:border-blue-500/30">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Response Time</h3>
-            <p className="text-gray-700 dark:text-gray-300">
-              I typically respond to messages within 24-48 hours. For urgent matters, feel free to reach out via LinkedIn or email directly.
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Want to discuss your project?</h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Schedule a quick call to explore how I can help your team.
             </p>
+            <a
+              href="https://calendly.com/meet-with-mobarak-hosen-shakil/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all"
+            >
+              Schedule a Call
+            </a>
           </div>
         </div>
       </section>

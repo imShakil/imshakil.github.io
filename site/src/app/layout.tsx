@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import RouteLoader from "@/components/RouteLoader";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import HireMe from "@/components/HireMe";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -87,6 +88,7 @@ export default function RootLayout({
         <GoogleAnalytics />
         <RouteLoader />
         <Navigation />
+        <HireMe />
         {children}
       </body>
     </html>

@@ -169,7 +169,7 @@ export default function ContactContent() {
               {submitted && (
                 <div className="p-4 rounded-lg bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/30">
                   <p className="text-green-800 dark:text-green-300 font-semibold">
-                    ✓ Thank you! Your message has been sent successfully. I'll get back to you soon!
+                    ✓ Thank you! Your message has been sent successfully. I will get back to you soon!
                   </p>
                 </div>
               )}

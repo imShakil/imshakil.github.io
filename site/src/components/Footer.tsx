@@ -116,7 +116,7 @@ export default function Footer() {
                 title="Page visits counter"
               >
                 <img
-                  src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fmhosen.com&label=&icon=radar&color=%23198754&message=&style=flat&tz=UTC"
+                  src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fmhosen.com&label=&icon=radar&color=%23cfe2ff&message=&style=flat&tz=UTC"
                   alt="Page visits counter"
                   style={{ height: '28px' }}
                 />

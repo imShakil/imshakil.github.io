@@ -17,10 +17,10 @@ export default function RouteLoader() {
   if (!isLoading) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm z-50">
       <div className="text-center relative">
         <svg
-          className="w-24 h-24 mx-auto mb-4 text-blue-600 dark:text-blue-400 animate-spin-slow"
+          className="w-24 h-24 mx-auto mb-4 text-emerald-400 animate-spin-slow"
           viewBox="0 0 100 100"
           fill="none"
           stroke="currentColor"
@@ -52,7 +52,7 @@ export default function RouteLoader() {
           unoptimized
         />
         
-        <p className="text-gray-600 dark:text-gray-400 mt-4 font-semibold">Loading...</p>
+        <p className="text-emerald-100/70 mt-4 font-semibold font-mono">$ loading...</p>
       </div>
     </div>
   );

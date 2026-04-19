@@ -3,19 +3,7 @@
 import { useEffect, useState } from 'react';
 import MarkdownRenderer from './MarkdownRenderer';
 import { loadProjectReadme } from '@/lib/readme-loader';
-
-interface Project {
-  name: string;
-  desc: string;
-  link: string;
-  video?: string;
-  tags?: string[];
-  status: string;
-  year: string;
-  category: string;
-  longDesc?: string;
-  readmeFile?: string;
-}
+import { getProjectDemoLink, getProjectGithubLink, type Project } from '@/data/projects';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -66,10 +54,17 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
   if (!isOpen || !project) return null;
 
+  const githubLink = getProjectGithubLink(project);
+  const demoLink = getProjectDemoLink(project);
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'open-source':
         return 'bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-300 border-green-200 dark:border-green-500/20';
+      case 'working':
+        return 'bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-500/20';
+      case 'upcoming':
+        return 'bg-cyan-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/20';
       case 'private':
         return 'bg-orange-100 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-500/20';
       case 'completed':
@@ -83,7 +78,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -91,14 +86,14 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div
-          className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col animate-fadeIn"
+            className="terminal-panel rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col animate-fadeIn"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div className="relative bg-gradient-to-r from-blue-500 to-purple-600 p-8 text-white rounded-t-2xl flex-shrink-0">
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 hover:bg-white/20 rounded-lg transition-colors"
+                className="absolute top-4 right-4 p-2 hover:bg-emerald-500/10 rounded-lg transition-colors text-emerald-200"
               aria-label="Close modal"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +102,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             </button>
 
             <h2 className="text-3xl font-bold pr-8">{project.name}</h2>
-            <p className="text-blue-100 mt-2">{project.category} • {project.year}</p>
+              <p className="terminal-label mb-2">Project Preview</p>
+              <h2 className="text-3xl font-bold pr-8 text-emerald-100">{project.name}</h2>
+              <p className="text-emerald-100/70 mt-2">{project.category} • {project.year}</p>
           </div>
 
           {/* Content */}
@@ -117,7 +114,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20">
                 {project.category}
               </span>
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-gray-200 dark:bg-gray-500/10 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-500/20">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/5 text-emerald-100/70 border border-emerald-500/20 font-mono">
                 {project.year}
               </span>
               <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}>
@@ -127,7 +124,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
             {/* Description */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Overview</h3>
+              <h3 className="text-lg font-semibold text-emerald-100 mb-3">Overview</h3>
               {readmeContent ? (
                 <div className="prose prose-sm dark:prose-invert max-w-none">
                   <MarkdownRenderer content={readmeContent} />
@@ -135,13 +132,14 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               ) : isLoadingReadme ? (
                 <div className="flex items-center justify-center py-8">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-400"></div>
                 </div>
               ) : project.longDesc ? (
                 <div className="prose prose-sm dark:prose-invert max-w-none">
                   <MarkdownRenderer content={project.longDesc} />
                 </div>
               ) : (
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
+                <p className="text-emerald-100/75 leading-relaxed whitespace-pre-wrap">
                   {project.desc}
                 </p>
               )}
@@ -150,7 +148,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             {/* Video Section */}
             {project.video && project.video !== '/' && (
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Demo Video</h3>
+                <h3 className="text-lg font-semibold text-emerald-100 mb-3">Demo Video</h3>
                 <div className="relative w-full bg-gray-900 rounded-lg overflow-hidden aspect-video">
                   {project.video.includes('youtube') ? (
                     <iframe
@@ -181,12 +179,13 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             {/* Tags */}
             {project.tags && project.tags.length > 0 && (
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Technologies</h3>
+                <h3 className="text-lg font-semibold text-emerald-100 mb-3">Technologies</h3>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
                       className="px-3 py-1 rounded-full text-sm bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/20"
+                        className="px-3 py-1 rounded-full text-sm bg-emerald-500/10 text-emerald-100/80 border border-emerald-500/20"
                     >
                       {tag}
                     </span>
@@ -197,24 +196,39 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
             {/* Action Buttons */}
             <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-slate-700">
-              {project.link && (
+              <div className="flex gap-3 pt-4 border-t border-emerald-500/20">
+              {demoLink && (
                 <a
-                  href={project.link}
+                  href={demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+                  className="flex-1 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+                    className="flex-1 terminal-button font-mono uppercase tracking-[0.12em] text-xs inline-flex items-center justify-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 3h7v7m0-7L10 14m-4 0H3v7h7" />
+                  </svg>
+                  $ open_demo
+                </a>
+              )}
+              {githubLink && (
+                <a
+                  href={githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 terminal-button terminal-button-secondary font-mono uppercase tracking-[0.12em] text-xs inline-flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                   </svg>
-                  View on GitHub
+                  $ open_repo
                 </a>
               )}
               <button
                 onClick={onClose}
-                className="flex-1 px-4 py-3 bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-colors"
+                className="flex-1 terminal-button terminal-button-secondary font-mono uppercase tracking-[0.12em] text-xs"
               >
-                Close
+                $ close
               </button>
             </div>
           </div>

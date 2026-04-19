@@ -1,4 +1,67 @@
-export const projects = [
+export type Project = {
+  name: string;
+  desc: string;
+  tags: string[];
+  link?: string;
+  github?: string;
+  demo?: string;
+  thumbnail?: string;
+  readmeFile?: string;
+  video?: string;
+  status: 'open-source' | 'private' | 'completed' | 'working' | 'upcoming';
+  year: string;
+  featured?: boolean;
+  category: string;
+  longDesc?: string;
+};
+
+const isGithubUrl = (url?: string): boolean => Boolean(url && url.includes('github.com'));
+
+const getYoutubeId = (videoUrl: string): string | null => {
+  const match = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+  return match ? match[1] : null;
+};
+
+export const getProjectGithubLink = (project: Project): string | undefined => {
+  if (project.github) return project.github;
+  if (isGithubUrl(project.link)) return project.link;
+  return undefined;
+};
+
+export const getProjectDemoLink = (project: Project): string | undefined => {
+  if (project.demo) return project.demo;
+  if (project.link && !isGithubUrl(project.link)) return project.link;
+  return undefined;
+};
+
+export const getProjectThumbnail = (project: Project): string => {
+  if (project.thumbnail) return project.thumbnail;
+
+  if (project.video) {
+    const id = getYoutubeId(project.video);
+    if (id) return `https://img.youtube.com/vi/${id}/sddefault.jpg`;
+  }
+
+  const githubLink = getProjectGithubLink(project);
+  if (githubLink) {
+    return `https://opengraph.githubassets.com/1/${githubLink.replace('https://github.com/', '')}`;
+  }
+
+  return '';
+};
+
+export const projects: Project[] = [
+  {
+    name: "Dawrix - The Intelligent Gate",
+    desc: "Every AI agent request passes through one gate. Dwarix brokers identity, enforces authorization, and injects credentials — so your agents can act powerfully within boundaries.",
+    tags: ["AI", "Security", "Authorization"],
+    link: "https://mhosen.com/dwarix",
+    github: "https://github.com/imshakil/dwarix",
+    status: "working",
+    year: "2025",
+    featured: true,
+    category: "Security",
+  },
   {
     name: "Clouds In Click - Multi-Cloud VM Provisioning",
     desc: "One-click cloud infrastructure provisioning with automated Azure DevOps self-hosted agents, DNS integration, and cost-controlled resource management.",

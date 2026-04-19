@@ -2,20 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-
-interface Project {
-  name: string;
-  desc: string;
-  link: string;
-  video?: string;
-  tags?: string[];
-  status: string;
-  year: string;
-  featured?: boolean;
-  category: string;
-  readmeFile?: string;
-  longDesc?: string;
-}
+import { getProjectThumbnail, type Project } from '@/data/projects';
 
 interface FeaturedCarouselProps {
   projects: Project[];
@@ -24,23 +11,6 @@ interface FeaturedCarouselProps {
 const getYoutubeId = (videoUrl: string): string | null => {
   const match = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
   return match ? match[1] : null;
-};
-
-const getProjectThumbnail = (project: Project): string => {
-  if (project.link?.includes('github.com') && project.status !== 'private') {
-    return `https://opengraph.githubassets.com/1/${project.link.replace("https://github.com/", "")}`;
-  }
-
-  if (project.video) {
-    const id = getYoutubeId(project.video);
-    if (id) return `https://img.youtube.com/vi/${id}/sddefault.jpg`;
-  }
-
-  if (project.link?.includes('github.com')) {
-    return `https://opengraph.githubassets.com/1/${project.link.replace("https://github.com/", "")}`;
-  }
-
-  return "";
 };
 
 const getYoutubeFallbacks = (videoUrl: string): string[] => {
@@ -71,10 +41,10 @@ export default function FeaturedCarousel({ projects }: FeaturedCarouselProps) {
           <div
             key={project.name}
             onClick={() => router.push(`/projects/${getProjectSlug(project.name)}`)}
-            className="group w-full h-full rounded-xl bg-gradient-to-br from-gray-100 to-gray-50 dark:from-slate-800/50 dark:to-slate-900/50 border border-gray-200 dark:border-slate-700/50 hover:border-purple-500 dark:hover:border-purple-500/50 transition-all duration-300 card-hover overflow-hidden flex flex-col text-left cursor-pointer"
+            className="group w-full h-full terminal-panel hover:border-emerald-400/40 transition-all duration-300 card-hover overflow-hidden flex flex-col text-left cursor-pointer"
           >
             {/* Project Image/Video */}
-            <div className="relative h-40 md:h-48 bg-gray-300 dark:bg-slate-700 overflow-hidden">
+            <div className="relative h-40 md:h-48 bg-emerald-950/30 overflow-hidden border-b border-emerald-500/20">
               <img
                 src={(() => {
                   if (project.status === 'private' && project.video) {
@@ -101,8 +71,8 @@ export default function FeaturedCarousel({ projects }: FeaturedCarouselProps) {
               />
               {project.video && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition">
-                  <div className="bg-white/90 rounded-full p-3">
-                    <svg className="w-8 h-8 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
+                  <div className="bg-emerald-100/90 rounded-full p-3">
+                    <svg className="w-8 h-8 text-emerald-900" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
@@ -112,22 +82,26 @@ export default function FeaturedCarousel({ projects }: FeaturedCarouselProps) {
 
             <div className="p-4 md:p-6 flex flex-col flex-1">
               <div className="flex items-start justify-between mb-2">
-                <h3 className="text-lg md:text-xl font-semibold text-purple-600 dark:text-purple-400 flex-1">
+                <h3 className="text-lg md:text-xl font-semibold text-emerald-200 flex-1">
                   {project.name}
                 </h3>
               </div>
 
               <div className="mb-3 flex flex-wrap gap-2">
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-200 border border-emerald-500/20 font-mono uppercase tracking-[0.12em]">
                   {project.category}
                 </span>
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-gray-200 dark:bg-gray-500/10 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-500/20">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/5 text-emerald-100/70 border border-emerald-500/20 font-mono">
                   {project.year}
                 </span>
                 <span
                   className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${
                     project.status === 'open-source'
                       ? 'bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-300 border-green-200 dark:border-green-500/20'
+                      : project.status === 'working'
+                        ? 'bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-500/20'
+                      : project.status === 'upcoming'
+                        ? 'bg-cyan-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/20'
                       : project.status === 'private'
                         ? 'bg-orange-100 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-500/20'
                         : 'bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-500/20'
@@ -137,7 +111,7 @@ export default function FeaturedCarousel({ projects }: FeaturedCarouselProps) {
                 </span>
               </div>
 
-              <p className="text-gray-700 dark:text-gray-400 mb-3 text-sm leading-relaxed line-clamp-2">
+              <p className="text-emerald-100/70 mb-3 text-sm leading-relaxed line-clamp-2">
                 {project.desc}
               </p>
 
@@ -145,7 +119,7 @@ export default function FeaturedCarousel({ projects }: FeaturedCarouselProps) {
                 {project.tags?.slice(0, 2).map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 rounded text-xs bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/20"
+                    className="px-2 py-1 rounded text-xs bg-emerald-500/10 text-emerald-100/80 border border-emerald-500/20"
                   >
                     {tag}
                   </span>
@@ -158,9 +132,9 @@ export default function FeaturedCarousel({ projects }: FeaturedCarouselProps) {
                     e.stopPropagation();
                     router.push(`/projects/${getProjectSlug(project.name)}`);
                   }}
-                  className="px-3 py-1 text-xs bg-purple-600 hover:bg-purple-700 text-white rounded transition"
+                  className="px-3 py-1 text-xs bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-100 rounded border border-emerald-400/30 transition font-mono uppercase tracking-[0.12em]"
                 >
-                  View Details
+                  $ details
                 </button>
                 {project.video && (
                   <a
@@ -168,12 +142,12 @@ export default function FeaturedCarousel({ projects }: FeaturedCarouselProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="px-3 py-1 text-xs bg-red-600 hover:bg-red-700 text-white rounded transition flex items-center gap-1"
+                    className="px-3 py-1 text-xs bg-red-500/20 hover:bg-red-500/30 text-red-100 rounded border border-red-400/30 transition flex items-center gap-1 font-mono uppercase tracking-[0.1em]"
                   >
                     <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z" />
                     </svg>
-                    Watch Video
+                    $ watch
                   </a>
                 )}
               </div>

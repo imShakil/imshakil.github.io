@@ -32,12 +32,13 @@ export default function BlogContent() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-slate-950 flex flex-col">
+    <main className="min-h-screen flex flex-col">
       {/* Header */}
-      <section className="py-20 px-6 md:px-20 border-b border-gray-200 dark:border-slate-800">
+      <section className="py-20 px-6 md:px-20 border-b border-emerald-500/20">
         <div className="max-w-4xl mx-auto space-y-4 slide-in-up">
+          <p className="terminal-label">Blog Console</p>
           <h1 className="text-5xl md:text-6xl font-bold gradient-text">Blog</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
+          <p className="text-xl text-emerald-100/70">
             Thoughts on DevOps, Cloud Infrastructure, and Software Engineering
           </p>
         </div>
@@ -49,13 +50,13 @@ export default function BlogContent() {
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <div className="text-center">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mb-4"></div>
-                <p className="text-gray-600 dark:text-gray-400">Loading posts...</p>
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-400 mb-4"></div>
+                <p className="text-emerald-100/70 font-mono">$ loading_posts...</p>
               </div>
             </div>
           ) : posts.length === 0 ? (
-            <div className="bg-gray-100 dark:bg-slate-800/30 border border-gray-200 dark:border-slate-700/50 rounded-lg p-12 text-center">
-              <p className="text-gray-600 dark:text-gray-400">No blog posts yet.</p>
+            <div className="terminal-panel rounded-lg p-12 text-center">
+              <p className="text-emerald-100/70 font-mono">[warn] no blog posts yet.</p>
             </div>
           ) : (
             <div className="space-y-6">
@@ -63,24 +64,24 @@ export default function BlogContent() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group block p-6 rounded-xl bg-gray-100 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 card-hover"
+                  className="group block p-6 terminal-panel hover:border-emerald-400/40 transition-all duration-300 card-hover"
                 >
                   <div className="space-y-3">
-                    <h2 className="text-2xl font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition">
+                    <h2 className="text-2xl font-semibold text-emerald-200 group-hover:text-emerald-100 transition">
                       {post.title}
                     </h2>
-                    <p className="text-sm text-gray-500 dark:text-gray-500">
+                    <p className="text-sm text-emerald-100/50 font-mono">
                       {new Date(post.date).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
                       })}
                     </p>
-                    <p className="text-gray-700 dark:text-gray-400 leading-relaxed">
+                    <p className="text-emerald-100/70 leading-relaxed">
                       {post.excerpt}
                     </p>
-                    <div className="text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition inline-flex items-center gap-1 font-semibold pt-2">
-                      Read More <span>→</span>
+                    <div className="text-emerald-300 group-hover:text-emerald-200 transition inline-flex items-center gap-1 font-semibold pt-2 font-mono uppercase tracking-[0.12em] text-xs">
+                      $ read_more <span>→</span>
                     </div>
                   </div>
                 </Link>

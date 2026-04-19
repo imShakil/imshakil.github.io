@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { profile } from '@/data/profile';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,53 +12,40 @@ export default function Footer() {
     setCurrentDate(new Date().toLocaleDateString());
   }, []);
 
-  const socialLinks = [
-    { label: 'GitHub', href: 'https://github.com/imShakil', icon: 'github' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/imshakil', icon: 'linkedin' },
-    { label: 'Medium', href: 'https://medium.com/@imShakil', icon: 'medium' },
-    { label: 'Youtube', href: 'https://youtube.com/@ShakilOps', icon: 'youtube' },
-    { label: 'HitsCounter', icon: 'hits-counter' },
-  ];
+  const socialLinks = [...profile.socialLinks, { label: 'HitsCounter', icon: 'hits-counter' as const }];
 
   return (
-    <footer className="bg-slate-900 border-t border-slate-800">
+    <footer className="bg-slate-950 border-t border-emerald-500/20">
       <div className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-          {/* About Section */}
           <div className="sm:col-span-2 md:col-span-2">
-            <h3 className="text-lg font-semibold text-white mb-4">Mobarak Hosen</h3>
-            <p className="text-gray-300 mb-4 leading-relaxed text-left sm:text-justify">
-              DevOps Engineer passionate about cloud infrastructure, automation, and building scalable systems. 
-              Always learning and sharing knowledge with the community.
-            </p>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <h3 className="text-lg font-semibold text-emerald-100 mb-4">{profile.name}</h3>
+            <p className="text-emerald-100/70 mb-4 leading-relaxed text-left sm:text-justify">{profile.footerSummary}</p>
+            <div className="flex items-center gap-2 text-sm text-emerald-100/50">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <span>Dhaka, Bangladesh</span>
+              <span>{profile.location}</span>
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-emerald-100 mb-4">Quick Links</h3>
             <ul className="flex flex-wrap gap-x-4 gap-y-2 sm:flex-col sm:space-y-2">
-              <li><Link href="/" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Home</Link></li>
-              <li><Link href="/about" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">About</Link></li>
-              <li><Link href="/projects" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Projects</Link></li>
-              <li><Link href="/activities" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Activities</Link></li>
-              <li><Link href="/contact" className="text-gray-300 hover:text-blue-400 hover:underline transition-all duration-200">Contact</Link></li>
+              <li><Link href="/" className="text-emerald-100/70 hover:text-emerald-200 hover:underline transition-all duration-200">Home</Link></li>
+              <li><Link href="/about" className="text-emerald-100/70 hover:text-emerald-200 hover:underline transition-all duration-200">About</Link></li>
+              <li><Link href="/projects" className="text-emerald-100/70 hover:text-emerald-200 hover:underline transition-all duration-200">Projects</Link></li>
+              <li><Link href="/activities" className="text-emerald-100/70 hover:text-emerald-200 hover:underline transition-all duration-200">Activities</Link></li>
+              <li><Link href="/contact" className="text-emerald-100/70 hover:text-emerald-200 hover:underline transition-all duration-200">Contact</Link></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Get in Touch</h3>
+            <h3 className="text-lg font-semibold text-emerald-100 mb-4">Get in Touch</h3>
             <ul className="flex flex-wrap gap-x-4 gap-y-2 sm:flex-col sm:space-y-2">
               <li>
-                <a href="mailto:contact@imshakil.me" className="text-gray-300 hover:text-blue-400 transition-all duration-200 flex items-center gap-2 hover:bg-slate-800/50 rounded px-2 py-1">
+                <a href={`mailto:${profile.email}`} className="text-emerald-100/70 hover:text-emerald-200 transition-all duration-200 flex items-center gap-2 hover:bg-emerald-500/10 rounded px-2 py-1">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
@@ -65,7 +53,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/resume" className="text-gray-300 hover:text-blue-400 transition-all duration-200 flex items-center gap-2 hover:bg-slate-800/50 rounded px-2 py-1">
+                <a href="/resume" className="text-emerald-100/70 hover:text-emerald-200 transition-all duration-200 flex items-center gap-2 hover:bg-emerald-500/10 rounded px-2 py-1">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
@@ -76,16 +64,15 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="flex justify-center gap-4 sm:gap-6 py-8 border-t border-slate-700">
-          {socialLinks.map((link, idx) => (
+        <div className="flex justify-center gap-4 sm:gap-6 py-8 border-t border-emerald-500/20">
+          {socialLinks.map((link) =>
             link.icon !== 'hits-counter' ? (
               <a
                 key={link.href}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 sm:p-3 rounded-lg bg-slate-800 text-gray-300 hover:text-blue-400 hover:bg-slate-700 transition-all duration-300 hover:scale-110"
+                className="terminal-icon-button"
                 title={link.label}
               >
                 {link.icon === 'github' && (
@@ -110,11 +97,7 @@ export default function Footer() {
                 )}
               </a>
             ) : (
-              <span
-                key="hits-counter"
-                className="p-2 sm:p-3 rounded-lg bg-slate-800 flex items-center justify-center"
-                title="Page visits counter"
-              >
+              <span key="hits-counter" className="p-2 sm:p-3 rounded-lg bg-emerald-500/10 flex items-center justify-center" title="Page visits counter">
                 <img
                   src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fmhosen.com&label=&icon=radar&color=%23cfe2ff&message=&style=flat&tz=UTC"
                   alt="Page visits counter"
@@ -122,20 +105,13 @@ export default function Footer() {
                 />
               </span>
             )
-          ))}
+          )}
         </div>
 
-        {/* Copyright & Tech Stack */}
-        <div className="text-center pt-8 border-t border-slate-700 space-y-2">
-          <p className="text-gray-300 text-sm sm:text-base">
-            © {currentYear} Mobarak Hosen · Made with ❤️
-          </p>
-          <p className="text-xs sm:text-sm text-gray-400">
-            Powered by Next.js, Tailwind CSS, and AI
-          </p>
-          <p className="text-xs sm:text-sm text-gray-400">
-            Deployed on GitHub Pages{currentDate && ` · Last updated ${currentDate}`}
-          </p>
+        <div className="text-center pt-8 border-t border-emerald-500/20 space-y-2">
+          <p className="text-emerald-100/70 text-sm sm:text-base">© {currentYear} {profile.name} · Made with ❤️</p>
+          <p className="text-xs sm:text-sm text-emerald-100/50">Powered by Next.js, Tailwind CSS, and AI</p>
+          <p className="text-xs sm:text-sm text-emerald-100/50">Deployed on GitHub Pages{currentDate && ` · Last updated ${currentDate}`}</p>
         </div>
       </div>
     </footer>

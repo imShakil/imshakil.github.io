@@ -49,11 +49,12 @@ export default function ProjectsContent() {
   };
 
   const getProjectLink = (project: typeof projects[0]) => {
+    const slug = getProjectSlug(project.name);
     const isPrivateOrFeatured = project.status === 'private' || project.featured;
     if (isPrivateOrFeatured) {
-      return `/projects/${getProjectSlug(project.name)}`;
+      return `/projects/${slug}`;
     }
-    return project.link;
+    return project.link ?? `/projects/${slug}`;
   };
 
   return (

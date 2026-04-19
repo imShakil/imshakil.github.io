@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { metadataConfig } from '@/lib/metadata-config';
 import Hero from '@/components/Hero';
 import Link from 'next/link';
-import { featuredProjects, getProjectThumbnail, type Project } from '@/data/projects';
+import { featuredProjects, getProjectThumbnail } from '@/data/projects';
 import Footer from '@/components/Footer';
 import AboutMe from '@/components/About';
 import { profile } from '@/data/profile';

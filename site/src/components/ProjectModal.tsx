@@ -78,7 +78,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
     <>
       {/* Backdrop */}
       <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-300"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -86,14 +86,14 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div
-            className="terminal-panel rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col animate-fadeIn"
+          className="terminal-panel rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col animate-fadeIn"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div className="relative bg-gradient-to-r from-blue-500 to-purple-600 p-8 text-white rounded-t-2xl flex-shrink-0">
             <button
               onClick={onClose}
-                className="absolute top-4 right-4 p-2 hover:bg-emerald-500/10 rounded-lg transition-colors text-emerald-200"
+              className="absolute top-4 right-4 p-2 hover:bg-emerald-500/10 rounded-lg transition-colors text-emerald-200"
               aria-label="Close modal"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,10 +101,11 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               </svg>
             </button>
 
-            <h2 className="text-3xl font-bold pr-8">{project.name}</h2>
-              <p className="terminal-label mb-2">Project Preview</p>
-              <h2 className="text-3xl font-bold pr-8 text-emerald-100">{project.name}</h2>
-              <p className="text-emerald-100/70 mt-2">{project.category} • {project.year}</p>
+            <p className="terminal-label mb-2">Project Preview</p>
+            <h2 className="text-3xl font-bold pr-8 text-emerald-100">{project.name}</h2>
+            <p className="text-emerald-100/70 mt-2">
+              {project.category} • {project.year}
+            </p>
           </div>
 
           {/* Content */}
@@ -132,7 +133,6 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               ) : isLoadingReadme ? (
                 <div className="flex items-center justify-center py-8">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-400"></div>
                 </div>
               ) : project.longDesc ? (
                 <div className="prose prose-sm dark:prose-invert max-w-none">
@@ -184,8 +184,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-full text-sm bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/20"
-                        className="px-3 py-1 rounded-full text-sm bg-emerald-500/10 text-emerald-100/80 border border-emerald-500/20"
+                      className="px-3 py-1 rounded-full text-sm bg-emerald-500/10 text-emerald-100/80 border border-emerald-500/20"
                     >
                       {tag}
                     </span>
@@ -196,14 +195,12 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
             {/* Action Buttons */}
             <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-slate-700">
-              <div className="flex gap-3 pt-4 border-t border-emerald-500/20">
               {demoLink && (
                 <a
                   href={demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
-                    className="flex-1 terminal-button font-mono uppercase tracking-[0.12em] text-xs inline-flex items-center justify-center gap-2"
+                  className="flex-1 terminal-button font-mono uppercase tracking-[0.12em] text-xs inline-flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 3h7v7m0-7L10 14m-4 0H3v7h7" />

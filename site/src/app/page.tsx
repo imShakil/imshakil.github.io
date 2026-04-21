@@ -1,20 +1,21 @@
-import { Metadata } from 'next';
-import { metadataConfig } from '@/lib/metadata-config';
-import Hero from '@/components/Hero';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Hero from '@/components/Hero';
 import { featuredProjects, getProjectThumbnail } from '@/data/projects';
 import Footer from '@/components/Footer';
 import AboutMe from '@/components/About';
 import { profile } from '@/data/profile';
 import { skillGroups } from '@/data/skills';
 
-export const metadata: Metadata = metadataConfig.home();
-
 const getProjectSlug = (name: string) => {
   return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
 };
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <main className="min-h-screen">
       <Hero />
@@ -23,7 +24,9 @@ export default function Home() {
 
       <section className="py-20 px-6 md:px-20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-emerald-100">Skills & Expertise</h2>
+          <div className="terminal-divider mb-12">
+            <span className="terminal-section-prefix">$</span> skills --list
+          </div>
           <p className="text-center text-emerald-100/70 max-w-2xl mx-auto mb-16">{profile.summary}</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skillGroups.map((skillGroup) => (
@@ -47,7 +50,9 @@ export default function Home() {
       <section className="py-20 px-6 md:px-20 terminal-panel border-y border-emerald-500/20">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-emerald-100">Featured Projects</h2>
+            <div className="terminal-divider flex-1 mr-8">
+              <span className="terminal-section-prefix">$</span> projects --featured
+            </div>
             <Link
               href="/projects"
               className="text-emerald-300 hover:text-emerald-200 transition-colors flex items-center gap-2 font-mono uppercase tracking-[0.16em]"
@@ -57,10 +62,13 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredProjects.slice(0, 3).map((project) => (
-              <Link
+              <div
                 key={project.name}
-                href={`/projects/${getProjectSlug(project.name)}`}
-                className="group terminal-panel overflow-hidden flex flex-col"
+                onClick={() => router.push(`/projects/${getProjectSlug(project.name)}`)}
+                onKeyDown={(e) => e.key === 'Enter' && router.push(`/projects/${getProjectSlug(project.name)}`)}
+                role="link"
+                tabIndex={0}
+                className="group terminal-panel overflow-hidden flex flex-col cursor-pointer"
               >
                 <div className="relative h-40 bg-gray-300 dark:bg-slate-700 overflow-hidden">
                   <img
@@ -70,19 +78,38 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl font-semibold text-emerald-300 group-hover:text-emerald-200 mb-3 transition-colors">
-                    {project.name}
-                  </h3>
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-xl font-semibold text-emerald-300 group-hover:text-emerald-200 transition-colors">
+                      {project.name}
+                    </h3>
+                    {project.video && (
+                      <a
+                        href={project.video}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="ml-2 shrink-0 p-1.5 rounded bg-red-500/20 hover:bg-red-500/30 text-red-200 border border-red-400/30 transition flex items-center"
+                        title="Watch video"
+                      >
+                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
                   <p className="text-emerald-100/70 mb-4 flex-1 text-sm">{project.desc}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-3">
                     {project.tags.slice(0, 2).map((tag) => (
                       <span key={tag} className="terminal-chip text-xs">
                         {tag}
                       </span>
                     ))}
                   </div>
+                  <span className="px-3 py-1.5 text-xs bg-emerald-500/20 text-emerald-100 rounded border border-emerald-400/30 font-mono uppercase tracking-[0.12em] mt-auto w-fit">
+                    $ details
+                  </span>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -90,6 +117,9 @@ export default function Home() {
 
       <section className="py-20 px-6 md:px-20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
+          <div className="terminal-divider mb-8 justify-center">
+            <span className="terminal-section-prefix">$</span> connect --open-to-work
+          </div>
           <div className="space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold text-emerald-100">Let&apos;s Work Together</h2>
             <p className="text-lg text-emerald-100/70">{profile.connectSummary}</p>

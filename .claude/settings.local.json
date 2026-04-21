@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk 'NR>=56 && NR<=71' /Users/imshakil/GitHub/imshakil/imshakil.github.io/site/src/components/ProjectContent.tsx)",
+      "Bash(xxd)",
+      "Bash(npm run:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://www.youtube.com/feeds/videos.xml?channel_id=UCIleQTFVbILIFzolZh1ktlw\")",
+      "Bash(curl -sL \"https://www.youtube.com/@ShakilOps\")",
+      "Bash(curl -sL \"https://www.youtube.com/feeds/videos.xml?channel_id=UCU5iRc3Xa7IhLeHqLJcFHRA\")",
+      "Bash(curl -sL \"https://www.youtube.com/feeds/videos.xml?for=@ShakilOps\")",
+      "Bash(curl -sL \"https://ytrss.pesky.moe/api/channels/@ShakilOps\")",
+      "Bash(curl -sL \"https://syncwith.com/youtube/shakilops/rss.xml\")"
+    ]
+  }
+}

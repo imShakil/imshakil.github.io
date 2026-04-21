@@ -95,16 +95,16 @@ export default function FeaturedCarousel({ projects }: FeaturedCarouselProps) {
                   {project.year}
                 </span>
                 <span
-                  className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${
+                  className={`inline-block px-3 py-1 rounded-full text-xs font-medium border font-mono uppercase tracking-[0.12em] ${
                     project.status === 'open-source'
-                      ? 'bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-300 border-green-200 dark:border-green-500/20'
+                      ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20'
                       : project.status === 'working'
-                        ? 'bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-500/20'
+                        ? 'bg-amber-500/10 text-amber-300 border-amber-500/20'
                       : project.status === 'upcoming'
-                        ? 'bg-cyan-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/20'
+                        ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20'
                       : project.status === 'private'
-                        ? 'bg-orange-100 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-500/20'
-                        : 'bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-500/20'
+                        ? 'bg-orange-500/10 text-orange-300 border-orange-500/20'
+                        : 'bg-blue-500/10 text-blue-300 border-blue-500/20'
                   }`}
                 >
                   {project.status}

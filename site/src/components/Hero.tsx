@@ -1,11 +1,61 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { profile } from '@/data/profile';
 import { getTerminalPresence } from '@/lib/presence';
 
+const roles = [
+  'DevOps Engineer',
+  'Cloud Infrastructure Specialist',
+  'SRE & Platform Engineer',
+  'CI/CD Pipeline Architect',
+  'Infrastructure Automator',
+];
+
 export default function Hero() {
   const terminalPresence = getTerminalPresence();
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const currentRole = roles[roleIndex];
+    const fullText = `> ${currentRole}`;
+
+    if (isTyping) {
+      if (displayedText.length < fullText.length) {
+        timeoutRef.current = setTimeout(() => {
+          setDisplayedText(fullText.slice(0, displayedText.length + 1));
+        }, 60);
+      } else {
+        timeoutRef.current = setTimeout(() => {
+          setIsTyping(false);
+        }, 2000);
+      }
+    } else {
+      if (displayedText.length > 0) {
+        timeoutRef.current = setTimeout(() => {
+          setDisplayedText(displayedText.slice(0, -1));
+        }, 30);
+      } else {
+        setRoleIndex((prev) => (prev + 1) % roles.length);
+        setIsTyping(true);
+      }
+    }
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [displayedText, isTyping, roleIndex, mounted]);
 
   const handleScrollDown = () => {
     window.scrollBy({
@@ -63,7 +113,18 @@ export default function Hero() {
           <h1 className="text-5xl md:text-7xl font-bold leading-tight text-emerald-100">
             Hi, I&apos;m <span className="gradient-text">{profile.name}</span>
           </h1>
-          <p className="text-xl md:text-2xl text-emerald-200/80">{profile.roleLine}</p>
+          <div className="h-8 flex items-center justify-center">
+            <p className="text-xl md:text-2xl text-emerald-200/80 font-mono">
+              {mounted ? (
+                <>
+                  {displayedText}
+                  <span className="cursor-blink text-accent ml-0.5">▋</span>
+                </>
+              ) : (
+                <span className="text-emerald-200/40">{`> ${roles[0]}`}</span>
+              )}
+            </p>
+          </div>
         </div>
 
         <p className="text-lg text-emerald-100/70 max-w-2xl mx-auto leading-relaxed">
@@ -97,10 +158,11 @@ export default function Hero() {
 
         <button
           onClick={handleScrollDown}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300 bg-transparent border-none p-0"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer hover:scale-110 transition-transform duration-300 bg-transparent border-none p-0"
           aria-label="Scroll down"
         >
-          <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span className="text-[10px] font-mono text-emerald-400/60 uppercase tracking-[0.25em]">scroll</span>
+          <svg className="w-5 h-5 text-emerald-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </button>

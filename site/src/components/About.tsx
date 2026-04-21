@@ -16,13 +16,23 @@ export default function AboutMe({ showLink = true }: AboutMeProps) {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center md:items-center">
           <div className="flex justify-center order-1 md:order-2">
-            <div className="relative">
-              <img
-                src="/me.jpeg"
-                alt={profile.name}
-                className="w-80 h-80 rounded-2xl object-cover shadow-2xl border border-emerald-500/20"
-              />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-emerald-500/20 to-cyan-400/20"></div>
+            <div className="terminal-window w-fit">
+              <div className="terminal-window-header">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-red-400/90"></span>
+                  <span className="w-3 h-3 rounded-full bg-amber-300/90"></span>
+                  <span className="w-3 h-3 rounded-full bg-emerald-400/90"></span>
+                </div>
+                <span className="text-xs font-mono text-emerald-100/40 ml-2">profile.jpg</span>
+              </div>
+              <div className="relative">
+                <img
+                  src="/me.jpeg"
+                  alt={profile.name}
+                  className="w-80 h-80 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-cyan-400/10 pointer-events-none"></div>
+              </div>
             </div>
           </div>
 

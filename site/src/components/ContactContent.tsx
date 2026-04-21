@@ -158,7 +158,7 @@ export default function ContactContent() {
 
               <div className="space-y-6 p-6 md:p-8">
                 <p className="text-sm text-emerald-200/70 font-mono">
-                  <span className="text-emerald-400">ops@{profile.name.toLowerCase().replace(/\s+/g, '')}:~$</span> compose_message --to {profile.email}
+                  <span className="text-emerald-400">ops@mhosen:~$</span> compose_message --to {profile.email}
                 </p>
 
                 {submitted && (

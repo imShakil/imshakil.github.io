@@ -56,17 +56,17 @@ export default function ProjectContent({ slug }: { slug: string }) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'open-source':
-        return 'bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-300 border-green-200 dark:border-green-500/20';
+        return 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20';
       case 'working':
-        return 'bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-500/20';
+        return 'bg-amber-500/10 text-amber-300 border-amber-500/20';
       case 'upcoming':
-        return 'bg-cyan-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/20';
+        return 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20';
       case 'private':
-        return 'bg-orange-100 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-500/20';
+        return 'bg-orange-500/10 text-orange-300 border-orange-500/20';
       case 'completed':
-        return 'bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-500/20';
+        return 'bg-blue-500/10 text-blue-300 border-blue-500/20';
       default:
-        return 'bg-emerald-500/10 text-emerald-100/70 border-emerald-500/20';
+        return 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20';
     }
   };
 

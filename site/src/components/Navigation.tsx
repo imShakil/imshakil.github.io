@@ -59,7 +59,8 @@ export default function Navigation() {
                 {/* <p className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.4em] text-emerald-100/45 hidden sm:block">
                   Terminal
                 </p> */}
-                <p className="text-sm sm:text-base font-mono text-emerald-100/90 tracking-[0.08em] truncate">
+                <p className="text-sm sm:text-base font-mono text-emerald-100/90 tracking-[0.08em] truncate flex items-center gap-0.5">
+                  <span className="cursor-blink">▋</span>
                   {`${profile.name.split(' ')[0].toLowerCase()}@desk.local ~ %`}
                 </p>
               </div>

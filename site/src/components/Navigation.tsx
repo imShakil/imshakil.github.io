@@ -60,8 +60,8 @@ export default function Navigation() {
                   Terminal
                 </p> */}
                 <p className="text-sm sm:text-base font-mono text-emerald-100/90 tracking-[0.08em] truncate flex items-center gap-0.5">
-                  <span className="cursor-blink">▋</span>
                   {`${profile.name.split(' ')[0].toLowerCase()}@desk.local ~ %`}
+                    <span className="cursor-blink">▋</span>
                 </p>
               </div>
             </Link>

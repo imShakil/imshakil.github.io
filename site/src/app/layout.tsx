@@ -5,7 +5,6 @@ import RouteLoader from '@/components/RouteLoader';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import HireMe from '@/components/HireMe';
 import { profile } from '@/data/profile';
-// @ts-expect-error -- Global CSS side-effect import is resolved by Next.js at build time.
 import './globals.css';
 
 const geistSans = Geist({

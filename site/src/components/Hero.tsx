@@ -6,11 +6,10 @@ import { profile } from '@/data/profile';
 import { getTerminalPresence } from '@/lib/presence';
 
 const roles = [
+  'IAM Specialist',
   'DevOps Engineer',
-  'Cloud Infrastructure Specialist',
-  'SRE & Platform Engineer',
-  'CI/CD Pipeline Architect',
-  'Infrastructure Automator',
+  'Cloud Native Deployment',
+  'Pipeline & infrastructure Automator'
 ];
 
 export default function Hero() {

@@ -1,12 +1,12 @@
 export const profile = {
   name: 'Mobarak Hosen',
   fullName: 'Mobarak Hosen Shakil',
-  title: 'DevOps Engineer',
+  title: 'IAM & Cloud DevOps Engineer',
   roleLine: 'DevOps Engineer & Cloud Infrastructure Specialist',
   summary:
-    'I automate cloud infrastructure, design CI/CD pipelines, and build scalable systems.',
+    'A Cloud and DevOps engineer, bridging Development and Operations, with expertise in managing cloud infrastructure, automating CI/CD pipelines, and delivering reliable, scalable software solutions.',
   aboutSummary:
-    'I am a DevOps Engineer and Technical Support Specialist with hands-on experience in Docker, Kubernetes, Terraform, Ansible, and CI/CD automation. I enjoy designing infrastructure-as-code workflows, managing self-hosted GitLab environments, and helping teams deploy faster with confidence.',
+    'My professional career began as a technical support engineer, where I developed the ability to solve complex problems under pressure with customer satisfaction as a promise. At Gluu, I developed in identity and access management (IAM), with hands-on experience in authentication protocols such as SAML, OAuth2, and OpenID Connect. At FusionPulse Tech, I sharpened my system administration, cloud infrastructure management, and automated deployment abilities while managing self-hosted GitLab, deploying CI/CD pipelines, setting up custom mail servers, and Dockerizing client applications.',
   aboutTags: ['DevOps', 'Cloud Infrastructure', 'Automation'],
   heroBadge: 'Terminal online',
   heroHeadline: 'Booting Mobarak Hosen profile',
@@ -15,7 +15,7 @@ export const profile = {
   resumeSummary:
     'Comprehensive overview of my professional experience, skills, and achievements.',
   connectSummary:
-    'I am always interested in discussing DevOps, cloud infrastructure, and automation. Feel free to reach out.',
+    'If you’re looking for someone who can bring technical depth, problem-solving, and a DevOps mindset to your team, let’s connect and discuss how I can contribute to your success.',
   footerSummary:
     'DevOps engineer focused on cloud infrastructure, automation, and reliable delivery systems.',
   location: 'Dhaka, Bangladesh',
@@ -29,7 +29,7 @@ export const profile = {
   stats: [
     { label: 'Projects', value: '15+' },
     { label: 'Years Exp', value: '5+' },
-    { label: 'Response', value: '24h' },
+    { label: 'Response', value: '4h' },
   ],
   socialLinks: [
     { label: 'GitHub', href: 'https://github.com/imshakil', icon: 'github' as const },

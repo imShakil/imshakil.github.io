@@ -5,27 +5,27 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    category: 'Cloud Platforms',
-    items: ['Azure', 'AWS', 'Google Cloud'],
+    category: 'Cloud Infrastructure & GRC',
+    items: ['Azure', 'AWS', 'Google Cloud', 'Scrut.io'],
   },
   {
-    category: 'Containerization',
-    items: ['Docker', 'Kubernetes', 'Docker Compose'],
+    category: 'Identity & Access Management',
+    items: ['SAML', 'OAuth 2.0', 'OpenID Connect', 'Single Sign-On', 'Keycloak', 'Gluu Flex', 'Okta', 'WSO2', 'LDAP', 'RBAC'],
   },
   {
-    category: 'Infrastructure as Code',
+    category: 'Containers & Orchestration',
+    items: ['Docker', 'Kubernetes', 'Docker Compose', 'ArgoCD'],
+  },
+  {
+    category: 'Infrastructure Automation',
     items: ['Terraform', 'Ansible', 'CloudFormation'],
   },
   {
-    category: 'CI/CD',
-    items: ['GitLab CI', 'GitHub Actions', 'Jenkins'],
+    category: 'CI/CD Pipeline',
+    items: ['GitLab CI', 'GitHub Actions', 'Azure DevOps', 'Jenkins'],
   },
   {
-    category: 'Monitoring',
-    items: ['Prometheus', 'Grafana', 'ELK Stack'],
-  },
-  {
-    category: 'System Tooling',
-    items: ['Linux', 'Nginx', 'Python', 'Bash'],
+    category: 'Systems, Observability & Monitoring',
+    items: ['Linux', 'Nginx', 'Python', 'Bash', 'Prometheus', 'Grafana', 'ELK Stack'],
   },
 ];

@@ -53,8 +53,7 @@ export default function Footer() {
         <div className="text-center pt-6 border-t border-emerald-500/20 space-y-1">
           <p className="font-mono text-xs text-emerald-100/40">
             <span className="text-emerald-400/60">$</span> echo $STATUS{" "}
-            <span className="text-emerald-300">open_to_work=true</span>{" "}
-            <span className="text-emerald-100/30"># always hiring good humans</span>
+            <span className="text-emerald-300">open_to_work=true</span>
           </p>
           <p className="font-mono text-xs text-emerald-100/40">
             <span className="text-emerald-400/60">$</span> uptime{" "}
@@ -64,8 +63,7 @@ export default function Footer() {
           </p>
           <p className="font-mono text-xs text-emerald-100/30 mt-3">
             © {currentYear} {profile.name} · Built with{" "}
-            <span className="text-emerald-400/60">Next.js && Tailwind</span>{" "}
-            <span className="text-emerald-100/20">&& grep -i love /dev/heart</span>
+            <span className="text-emerald-400/60">Agentic AI Coding</span>
           </p>
         </div>
       </div>

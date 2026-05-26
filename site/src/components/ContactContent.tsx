@@ -103,18 +103,12 @@ export default function ContactContent() {
           <p className="text-xl text-emerald-100/70">{profile.connectSummary}</p>
 
           <div className="grid grid-cols-3 gap-4 pt-4">
-            <div className="terminal-panel p-4">
-              <div className="text-2xl font-bold text-emerald-300">15+</div>
-              <div className="text-sm text-emerald-100/60">Projects</div>
-            </div>
-            <div className="terminal-panel p-4">
-              <div className="text-2xl font-bold text-emerald-300">5+</div>
-              <div className="text-sm text-emerald-100/60">Years Exp</div>
-            </div>
-            <div className="terminal-panel p-4">
-              <div className="text-2xl font-bold text-emerald-300">24h</div>
-              <div className="text-sm text-emerald-100/60">Response</div>
-            </div>
+            {profile.stats.map((stat) => (
+              <div key={stat.label} className="terminal-panel p-4">
+                <div className="text-2xl font-bold text-emerald-300">{stat.value}</div>
+                <div className="text-sm text-emerald-100/60">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -124,9 +118,9 @@ export default function ContactContent() {
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-emerald-100">Contact Methods</h2>
             <div className="grid md:grid-cols-3 gap-6">
-              {contactMethods.map((method, index) => (
+              {contactMethods.map((method) => (
                 <a
-                  key={index}
+                  key={method.title}
                   href={method.link}
                   target="_blank"
                   rel="noopener noreferrer"

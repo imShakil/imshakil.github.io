@@ -4,13 +4,9 @@ import Link from 'next/link';
 import Hero from '@/components/Hero';
 import ServicesSection from '@/components/ServicesSection';
 import SocialProofSection from '@/components/SocialProofSection';
-import { featuredProjects, getProjectThumbnail } from '@/data/projects';
+import { featuredProjects } from '@/data/projects';
 import Footer from '@/components/Footer';
 import { profile } from '@/data/profile';
-
-const getProjectSlug = (name: string) => {
-  return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-};
 
 export default function Home() {
 
@@ -21,101 +17,65 @@ export default function Home() {
       {/* Services & Packages Section */}
       <ServicesSection />
 
-      {/* Production Case Studies */}
-      <section id="case-studies" className="py-20 px-6 md:px-20 terminal-panel border-y border-emerald-500/20">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
+      {/* Case Studies — Teaser List */}
+      <section id="case-studies" className="py-20 px-6 md:px-20 border-y border-emerald-500/20 bg-slate-950/40">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12">
             <div className="terminal-divider flex-1 mr-8">
-              <span className="terminal-section-prefix">$</span> production_systems --verified-architecture
+              <span className="terminal-section-prefix">$</span> case_studies --verified-outcomes
             </div>
             <Link
               href="/projects"
               className="text-emerald-300 hover:text-emerald-200 transition-colors flex items-center gap-2 font-mono uppercase tracking-[0.16em] text-sm shrink-0"
             >
-              Explore Case Studies →
+              View All →
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="divide-y divide-emerald-500/15">
             {featuredProjects.map((project) => (
               <Link
                 key={project.name}
-                href={`/projects/${getProjectSlug(project.name)}`}
-                className="group terminal-panel overflow-hidden flex flex-col hover:border-emerald-400/50 transition-all duration-300 focus:outline-none focus:border-emerald-400"
+                href={`/projects/${project.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`}
+                className="group flex items-start justify-between gap-6 py-6 hover:bg-emerald-500/5 -mx-4 px-4 rounded-lg transition-colors"
               >
-                <div className="relative h-48 bg-gray-900 overflow-hidden border-b border-emerald-500/20">
-                  <img
-                    src={getProjectThumbnail(project)}
-                    alt={project.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                  />
-                  <div className="absolute top-3 left-3 flex gap-2">
-                    <span className="px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider rounded bg-black/80 text-emerald-300 border border-emerald-400/30">
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6 md:p-7 flex flex-col flex-1 justify-between">
-                  <div>
-                    <div className="flex items-start justify-between mb-3 gap-2">
-                      <h3 className="text-xl font-bold text-emerald-100 group-hover:text-emerald-300 transition-colors">
-                        {project.name}
-                      </h3>
-                      {project.video && (
-                        <span
-                          className="shrink-0 p-1.5 rounded bg-red-500/20 text-red-200 border border-red-400/30 flex items-center"
-                          title="Video walkthrough included"
-                        >
-                          <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="text-emerald-100/70 mb-5 text-sm leading-relaxed">{project.desc}</p>
-
-                    {/* Impact / Solution Metric Callout */}
+                <div className="flex items-start gap-4 min-w-0">
+                  <span className="shrink-0 mt-0.5 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded bg-emerald-500/10 text-emerald-300 border border-emerald-400/20">
+                    {project.category}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="text-base font-semibold text-emerald-100 group-hover:text-emerald-300 transition-colors truncate">
+                      {project.name}
+                    </h3>
                     {project.impact && (
-                      <div className="p-3.5 rounded bg-black/40 border border-emerald-500/20 mb-5 text-xs text-emerald-200/80">
-                        <span className="text-emerald-400 font-mono font-bold block mb-1">
-                          [Key Business Outcome]
-                        </span>
+                      <p className="text-xs text-emerald-100/50 mt-0.5 font-mono line-clamp-1">
                         {project.impact}
-                      </div>
+                      </p>
                     )}
                   </div>
-
-                  <div>
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {project.tags.map((tag) => (
-                        <span key={tag} className="terminal-chip text-xs">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-emerald-500/15">
-                      <span className="text-xs text-emerald-300 font-mono uppercase tracking-wider flex items-center gap-1">
-                        View Architecture & Code →
-                      </span>
-                      <span className="text-xs font-mono text-emerald-100/40">{project.year}</span>
-                    </div>
-                  </div>
                 </div>
+                <span className="shrink-0 text-emerald-500/40 group-hover:text-emerald-300 group-hover:translate-x-1 transition-all text-lg mt-0.5">
+                  →
+                </span>
               </Link>
             ))}
+          </div>
+
+          <div className="pt-8 border-t border-emerald-500/15 mt-2">
+            <Link
+              href="/projects"
+              className="terminal-button terminal-button-secondary inline-flex items-center gap-2 text-sm"
+            >
+              Full Architecture & Case Studies →
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Testimonials & Trust Section */}
+      {/* Trust Section */}
       <SocialProofSection />
 
-
-
-      {/* High-Converting Final Call to Action */}
+      {/* Final Call to Action */}
       <section className="py-24 px-6 md:px-20 border-t border-emerald-500/20 bg-gradient-to-b from-transparent to-black/60">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="terminal-divider mb-8 justify-center">
@@ -123,7 +83,7 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold text-emerald-100">
-              Ready to Eliminate Bottlenecks & Scale?
+              Ready to Eliminate Bottlenecks &amp; Scale?
             </h2>
             <p className="text-lg text-emerald-100/75 max-w-2xl mx-auto leading-relaxed">
               Whether you need to enable SAML Single Sign-On for enterprise clients, automate CI/CD pipelines, or cut cloud waste, let&apos;s map out a clear solution.
@@ -140,7 +100,7 @@ export default function Home() {
               <span className="text-emerald-300 font-mono text-xs">→</span>
             </a>
             <Link href="/contact" className="terminal-button terminal-button-secondary">
-              Send Project Scope & Inquiry
+              Send Project Scope &amp; Inquiry
             </Link>
           </div>
           <p className="text-xs font-mono text-emerald-200/50 pt-2">

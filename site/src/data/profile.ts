@@ -14,7 +14,7 @@ export const profile = {
   heroBadge: 'Available for Consulting & Projects',
   heroHeadline: 'Automate. Secure. Scale.',
   heroDescription:
-    'I help founders and engineering teams eliminate deployment bottlenecks, optimize cloud infrastructure, and implement enterprise SSO (SAML/OAuth2) so you can ship reliably and close deals faster.',
+    'DevOps & IAM consulting for startups and engineering teams — faster deploys, leaner infra, enterprise SSO.',
   resumeSummary:
     'Detailed overview of my professional experience, infrastructure projects, and engineering achievements.',
   connectSummary:

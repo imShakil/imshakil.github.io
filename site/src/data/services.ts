@@ -13,11 +13,11 @@ export type ServicePackage = {
 export const services: ServicePackage[] = [
   {
     id: 'iam-sso',
-    badge: 'Enterprise Enabler',
-    title: 'Enterprise IAM & Single Sign-On (SSO)',
-    tagline: 'Enable SAML & OAuth2 SSO to close lucrative enterprise SaaS deals without security headaches.',
+    badge: 'IAM & SSO',
+    title: 'Enterprise IAM & Single Sign-On',
+    tagline: 'SAML & OAuth2 SSO so your SaaS passes enterprise security reviews and closes bigger deals.',
     painPoint:
-      'Enterprise customers want your software, but their IT department blocks the deal until you support Okta, Azure AD, or Keycloak SAML/OIDC Single Sign-On.',
+      'Enterprise prospects block the deal until you support Okta, Azure AD, or Keycloak SAML/OIDC.',
     deliverables: [
       'Multi-tenant SAML 2.0 & OpenID Connect (OIDC) implementation',
       'Integration with Okta, Azure AD, Google Workspace, or Keycloak',
@@ -30,16 +30,16 @@ export const services: ServicePackage[] = [
   },
   {
     id: 'cloud-iac',
-    badge: 'Cost & Scalability',
+    badge: 'Cloud IaC',
     title: 'Cloud Infrastructure & IaC Automation',
-    tagline: 'Replace fragile manual cloud setups with bulletproof Terraform code that cuts monthly bills.',
+    tagline: 'Replace manual cloud setups with clean Terraform code that reduces cost and eliminates config drift.',
     painPoint:
-      'Your cloud architecture was created manually through the console, bills are creeping up unexpectedly, and nobody feels safe modifying production.',
+      'Console-built infrastructure means unpredictable bills and nobody feels safe touching production.',
     deliverables: [
-      'Declarative Infrastructure as Code (IaC) written in clean Terraform',
+      'Declarative Infrastructure as Code (IaC) in Terraform',
       'Multi-environment parity (Dev, Staging, Production)',
-      'Cloud cost audit & waste reduction (often saving 20-40% on AWS/Azure)',
-      'VPC networking, secrets management, and automated backup strategies',
+      'Cloud cost audit & waste reduction (typically 20–40% savings)',
+      'VPC networking, secrets management, and automated backups',
     ],
     technologies: ['Terraform', 'AWS', 'Azure', 'GCP', 'Ansible', 'Linux'],
     timeline: '1 – 4 Weeks',
@@ -47,15 +47,15 @@ export const services: ServicePackage[] = [
   },
   {
     id: 'cicd-automation',
-    badge: 'Ship 10x Faster',
-    title: 'End-to-End CI/CD Pipeline Automation',
-    tagline: 'Eliminate manual deployments and turn code commits into fast, zero-downtime releases.',
+    badge: 'CI/CD',
+    title: 'CI/CD Pipeline Automation',
+    tagline: 'Push-to-deploy pipelines that eliminate SSH babysitting and ship code with zero downtime.',
     painPoint:
-      'Developers spend hours babysitting manual deployments via SSH, builds fail intermittently, and releases create panic and downtime.',
+      'Manual deployments via SSH eat hours, builds fail unpredictably, and every release is a risk.',
     deliverables: [
       'Push-to-deploy pipelines with GitHub Actions, GitLab CI, or Azure DevOps',
-      'Optimized Docker multi-stage builds with layer caching for ultra-fast builds',
-      'Automated automated test triggers, linting, and vulnerability scanning',
+      'Optimized Docker multi-stage builds with layer caching',
+      'Automated test triggers, linting, and vulnerability scanning',
       'Zero-downtime rolling or blue/green deployments to VPS or Kubernetes',
     ],
     technologies: ['GitHub Actions', 'GitLab CI', 'Docker', 'Kubernetes', 'Traefik', 'ArgoCD'],
@@ -64,16 +64,16 @@ export const services: ServicePackage[] = [
   },
   {
     id: 'devops-audit',
-    badge: 'Rapid Diagnostic',
-    title: '48-Hour Cloud & DevOps Architecture Audit',
-    tagline: 'A fast, high-impact diagnostic to pinpoint security risks, cost leaks, and deployment bottlenecks.',
+    badge: 'Audit',
+    title: '48-Hour Cloud & DevOps Audit',
+    tagline: 'A focused diagnostic that surfaces security gaps, cost leaks, and deployment bottlenecks — fast.',
     painPoint:
-      'You are unsure if your architecture is secure, why your cloud bill is spiking, or whether your infrastructure can handle the next traffic spike.',
+      'Unsure if your architecture is secure, why your cloud bill is spiking, or whether infra can scale.',
     deliverables: [
-      'Comprehensive security & least-privilege IAM review',
+      'Security & least-privilege IAM review',
       'Infrastructure bottleneck & single-point-of-failure analysis',
-      'Cost optimization breakdown with immediate quick-win savings',
-      'Prioritized executive summary & technical step-by-step roadmap',
+      'Cost optimization breakdown with quick-win savings',
+      'Prioritized executive summary & step-by-step remediation roadmap',
     ],
     technologies: ['AWS', 'Azure', 'Security Best Practices', 'IaC Analysis', 'Monitoring'],
     timeline: '48 Hours',

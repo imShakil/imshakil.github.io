@@ -13,8 +13,8 @@ export default function ServicesSection() {
           <div className="terminal-divider justify-center mb-4">
             <span className="terminal-section-prefix">$</span> services --list-packages
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-emerald-100">
-            How I Help Engineering Teams & SaaS Founders
+          <h2 className="text-3xl md:text-4xl font-bold text-emerald-100">
+            Services
           </h2>
         </div>
 

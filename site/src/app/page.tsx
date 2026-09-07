@@ -61,14 +61,14 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="pt-8 border-t border-emerald-500/15 mt-2">
+          {/* <div className="pt-8 border-t border-emerald-500/15 mt-2">
             <Link
               href="/projects"
               className="terminal-button terminal-button-secondary inline-flex items-center gap-2 text-sm"
             >
               Full Architecture & Case Studies →
             </Link>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -83,10 +83,10 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold text-emerald-100">
-              Ready to Eliminate Bottlenecks &amp; Scale?
+              Let&apos;s Work Together.
             </h2>
-            <p className="text-lg text-emerald-100/75 max-w-2xl mx-auto leading-relaxed">
-              Whether you need to enable SAML Single Sign-On for enterprise clients, automate CI/CD pipelines, or cut cloud waste, let&apos;s map out a clear solution.
+            <p className="text-base text-emerald-100/60 max-w-xl mx-auto">
+              IAM & SSO integration, CI/CD automation, or cloud cost reduction — book a call and we map out a solution.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -96,15 +96,15 @@ export default function Home() {
               rel="noopener noreferrer"
               className="terminal-button flex items-center justify-center gap-2"
             >
-              <span>Book Free 15-Min Discovery Call</span>
+              <span>Book 15-Min Call</span>
               <span className="text-emerald-300 font-mono text-xs">→</span>
             </a>
             <Link href="/contact" className="terminal-button terminal-button-secondary">
-              Send Project Scope &amp; Inquiry
+              Send Inquiry
             </Link>
           </div>
-          <p className="text-xs font-mono text-emerald-200/50 pt-2">
-            Direct 1-on-1 with Mobarak Hosen · No sales reps · Actionable engineering insights
+          <p className="text-xs font-mono text-emerald-200/40 pt-2">
+            Direct access · No sales reps
           </p>
         </div>
       </section>

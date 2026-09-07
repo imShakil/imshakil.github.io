@@ -130,15 +130,6 @@ export default function ContactContent() {
           <p className="terminal-label">Contact / {profile.name}</p>
           <h1 className="text-5xl md:text-6xl font-bold gradient-text">Get In Touch</h1>
           <p className="text-xl text-emerald-100/70">{profile.connectSummary}</p>
-
-          <div className="grid grid-cols-3 gap-4 pt-4">
-            {profile.stats.map((stat) => (
-              <div key={stat.label} className="terminal-panel p-4">
-                <div className="text-2xl font-bold text-emerald-300">{stat.value}</div>
-                <div className="text-sm text-emerald-100/60">{stat.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

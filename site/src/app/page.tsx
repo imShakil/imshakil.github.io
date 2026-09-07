@@ -7,7 +7,6 @@ import SocialProofSection from '@/components/SocialProofSection';
 import { featuredProjects, getProjectThumbnail } from '@/data/projects';
 import Footer from '@/components/Footer';
 import { profile } from '@/data/profile';
-import { skillGroups } from '@/data/skills';
 
 const getProjectSlug = (name: string) => {
   return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
@@ -114,31 +113,6 @@ export default function Home() {
       {/* Testimonials & Trust Section */}
       <SocialProofSection />
 
-      {/* Technical Capabilities & Stack */}
-      <section className="py-20 px-6 md:px-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="terminal-divider mb-12">
-            <span className="terminal-section-prefix">$</span> stack --inspect-tooling
-          </div>
-          <p className="text-center text-emerald-100/70 max-w-2xl mx-auto mb-16">{profile.summary}</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skillGroups.map((skillGroup) => (
-              <div key={skillGroup.category} className="terminal-panel group p-6 hover:border-emerald-400/40 transition-colors">
-                <h3 className="text-lg font-semibold text-emerald-300 mb-4 uppercase tracking-[0.14em]">
-                  {skillGroup.category}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {skillGroup.items.map((skill) => (
-                    <span key={skill} className="terminal-chip text-sm">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
       {/* High-Converting Final Call to Action */}

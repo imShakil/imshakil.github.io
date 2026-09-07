@@ -128,13 +128,13 @@ export default function ProjectsContent() {
             })}
           </div>
 
-          {/* Open Source Labs & Tooling */}
+          {/* Open Source Tool */}
           <div className="border-t border-emerald-500/20 pt-16 mb-20">
             <div className="terminal-divider mb-8">
-              <span className="terminal-section-prefix">$</span> open_source_tools --developer-labs
+              <span className="terminal-section-prefix">$</span> open_source --published-tools
             </div>
             <p className="text-emerald-100/70 text-sm mb-8 max-w-2xl">
-              Specialized developer CLIs and identity modules open-sourced for the community.
+              Published open-source security tooling for the developer community.
             </p>
 
             <div className="grid md:grid-cols-3 gap-6">

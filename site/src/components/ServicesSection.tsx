@@ -16,10 +16,6 @@ export default function ServicesSection() {
           <h2 className="text-3xl md:text-5xl font-bold text-emerald-100">
             How I Help Engineering Teams & SaaS Founders
           </h2>
-          <p className="text-emerald-100/70 text-base md:text-lg">
-            Stop losing hours to fragile manual deployments or missing enterprise deals due to security blocks.
-            Choose a dedicated consulting package or tailored sprint.
-          </p>
         </div>
 
         {/* Services Grid */}
@@ -50,9 +46,8 @@ export default function ServicesSection() {
                   {service.tagline}
                 </p>
 
-                {/* Pain Point Callout */}
+                {/* Pain Point */}
                 <div className="p-3.5 rounded bg-black/40 border border-emerald-500/15 mb-6 text-xs text-emerald-200/75 leading-relaxed">
-                  <span className="text-emerald-400 font-mono font-bold mr-1.5">[The Problem Solved]</span>
                   {service.painPoint}
                 </div>
 
@@ -105,23 +100,6 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {/* Bottom Banner */}
-        <div className="mt-12 p-6 md:p-8 terminal-panel text-center flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="text-left space-y-1">
-            <h4 className="text-lg font-bold text-emerald-100">Have a custom or urgent infrastructure need?</h4>
-            <p className="text-sm text-emerald-100/70">
-              I also work on monthly DevOps retainers and rapid emergency incident resolution.
-            </p>
-          </div>
-          <a
-            href={profile.cal15min}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="terminal-button shrink-0 whitespace-nowrap"
-          >
-            Schedule 15-Min Call →
-          </a>
-        </div>
       </div>
     </section>
   );

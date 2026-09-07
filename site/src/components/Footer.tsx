@@ -50,20 +50,9 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="text-center pt-6 border-t border-emerald-500/20 space-y-1">
-          <p className="font-mono text-xs text-emerald-100/40">
-            <span className="text-emerald-400/60">$</span> echo $STATUS{" "}
-            <span className="text-emerald-300">accepting_clients=true</span>
-          </p>
-          <p className="font-mono text-xs text-emerald-100/40">
-            <span className="text-emerald-400/60">$</span> uptime{" "}
-            <span className="text-emerald-300">5+ years</span>{" "}
-            <span className="text-emerald-100/30">| exit code:</span>{" "}
-            <span className="text-emerald-300">0</span>
-          </p>
-          <p className="font-mono text-xs text-emerald-100/30 mt-3">
-            © {currentYear} {profile.name} · Built with{" "}
-            <span className="text-emerald-400/60">Agentic AI Coding</span>
+        <div className="text-center pt-6 border-t border-emerald-500/20">
+          <p className="font-mono text-xs text-emerald-100/30">
+            © {currentYear} {profile.name} · Cloud DevOps &amp; IAM Consultant
           </p>
         </div>
       </div>

@@ -11,6 +11,7 @@ export type Project = {
   status: 'open-source' | 'private' | 'completed' | 'working' | 'upcoming';
   year: string;
   featured?: boolean;
+  showInLabs?: boolean;
   category: string;
   longDesc?: string;
   problem?: string;
@@ -110,6 +111,7 @@ export const projects: Project[] = [
     status: "open-source",
     year: "2025",
     featured: false,
+    showInLabs: false,
     category: "DevOps",
   },
   {
@@ -120,6 +122,7 @@ export const projects: Project[] = [
     link: "https://github.com/imshakil/logpulse",
     year: "2024",
     featured: false,
+    showInLabs: false,
     category: "DevOps",
   },
   {
@@ -130,12 +133,13 @@ export const projects: Project[] = [
     status: "completed",
     year: "2023",
     featured: false,
+    showInLabs: false,
     category: "Security",
   },
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
-export const openSourceProjects = projects.filter((project) => !project.featured);
+export const openSourceProjects = projects.filter((project) => !project.featured && project.showInLabs !== false);
 
 export const categories = ["Cloud", "Security", "DevOps"];
 

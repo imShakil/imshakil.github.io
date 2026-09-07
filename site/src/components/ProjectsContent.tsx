@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { featuredProjects, openSourceProjects, getProjectThumbnail } from '@/data/projects';
+import { featuredProjects, getProjectThumbnail } from '@/data/projects';
 import { profile } from '@/data/profile';
 import Footer from '@/components/Footer';
 
@@ -146,7 +146,6 @@ export default function ProjectsContent() {
                   rel="noopener noreferrer"
                   className="terminal-button w-full sm:w-auto inline-flex items-center justify-center gap-2 font-mono uppercase tracking-[0.14em] text-xs"
                 >
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                   Book 15-Min Call
                 </a>
                 <a

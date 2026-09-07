@@ -56,9 +56,9 @@ export default function AboutMe({ showLink = true }: AboutMeProps) {
               <div className="pt-4 flex justify-center md:justify-start">
                 <Link
                   href="/about"
-                  className="text-emerald-300 hover:text-emerald-200 transition-colors flex items-center gap-2 font-mono uppercase tracking-[0.16em]"
+                  className="text-emerald-300 hover:text-emerald-200 transition-colors flex items-center gap-2 font-mono uppercase tracking-[0.16em] text-sm"
                 >
-                  Learn More About Me →
+                  View Full Background & Principles →
                 </Link>
               </div>
             )}

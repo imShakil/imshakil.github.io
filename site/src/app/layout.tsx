@@ -60,10 +60,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         <meta name="color-scheme" content="light dark" />
-        <meta name="google-adsense-account" content="ca-pub-2449944472030683" />
         <link rel="icon" href="/logo.png" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/logo.png" />
         <script
@@ -81,7 +80,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <GoogleAnalytics />
         <RouteLoader />
         <Navigation />

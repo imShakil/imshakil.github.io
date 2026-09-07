@@ -53,7 +53,7 @@ export default function Footer() {
         <div className="text-center pt-6 border-t border-emerald-500/20 space-y-1">
           <p className="font-mono text-xs text-emerald-100/40">
             <span className="text-emerald-400/60">$</span> echo $STATUS{" "}
-            <span className="text-emerald-300">open_to_work=true</span>
+            <span className="text-emerald-300">accepting_clients=true</span>
           </p>
           <p className="font-mono text-xs text-emerald-100/40">
             <span className="text-emerald-400/60">$</span> uptime{" "}

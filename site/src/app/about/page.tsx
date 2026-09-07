@@ -1,76 +1,164 @@
 import { Metadata } from 'next';
 import { metadataConfig } from '../../lib/metadata-config';
 import Footer from '../../components/Footer';
-import AboutMe from '../../components/About';
 import AboutTabs from '../../components/AboutTabs';
+import { profile } from '@/data/profile';
 
 export const metadata: Metadata = metadataConfig.about();
 
 export default function About() {
   return (
     <main className="min-h-screen flex flex-col">
-      {/* Header */}
-      <AboutMe showLink={false} />
+      {/* Executive Dossier Header */}
+      <section className="py-20 px-6 md:px-20 border-b border-emerald-500/20 bg-gradient-to-b from-slate-950 via-slate-900/40 to-slate-950">
+        <div className="max-w-6xl mx-auto space-y-12">
+          {/* Header Bar */}
+          <div className="space-y-4 slide-in-up">
+            <p className="terminal-label">$ consultant_dossier --profile-details</p>
+            <h1 className="text-4xl md:text-6xl font-bold gradient-text">
+              Engineering with Impact & Security
+            </h1>
+            <p className="text-xl text-emerald-100/75 max-w-3xl leading-relaxed">
+              Bridging software engineering, zero-trust enterprise identity, and automated cloud delivery to help growing businesses eliminate deployment bottlenecks and close enterprise deals.
+            </p>
+          </div>
 
-      {/* Tabs Content */}
-      <section className="flex-1 py-20 px-6 md:px-20">
-        <div className="max-w-4xl mx-auto">
+          {/* Profile Overview Card */}
+          <div className="terminal-panel overflow-hidden">
+            <div className="px-5 py-3 border-b border-emerald-500/20 bg-black/30 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-red-400/80"></span>
+                <span className="w-3 h-3 rounded-full bg-amber-300/80"></span>
+                <span className="w-3 h-3 rounded-full bg-emerald-400/80"></span>
+              </div>
+              <p className="text-xs text-emerald-200/70 font-mono uppercase tracking-[0.2em]">profile-spec.yaml</p>
+            </div>
+
+            <div className="p-8 md:p-10 grid md:grid-cols-12 gap-10 items-center">
+              <div className="md:col-span-4 flex justify-center">
+                <div className="terminal-window w-fit shadow-2xl shadow-emerald-500/10">
+                  <div className="terminal-window-header">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-400/80"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-300/80"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+                    </div>
+                    <span className="text-[11px] font-mono text-emerald-100/40 ml-2">headshot.png</span>
+                  </div>
+                  <div className="relative">
+                    <img
+                      src="/me.jpeg"
+                      alt={profile.name}
+                      className="w-64 h-64 md:w-72 md:h-72 object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-cyan-400/10 pointer-events-none"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="md:col-span-8 space-y-6">
+                <div>
+                  <span className="px-3 py-1 rounded text-xs font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 uppercase tracking-widest inline-block mb-3">
+                    Principal Consultant
+                  </span>
+                  <h2 className="text-2xl md:text-3xl font-bold text-emerald-100">{profile.name}</h2>
+                  <p className="text-emerald-300 font-mono text-sm mt-1">{profile.title}</p>
+                </div>
+
+                <p className="text-emerald-100/80 leading-relaxed text-sm md:text-base">
+                  {profile.aboutSummary}
+                </p>
+
+                {/* The Independent Advantage */}
+                <div className="grid sm:grid-cols-2 gap-4 pt-2">
+                  <div className="p-4 rounded-lg bg-black/40 border border-emerald-500/20">
+                    <h4 className="text-emerald-300 font-mono text-xs uppercase tracking-wider font-bold mb-1">
+                      Direct Senior Access
+                    </h4>
+                    <p className="text-xs text-emerald-100/70">
+                      Zero delegation to junior staff. You partner directly with a seasoned systems architect on every sprint.
+                    </p>
+                  </div>
+                  <div className="p-4 rounded-lg bg-black/40 border border-emerald-500/20">
+                    <h4 className="text-emerald-300 font-mono text-xs uppercase tracking-wider font-bold mb-1">
+                      Zero-Waste Execution
+                    </h4>
+                    <p className="text-xs text-emerald-100/70">
+                      Outcome-driven sprints focused on tangible deliverables: codified IaC, automated releases, and compliant IAM.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tabs Content: Track Record, Standards, Tech Stack, Education */}
+      <section className="flex-1 py-16 px-6 md:px-20">
+        <div className="max-w-5xl mx-auto">
           <AboutTabs />
         </div>
       </section>
 
-      {/* Connect */}
-      <section className="py-20 px-6 md:px-20">
-        <div className="max-w-4xl mx-auto terminal-panel overflow-hidden">
-          <div className="px-5 py-3 border-b border-emerald-500/20 bg-black/20 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-red-400/80"></span>
-              <span className="w-3 h-3 rounded-full bg-amber-300/80"></span>
-              <span className="w-3 h-3 rounded-full bg-emerald-400/80"></span>
-            </div>
-            <p className="text-xs text-emerald-200/70 font-mono uppercase tracking-[0.2em]">connect.sh</p>
-          </div>
-          <div className="space-y-6 p-8">
-          <div>
-            <h2 className="text-3xl font-bold text-emerald-100 mb-4">Let&apos;s Connect</h2>
-            <p className="text-lg text-emerald-100/70 mb-6">
-              I&apos;m always interested in discussing DevOps, cloud infrastructure, and automation. Feel free to reach out!
+      {/* Closing Consultation CTA Card */}
+      <section className="py-16 px-6 md:px-20 border-t border-emerald-500/20">
+        <div className="max-w-4xl mx-auto terminal-panel p-8 md:p-12 text-center relative overflow-hidden bg-gradient-to-b from-slate-900/90 to-slate-950">
+          <div className="space-y-6">
+            <span className="terminal-label inline-block">$ schedule_intro --open-calendar</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-emerald-100">
+              Ready to Modernize Your Infrastructure?
+            </h2>
+            <p className="text-emerald-100/75 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+              Book a direct consultation call to discuss your deployment bottlenecks, cloud infrastructure challenges, or enterprise IAM requirements.
             </p>
-          </div>
-          
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="https://www.linkedin.com/in/imshakil"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="terminal-button terminal-button-secondary font-mono uppercase tracking-[0.12em] inline-flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.946v5.441h-3.554s.05-8.736 0-9.646h3.554v1.348c.42-.648 1.36-1.573 3.322-1.573 2.429 0 4.251 1.574 4.251 4.963v5.908zM5.337 8.855c-1.144 0-1.915-.762-1.915-1.715 0-.957.77-1.715 1.958-1.715 1.187 0 1.927.758 1.927 1.715 0 .953-.74 1.715-1.97 1.715zm1.946 11.597H3.392V9.806h3.891v10.646zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
-              </svg>
-              LinkedIn
-            </a>
-            <a
-              href="mailto:shakilops.dev@gmail.com"
-              className="terminal-button font-mono uppercase tracking-[0.12em] inline-flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Email
-            </a>
-            <a
-              href="https://github.com/imshakil"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="terminal-button terminal-button-secondary font-mono uppercase tracking-[0.12em] inline-flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-              GitHub
-            </a>
-          </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+              <a
+                href={profile.cal15min}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="terminal-button w-full sm:w-auto inline-flex items-center justify-center gap-2 font-mono uppercase tracking-[0.14em] text-xs"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Book 15-Min Intro Call
+              </a>
+              <a
+                href={profile.cal30min}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="terminal-button terminal-button-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2 font-mono uppercase tracking-[0.14em] text-xs"
+              >
+                Book 30-Min Architecture Sprint
+              </a>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-xs font-mono text-emerald-200/60 border-t border-emerald-500/15">
+              <a
+                href={`mailto:${profile.email}`}
+                className="hover:text-emerald-200 transition underline underline-offset-4"
+              >
+                Direct: {profile.email}
+              </a>
+              <span>·</span>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-emerald-200 transition underline underline-offset-4"
+              >
+                LinkedIn Profile ↗
+              </a>
+              <span>·</span>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-emerald-200 transition underline underline-offset-4"
+              >
+                GitHub ↗
+              </a>
+            </div>
           </div>
         </div>
       </section>

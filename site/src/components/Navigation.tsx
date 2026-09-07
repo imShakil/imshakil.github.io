@@ -31,10 +31,10 @@ export default function Navigation() {
 
   const navItems = [
     { href: '/', label: 'Home' },
+    { href: '/#services', label: 'Services' },
+    { href: '/projects', label: 'Case Studies' },
+    { href: '/activities', label: 'Insights' },
     { href: '/about', label: 'About' },
-    { href: '/resume', label: 'Resume' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/activities', label: 'Activities' },
     { href: '/contact', label: 'Contact' },
   ];
 
@@ -56,31 +56,40 @@ export default function Navigation() {
                 <span className="w-3 h-3 rounded-full bg-emerald-400/90 shadow-[0_0_0_1px_rgba(255,255,255,0.08)_inset]"></span>
               </div>
               <div className="min-w-0">
-                {/* <p className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.4em] text-emerald-100/45 hidden sm:block">
-                  Terminal
-                </p> */}
                 <p className="text-sm sm:text-base font-mono text-emerald-100/90 tracking-[0.08em] truncate flex items-center gap-0.5">
                   {`${profile.name.split(' ')[0].toLowerCase()}@desk.local ~ %`}
-                    <span className="cursor-blink">▋</span>
+                  <span className="cursor-blink">▋</span>
                 </p>
               </div>
             </Link>
           </div>
 
-          <div className="hidden md:flex items-stretch gap-1 min-w-0 overflow-x-auto">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`relative px-4 py-2.5 rounded-lg border transition-all duration-300 font-medium text-sm tracking-[0.04em] whitespace-nowrap ${
-                  isActive(item.href)
-                    ? 'bg-emerald-500/14 text-emerald-100 border-emerald-400/30 shadow-[0_0_0_1px_rgba(51,243,140,0.06),0_10px_24px_rgba(51,243,140,0.08)]'
-                    : 'text-emerald-100/55 bg-slate-950/35 border-emerald-500/10 hover:text-emerald-100 hover:bg-emerald-500/8'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-2 min-w-0 overflow-x-auto">
+            <div className="flex items-stretch gap-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`relative px-3.5 py-2 rounded-lg border transition-all duration-300 font-medium text-xs sm:text-sm tracking-[0.04em] whitespace-nowrap ${
+                    isActive(item.href)
+                      ? 'bg-emerald-500/14 text-emerald-100 border-emerald-400/30 shadow-[0_0_0_1px_rgba(51,243,140,0.06),0_10px_24px_rgba(51,243,140,0.08)]'
+                      : 'text-emerald-100/55 bg-slate-950/35 border-emerald-500/10 hover:text-emerald-100 hover:bg-emerald-500/8'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
+            <a
+              href={profile.calUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 hidden xl:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-emerald-400/40 bg-emerald-500/15 text-emerald-200 hover:bg-emerald-500/25 hover:border-emerald-300 font-mono text-xs uppercase tracking-[0.14em] transition-all shadow-[0_0_12px_rgba(51,243,140,0.12)] whitespace-nowrap"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              $ book_call
+            </a>
           </div>
 
           <button

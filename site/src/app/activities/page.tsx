@@ -71,10 +71,10 @@ export default async function ActivitiesPage() {
       {/* Header */}
       <section className="py-20 px-6 md:px-20 border-b border-emerald-500/20">
         <div className="max-w-6xl mx-auto space-y-4 slide-in-up">
-          <p className="terminal-label">Activity Console</p>
-          <h1 className="text-5xl md:text-6xl font-bold gradient-text">Activities</h1>
+          <p className="terminal-label">Engineering Insights & Content</p>
+          <h1 className="text-5xl md:text-6xl font-bold gradient-text">Insights & Content</h1>
           <p className="text-xl text-emerald-100/70">
-            Latest content from my blog, YouTube channel, GitHub, and professional profiles
+            Technical articles, cloud architecture videos, and open-source contributions
           </p>
         </div>
       </section>

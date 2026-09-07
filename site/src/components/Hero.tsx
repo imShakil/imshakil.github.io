@@ -6,10 +6,10 @@ import { profile } from '@/data/profile';
 import { getTerminalPresence } from '@/lib/presence';
 
 const roles = [
-  'IAM Specialist',
-  'DevOps Engineer',
-  'Cloud Native Deployment',
-  'Pipeline & infrastructure Automator'
+  'DevOps & IAM Specialist',
+  'Automated CI/CD Engineer',
+  'Enterprise SSO & SAML Architect',
+  'Cloud Infrastructure & Cost Optimizer',
 ];
 
 export default function Hero() {
@@ -103,17 +103,32 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8 slide-in-up">
-        <div className="terminal-panel inline-flex items-center gap-2 px-4 py-2 mx-auto">
-          <span className={`w-2 h-2 rounded-full animate-pulse ${terminalPresence.isOnline ? 'bg-emerald-400' : 'bg-red-400'}`}></span>
-          <span className="terminal-label">{terminalPresence.label}</span>
+        <div className="terminal-panel inline-flex items-center gap-3 px-3.5 py-1.5 mx-auto rounded-full bg-slate-900/90 border border-emerald-500/30 shadow-lg shadow-emerald-500/5 hover:border-emerald-400/50 transition">
+          <div className="relative shrink-0">
+            <img
+              src="/me.jpeg"
+              alt={profile.name}
+              className="w-7 h-7 rounded-full object-cover border border-emerald-400/60"
+            />
+            <span
+              className={`absolute bottom-0 right-0 w-2 h-2 rounded-full ring-2 ring-slate-950 ${
+                terminalPresence.isOnline ? 'bg-emerald-400 animate-pulse' : 'bg-red-400'
+              }`}
+            ></span>
+          </div>
+          <div className="flex items-center gap-2 text-xs font-mono">
+            <span className="text-emerald-100 font-medium">{profile.name}</span>
+            <span className="text-emerald-100/30">/</span>
+            <span className="text-emerald-300/90">Available for Sprints</span>
+          </div>
         </div>
 
         <div className="space-y-4">
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight text-emerald-100">
-            Hi, I&apos;m <span className="gradient-text">{profile.name}</span>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight text-emerald-100">
+            Automate. <span className="gradient-text">Secure.</span> Scale.
           </h1>
           <div className="h-8 flex items-center justify-center">
-            <p className="text-xl md:text-2xl text-emerald-200/80 font-mono">
+            <p className="text-lg sm:text-xl md:text-2xl text-emerald-200/80 font-mono">
               {mounted ? (
                 <>
                   {displayedText}
@@ -126,17 +141,38 @@ export default function Hero() {
           </div>
         </div>
 
-        <p className="text-lg text-emerald-100/70 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg text-emerald-100/75 max-w-2xl mx-auto leading-relaxed">
           {profile.heroDescription}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-          <Link href="/projects" className="terminal-button">
-            View My Work
-          </Link>
-          <Link href="/resume" className="terminal-button terminal-button-secondary">
-            Get My Resume
-          </Link>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+          <a
+            href={profile.cal15min}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="terminal-button flex items-center justify-center gap-2"
+          >
+            <span>$ book_discovery_call</span>
+            <span className="text-emerald-300 text-xs font-mono">--free-15-min</span>
+          </a>
+          <a
+            href="#services"
+            className="terminal-button terminal-button-secondary flex items-center justify-center"
+          >
+            Explore Services & Case Studies
+          </a>
+        </div>
+
+        <div className="pt-2 text-xs font-mono text-emerald-200/60 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5">
+          <span className="flex items-center gap-1.5">
+            <span className="text-emerald-400">✓</span> 5+ Yrs Cloud & IAM
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="text-emerald-400">✓</span> Enterprise SAML / OAuth2 SSO
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="text-emerald-400">✓</span> Zero-Downtime CI/CD
+          </span>
         </div>
 
         <div className="flex justify-center gap-4 pt-8 pb-24 flex-wrap">

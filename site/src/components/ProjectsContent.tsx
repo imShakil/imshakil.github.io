@@ -1,296 +1,212 @@
 'use client';
 
-import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { projects, featuredProjects, categories, getAllTags } from '@/data/projects';
+import { featuredProjects, openSourceProjects, getProjectThumbnail } from '@/data/projects';
+import { profile } from '@/data/profile';
 import Footer from '@/components/Footer';
-import FeaturedCarousel from '@/components/FeaturedCarousel';
 
 const getProjectSlug = (name: string) => {
   return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
 };
 
 export default function ProjectsContent() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
-  const allTags = getAllTags();
-
-  const filteredProjects = useMemo(() => {
-    return projects.filter(project => {
-      const matchesSearch = 
-        project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.desc.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesCategory = !selectedCategory || project.category === selectedCategory;
-      
-      const matchesTags = selectedTags.size === 0 || 
-        project.tags.some(tag => selectedTags.has(tag));
-      
-      return matchesSearch && matchesCategory && matchesTags;
-    });
-  }, [searchQuery, selectedCategory, selectedTags]);
-
-  const toggleTag = (tag: string) => {
-    const newTags = new Set(selectedTags);
-    if (newTags.has(tag)) {
-      newTags.delete(tag);
-    } else {
-      newTags.add(tag);
-    }
-    setSelectedTags(newTags);
-  };
-
-  const stats = {
-    total: projects.length,
-    openSource: projects.filter(p => p.status === 'open-source').length,
-    working: projects.filter(p => p.status === 'working').length,
-    private: projects.filter(p => p.status === 'private').length,
-  };
-
-  const getProjectLink = (project: typeof projects[0]) => {
-    const slug = getProjectSlug(project.name);
-    const isPrivateOrFeatured = project.status === 'private' || project.featured;
-    if (isPrivateOrFeatured) {
-      return `/projects/${slug}`;
-    }
-    return project.link ?? `/projects/${slug}`;
-  };
-
   return (
     <main className="min-h-screen flex flex-col">
+      {/* Header */}
       <section className="py-20 px-6 md:px-20 border-b border-emerald-500/20">
         <div className="max-w-6xl mx-auto space-y-4 slide-in-up">
-          <p className="terminal-label">Project Console</p>
-          <h1 className="text-5xl md:text-6xl font-bold gradient-text">Projects</h1>
-          <p className="text-xl text-emerald-100/70">
-            A collection of my DevOps, infrastructure, and development projects showcasing my expertise.
+          <p className="terminal-label">$ production_systems --verified-architecture</p>
+          <h1 className="text-5xl md:text-6xl font-bold gradient-text">Production Systems & Case Studies</h1>
+          <p className="text-xl text-emerald-100/70 max-w-3xl leading-relaxed">
+            Production-grade infrastructure platforms, zero-trust security gateways, and developer tools engineered and maintained by Mobarak Hosen.
           </p>
+
+          <div className="flex flex-wrap gap-4 pt-4">
+            <div className="px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 font-mono text-xs text-emerald-300">
+              <span className="text-emerald-400 font-bold mr-2">✓</span> Production Hardened
+            </div>
+            <div className="px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 font-mono text-xs text-emerald-300">
+              <span className="text-emerald-400 font-bold mr-2">✓</span> Zero-Trust Security
+            </div>
+            <div className="px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 font-mono text-xs text-emerald-300">
+              <span className="text-emerald-400 font-bold mr-2">✓</span> Infrastructure as Code
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="flex-1 py-20 px-6 md:px-20">
+      {/* Featured Production Case Studies */}
+      <section className="flex-1 py-16 px-6 md:px-20">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-20">
-            <h2 className="text-3xl font-bold mb-8 text-emerald-100">Featured Highlights</h2>
-            <FeaturedCarousel
-              projects={featuredProjects}
-            />
+          <div className="terminal-divider mb-12">
+            <span className="terminal-section-prefix">$</span> production_systems --verified-outcomes
           </div>
 
-          <div className="border-t border-emerald-500/20 my-16"></div>
-          
-          <div className="mb-12 space-y-6 terminal-panel overflow-hidden">
-            <div className="px-5 py-3 border-b border-emerald-500/20 bg-black/20 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-red-400/80"></span>
-                <span className="w-3 h-3 rounded-full bg-amber-300/80"></span>
-                <span className="w-3 h-3 rounded-full bg-emerald-400/80"></span>
-              </div>
-              <p className="text-xs text-emerald-200/70 font-mono uppercase tracking-[0.2em]">projects-index.sh</p>
-            </div>
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
+            {featuredProjects.map((project) => {
+              const slug = getProjectSlug(project.name);
 
-            <div className="p-6 md:p-8 space-y-6">
-            <h2 className="text-3xl font-bold text-emerald-100">All Projects</h2>
-            <div className="mb-16 flex flex-wrap gap-4">
-              <div className="flex-1 min-w-[180px] p-5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-center">
-                <div className="text-3xl font-bold text-emerald-300 font-mono">{stats.total}</div>
-                <div className="text-xs text-emerald-200/70 mt-1 uppercase tracking-[0.15em]">Total Projects</div>
-              </div>
-              <div className="flex-1 min-w-[180px] p-5 rounded-xl border border-green-500/20 bg-green-500/5 text-center">
-                <div className="text-3xl font-bold text-green-300 font-mono">{stats.openSource}</div>
-                <div className="text-xs text-green-200/70 mt-1 uppercase tracking-[0.15em]">Open Source</div>
-              </div>
-              <div className="flex-1 min-w-[180px] p-5 rounded-xl border border-amber-500/20 bg-amber-500/5 text-center">
-                <div className="text-3xl font-bold text-amber-300 font-mono">{stats.working}</div>
-                <div className="text-xs text-amber-200/70 mt-1 uppercase tracking-[0.15em]">Working</div>
-              </div>
-              <div className="flex-1 min-w-[180px] p-5 rounded-xl border border-orange-500/20 bg-orange-500/5 text-center">
-                <div className="text-3xl font-bold text-orange-300 font-mono">{stats.private}</div>
-                <div className="text-xs text-orange-200/70 mt-1 uppercase tracking-[0.15em]">Private</div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <p className="text-xs font-mono uppercase tracking-[0.18em] text-emerald-300 mb-2">&gt; search</p>
-              <input
-                type="text"
-                placeholder="Search projects by name or description..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="terminal-input pr-11 font-mono"
-              />
-              <svg className="absolute right-3 top-9 w-5 h-5 text-emerald-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-
-            <div>
-              <h3 className="text-xs font-mono uppercase tracking-[0.18em] text-emerald-300 mb-3">&gt; categories</h3>
-              <div className="flex flex-wrap gap-2">
-                <button
-                  onClick={() => setSelectedCategory(null)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition font-mono ${
-                    selectedCategory === null
-                      ? 'bg-emerald-500/20 text-emerald-100 border border-emerald-400/40'
-                      : 'bg-emerald-500/5 text-emerald-100/70 border border-emerald-500/20 hover:bg-emerald-500/10'
-                  }`}
+              return (
+                <div
+                  key={project.name}
+                  className="group terminal-panel overflow-hidden flex flex-col hover:border-emerald-400/50 transition-all duration-300"
                 >
-                  All
-                </button>
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition font-mono ${
-                      selectedCategory === category
-                        ? 'bg-emerald-500/20 text-emerald-100 border border-emerald-400/40'
-                        : 'bg-emerald-500/5 text-emerald-100/70 border border-emerald-500/20 hover:bg-emerald-500/10'
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
+                  <div className="relative h-52 bg-gray-900 overflow-hidden border-b border-emerald-500/20">
+                    <img
+                      src={getProjectThumbnail(project)}
+                      alt={project.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                    />
+                    <div className="absolute top-3 left-3 flex gap-2">
+                      <span className="px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider rounded bg-black/80 text-emerald-300 border border-emerald-400/30">
+                        {project.category}
+                      </span>
+                    </div>
+                  </div>
 
-            <div>
-              <h3 className="text-xs font-mono uppercase tracking-[0.18em] text-emerald-300 mb-3">&gt; technologies</h3>
-              <div className="flex flex-wrap gap-2">
-                {allTags.map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={() => toggleTag(tag)}
-                    className={`px-3 py-1 rounded text-xs font-medium transition font-mono ${
-                      selectedTags.has(tag)
-                        ? 'bg-emerald-500/20 text-emerald-100 border border-emerald-400/40'
-                        : 'bg-emerald-500/5 text-emerald-100/70 border border-emerald-500/20 hover:bg-emerald-500/10'
-                    }`}
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {(searchQuery || selectedCategory || selectedTags.size > 0) && (
-              <button
-                onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory(null);
-                  setSelectedTags(new Set());
-                }}
-                className="text-sm text-emerald-300 hover:text-emerald-200 hover:underline font-mono"
-              >
-                $ clear_filters
-              </button>
-            )}
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            {filteredProjects.length > 0 ? (
-              <div className="grid md:grid-cols-2 gap-6">
-                {filteredProjects.map((project) => {
-                  const isPrivateOrFeatured = project.status === 'private' || project.featured;
-                  const href = getProjectLink(project);
-                  
-                  return isPrivateOrFeatured ? (
-                    <Link
-                      key={project.name}
-                      href={href}
-                      className="group p-6 terminal-panel hover:border-emerald-400/40 transition-all duration-300 card-hover flex flex-col"
-                    >
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="text-xl font-semibold text-emerald-200 group-hover:text-emerald-100 transition-colors flex-1">
+                  <div className="p-6 md:p-8 flex flex-col flex-1 justify-between space-y-6">
+                    <div>
+                      <div className="flex items-start justify-between gap-3 mb-3">
+                        <h2 className="text-2xl font-bold text-emerald-100 group-hover:text-emerald-300 transition-colors">
                           {project.name}
-                        </h3>
-                        <span className="text-xs text-emerald-100/50 ml-2 font-mono">{project.year}</span>
+                        </h2>
+                        <span className="text-xs font-mono text-emerald-100/50 shrink-0 mt-1">{project.year}</span>
                       </div>
-                      
-                      <div className="mb-2">
-                        <span className="inline-block px-2 py-1 rounded text-xs bg-emerald-500/10 text-emerald-200 border border-emerald-500/20 font-mono uppercase tracking-[0.12em]">
-                          {project.category}
-                        </span>
-                      </div>
-                      
-                      <p className="text-emerald-100/70 mb-4 flex-1 leading-relaxed">
+
+                      <p className="text-emerald-100/70 text-sm leading-relaxed mb-6">
                         {project.desc}
                       </p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-4">
+
+                      {/* Structured Outcome Callout */}
+                      <div className="rounded-lg bg-black/50 border border-emerald-500/25 p-4 space-y-2.5 text-xs text-emerald-100/80 mb-6">
+                        {project.problem && (
+                          <div>
+                            <span className="text-red-300/90 font-mono font-bold uppercase tracking-wider block">
+                              [The Challenge]
+                            </span>
+                            <span className="text-emerald-100/70">{project.problem}</span>
+                          </div>
+                        )}
+                        {project.solution && (
+                          <div>
+                            <span className="text-cyan-300/90 font-mono font-bold uppercase tracking-wider block">
+                              [The Architecture]
+                            </span>
+                            <span className="text-emerald-100/70">{project.solution}</span>
+                          </div>
+                        )}
+                        {project.impact && (
+                          <div className="pt-1 border-t border-emerald-500/15">
+                            <span className="text-emerald-400 font-mono font-bold uppercase tracking-wider block">
+                              [Quantifiable Impact]
+                            </span>
+                            <span className="text-emerald-200 font-semibold">{project.impact}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
                         {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-1 rounded text-xs bg-emerald-500/10 text-emerald-100/80 border border-emerald-500/20"
-                          >
+                          <span key={tag} className="terminal-chip text-xs">
                             {tag}
                           </span>
                         ))}
                       </div>
-                      
-                      <div className="flex items-center text-emerald-300 group-hover:text-emerald-200 transition-colors font-semibold font-mono uppercase tracking-[0.12em] text-xs">
-                        $ view_project
-                      </div>
-                    </Link>
-                  ) : (
-                    <a
-                      key={project.name}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group p-6 terminal-panel hover:border-emerald-400/40 transition-all duration-300 card-hover flex flex-col"
-                    >
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="text-xl font-semibold text-emerald-200 group-hover:text-emerald-100 transition-colors flex-1">
-                          {project.name}
-                        </h3>
-                        <span className="text-xs text-emerald-100/50 ml-2 font-mono">{project.year}</span>
-                      </div>
-                      
-                      <div className="mb-2">
-                        <span className="inline-block px-2 py-1 rounded text-xs bg-emerald-500/10 text-emerald-200 border border-emerald-500/20 font-mono uppercase tracking-[0.12em]">
-                          {project.category}
+                    </div>
+
+                    <div className="pt-4 border-t border-emerald-500/15">
+                      <Link
+                        href={`/projects/${slug}`}
+                        className="terminal-button w-full justify-center text-center font-mono uppercase tracking-[0.14em] text-xs inline-flex items-center gap-2"
+                      >
+                        $ view_architecture --details →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Open Source Labs & Tooling */}
+          <div className="border-t border-emerald-500/20 pt-16 mb-20">
+            <div className="terminal-divider mb-8">
+              <span className="terminal-section-prefix">$</span> open_source_tools --developer-labs
+            </div>
+            <p className="text-emerald-100/70 text-sm mb-8 max-w-2xl">
+              Specialized developer CLIs and identity modules open-sourced for the community.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {openSourceProjects.map((item) => (
+                <div key={item.name} className="terminal-panel p-6 flex flex-col justify-between hover:border-emerald-400/40 transition">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                        {item.category}
+                      </span>
+                      <span className="text-xs font-mono text-emerald-100/40">{item.year}</span>
+                    </div>
+
+                    <h3 className="text-lg font-bold text-emerald-100 mb-2">{item.name}</h3>
+                    <p className="text-xs text-emerald-100/70 leading-relaxed mb-4">{item.desc}</p>
+                  </div>
+
+                  <div>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="px-2 py-0.5 rounded text-[10px] bg-slate-900 text-emerald-300/80 border border-emerald-500/20 font-mono">
+                          {tag}
                         </span>
-                      </div>
-                      
-                      <p className="text-emerald-100/70 mb-4 flex-1 leading-relaxed">
-                        {project.desc}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-1 rounded text-xs bg-emerald-500/10 text-emerald-100/80 border border-emerald-500/20"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      <div className="flex items-center text-emerald-300 group-hover:text-emerald-200 transition-colors font-semibold font-mono uppercase tracking-[0.12em] text-xs">
-                        $ open_repo
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="text-center py-12">
-                <p className="text-emerald-100/70 text-lg font-mono">[warn] no projects found matching filters.</p>
-                <button
-                  onClick={() => {
-                    setSearchQuery('');
-                    setSelectedCategory(null);
-                    setSelectedTags(new Set());
-                  }}
-                  className="mt-4 text-emerald-300 hover:text-emerald-200 hover:underline font-mono"
+                      ))}
+                    </div>
+
+                    {item.link && (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-emerald-300 hover:text-emerald-200 font-mono flex items-center gap-1 uppercase tracking-wider"
+                      >
+                        View on GitHub ↗
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Consultation CTA */}
+          <div className="terminal-panel p-8 md:p-12 text-center relative overflow-hidden bg-gradient-to-b from-slate-900/90 to-slate-950">
+            <div className="max-w-2xl mx-auto space-y-4">
+              <span className="terminal-label inline-block">$ schedule_consultation</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-emerald-100">
+                Need Similar Architecture Built For Your Team?
+              </h2>
+              <p className="text-emerald-100/70 text-sm md:text-base leading-relaxed">
+                Whether you need enterprise Single Sign-On (SSO) integrated, Terraform pipelines deployed, or an infrastructure cost audit, let&apos;s map out your roadmap.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a
+                  href={profile.cal15min}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="terminal-button w-full sm:w-auto inline-flex items-center justify-center gap-2 font-mono uppercase tracking-[0.14em] text-xs"
                 >
-                  $ reset_filters
-                </button>
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Book 15-Min Intro Call
+                </a>
+                <a
+                  href={profile.cal30min}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="terminal-button terminal-button-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2 font-mono uppercase tracking-[0.14em] text-xs"
+                >
+                  Book 30-Min Architecture Sprint
+                </a>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </section>

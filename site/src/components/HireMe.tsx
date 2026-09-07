@@ -59,13 +59,11 @@ export default function HireMe() {
           {/* Popover Content */}
           <div className="p-5 space-y-4">
             <div className="space-y-1">
-              <div className="flex items-center gap-2 text-xs text-emerald-300">
+              <div className="flex items-center gap-2 text-xs">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span className="font-bold uppercase tracking-wider">Mobarak Hosen · Online</span>
+                <span className="text-emerald-300 font-medium">{profile.name}</span>
+                <span className="text-emerald-100/30">· available now</span>
               </div>
-              <p className="text-xs text-emerald-100/70 leading-relaxed">
-                Got a production blocker or scoping an IAM/DevOps project? Connect directly via your preferred channel:
-              </p>
             </div>
 
             {/* Channels List */}
@@ -112,9 +110,9 @@ export default function HireMe() {
                   </div>
                   <div>
                     <div className="text-xs font-bold text-emerald-100 group-hover:text-cyan-200 transition">
-                      Telegram Messenger
+                      Telegram
                     </div>
-                    <div className="text-[11px] text-emerald-100/60">Confidential & async chat</div>
+                    <div className="text-[11px] text-emerald-100/60">Async & confidential</div>
                   </div>
                 </div>
                 <span className="text-xs text-cyan-400 font-mono group-hover:translate-x-0.5 transition-transform">
@@ -140,17 +138,13 @@ export default function HireMe() {
                     <div className="text-xs font-bold text-emerald-100 group-hover:text-emerald-200 transition">
                       15-Min Intro Call
                     </div>
-                    <div className="text-[11px] text-emerald-100/60">Live calendar screen-share</div>
+                    <div className="text-[11px] text-emerald-100/60">Pick a time slot</div>
                   </div>
                 </div>
                 <span className="text-xs text-emerald-400 font-mono group-hover:translate-x-0.5 transition-transform">
                   →
                 </span>
               </a>
-            </div>
-
-            <div className="pt-2 border-t border-emerald-500/15 text-[10px] text-center text-emerald-100/40">
-              Direct access · Zero junior delegation · No sales reps
             </div>
           </div>
         </div>

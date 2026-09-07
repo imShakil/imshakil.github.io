@@ -128,64 +128,16 @@ export default function ProjectsContent() {
             })}
           </div>
 
-          {/* Open Source Tool */}
-          <div className="border-t border-emerald-500/20 pt-16 mb-20">
-            <div className="terminal-divider mb-8">
-              <span className="terminal-section-prefix">$</span> open_source --published-tools
-            </div>
-            <p className="text-emerald-100/70 text-sm mb-8 max-w-2xl">
-              Published open-source security tooling for the developer community.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {openSourceProjects.map((item) => (
-                <div key={item.name} className="terminal-panel p-6 flex flex-col justify-between hover:border-emerald-400/40 transition">
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
-                        {item.category}
-                      </span>
-                      <span className="text-xs font-mono text-emerald-100/40">{item.year}</span>
-                    </div>
-
-                    <h3 className="text-lg font-bold text-emerald-100 mb-2">{item.name}</h3>
-                    <p className="text-xs text-emerald-100/70 leading-relaxed mb-4">{item.desc}</p>
-                  </div>
-
-                  <div>
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {item.tags.map((tag) => (
-                        <span key={tag} className="px-2 py-0.5 rounded text-[10px] bg-slate-900 text-emerald-300/80 border border-emerald-500/20 font-mono">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {item.link && (
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-emerald-300 hover:text-emerald-200 font-mono flex items-center gap-1 uppercase tracking-wider"
-                      >
-                        View on GitHub ↗
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* Consultation CTA */}
           <div className="terminal-panel p-8 md:p-12 text-center relative overflow-hidden bg-gradient-to-b from-slate-900/90 to-slate-950">
             <div className="max-w-2xl mx-auto space-y-4">
               <span className="terminal-label inline-block">$ schedule_consultation</span>
               <h2 className="text-3xl md:text-4xl font-bold text-emerald-100">
-                Need Similar Architecture Built For Your Team?
+                Let&apos;s Work Together.
               </h2>
-              <p className="text-emerald-100/70 text-sm md:text-base leading-relaxed">
-                Whether you need enterprise Single Sign-On (SSO) integrated, Terraform pipelines deployed, or an infrastructure cost audit, let&apos;s map out your roadmap.
+              <p className="text-emerald-100/60 text-sm leading-relaxed">
+                SSO integration, Terraform pipelines, or a cloud audit — book a call and we map out a solution.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <a
@@ -195,7 +147,7 @@ export default function ProjectsContent() {
                   className="terminal-button w-full sm:w-auto inline-flex items-center justify-center gap-2 font-mono uppercase tracking-[0.14em] text-xs"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  Book 15-Min Intro Call
+                  Book 15-Min Call
                 </a>
                 <a
                   href={profile.cal30min}
@@ -203,7 +155,7 @@ export default function ProjectsContent() {
                   rel="noopener noreferrer"
                   className="terminal-button terminal-button-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2 font-mono uppercase tracking-[0.14em] text-xs"
                 >
-                  Book 30-Min Architecture Sprint
+                  Book 30-Min Call
                 </a>
               </div>
             </div>
